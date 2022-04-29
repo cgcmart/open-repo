@@ -1,0 +1,24 @@
+<h3>{{ heading_title }}</h3>
+<div id="related{{ module }}" class="carousel slide{% if effect == 'fade' %} carousel-fade{% endif %}" data-bs-ride="carousel">
+	<div class="carousel-inner carousel-items">
+		{% for product in products|batch(items) %}
+			{% if axis == 'vertical' %}
+				<div class="col-12">{{ product }}</div>
+			{% else %}
+				<div class="carousel-item-content col-lg-3 col-md-3 col-sm-6 col-12">
+					{{ product }}
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+	{% if controls and products|batch(items)|length > 1 %}
+		<a href="#related{{ module }}" class="carousel-control-prev" data-slide="prev"><span class="fas fa-chevron-left"></span></a> <a href="#related{{ module }}" class="carousel-control-next" data-slide="next"><span class="fas fa-chevron-right"></span></a>
+	{% endif %}
+</div>
+<script type="text/javascript"><!--
+$('#related{{ module }}').carousel({
+  ride: 'carousel',
+  interval: {{ interval|escape('js') }},
+  wrap: true
+});
+//--></script>
