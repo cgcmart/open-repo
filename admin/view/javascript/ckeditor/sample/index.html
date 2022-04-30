@@ -104,7 +104,33 @@
 			</p>
 		</footer>
 		<script src="../build/ckeditor.js"></script>
-		<script>ClassicEditor
+		<script>
+			const watchdog = new CKSource.EditorWatchdog();
+			
+			window.watchdog = watchdog;
+			
+			watchdog.setCreator( ( element, config ) => {
+				return CKSource.Editor
+					.create( element, config )
+					.then( editor => {
+						
+						
+						
+			
+						return editor;
+					} )
+			} );
+			
+			watchdog.setDestructor( editor => {
+				
+				
+			
+				return editor.destroy();
+			} );
+			
+			watchdog.on( 'error', handleError );
+			
+			watchdog
 				.create( document.querySelector( '.editor' ), {
 					
 					licenseKey: '',
@@ -112,19 +138,15 @@
 					
 					
 				} )
-				.then( editor => {
-					window.editor = editor;
+				.catch( handleError );
 			
-					
-					
-					
-				} )
-				.catch( error => {
-					console.error( 'Oops, something went wrong!' );
-					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-					console.warn( 'Build id: ws18hy5l49kj-ouhogin8j8mh' );
-					console.error( error );
-				} );
+			function handleError( error ) {
+				console.error( 'Oops, something went wrong!' );
+				console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+				console.warn( 'Build id: loz0io3ryhkd-e3mvvhde1586' );
+				console.error( error );
+			}
+			
 		</script>
 	</body>
 </html>

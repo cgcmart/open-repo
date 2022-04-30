@@ -261,7 +261,7 @@ $(document).on('click', '[data-oc-toggle=\'upload\']', function() {
 				clearInterval(timer);
 
 				$.ajax({
-					url: $(element).attr('data-oc-url'),
+					url: 'index.php?route=tool/upload|upload&user_token=' + getURLVar('user_token'),
 					type: 'post',
 					data: new FormData($('#form-upload')[0]),
 					dataType: 'json',
@@ -298,26 +298,37 @@ $(document).on('click', '[data-oc-toggle=\'upload\']', function() {
 	}
 });
 
+/*
+$(document).on('change', 'button[data-oc-toggle=\'download\']', function() {
+    location = $(this).attr('data-oc-url') + '&code=' + this.value;
+});
+//$($(element).attr('data-oc-target'))
+*/
+
 var download = function() {
 	var element = this;
-
-	$($(element).attr('data-oc-target')).on('change', function() {
-		location = $(this).attr('data-oc-url') + '&code=' + this.value;
-	});
 };
-
-$(document).ready(download);
-$(document).on('change', 'button', download);
 
 $(document).on('click', 'button[data-oc-toggle=\'download\']', function(e) {
 	var element = this;
 
-	$().prop('disabled', false);
 	var value = $($(element).attr('data-oc-target')).val();
 
 	if (value != '') {
-		location = $(element).attr('data-oc-url') + '&code=' + value;
+		location = 'index.php?route=tool/upload|upload&user_token=' + getURLVar('user_token') + '&code=' + value;
 	}
+});
+
+$(document).on('click', '[data-oc-toggle=\'clear\']', function() {
+    var element = $(this);
+
+    element
+
+    element.attr('data-oc-thumb')
+
+    $().attr('src', $($(this).attr('data-oc-thumb')).attr('data-oc-placeholder'));
+
+    $($(this).attr('data-oc-target')).val('');
 });
 
 // Image Manager
@@ -347,12 +358,6 @@ $(document).on('click', '[data-oc-toggle=\'image\']', function(e) {
 			modal.show();
 		}
 	});
-});
-
-$(document).on('click', '[data-oc-toggle=\'clear\']', function() {
-	$($(this).attr('data-oc-thumb')).attr('src', $($(this).attr('data-oc-thumb')).attr('data-oc-placeholder'));
-
-	$($(this).attr('data-oc-target')).val('');
 });
 
 // Chain ajax calls.
