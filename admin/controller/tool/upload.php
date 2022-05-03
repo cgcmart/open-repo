@@ -128,7 +128,7 @@ class Upload extends \Opencart\System\Engine\Controller {
 			$data['uploads'][] = [
 				'upload_id'  => $result['upload_id'],
 				'name'       => $result['name'],
-				'code' => $result['code'],
+				'code'       => $result['code'],
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'download'   => $this->url->link('tool/upload|download', 'user_token=' . $this->session->data['user_token'] . '&code=' . $result['code'] . $url)
 			];
@@ -210,7 +210,7 @@ class Upload extends \Opencart\System\Engine\Controller {
 		}
 
 		if (!$json) {
-        	$this->load->model('tool/upload');
+			$this->load->model('tool/upload');
 
 			foreach ($selected as $upload_id) {
 				// Remove file before deleting DB record.
@@ -239,7 +239,7 @@ class Upload extends \Opencart\System\Engine\Controller {
 			$code = 0;
 		}
 
-    	$this->load->model('tool/upload');
+		$this->load->model('tool/upload');
 
 		$upload_info = $this->model_tool_upload->getUploadByCode($code);
 
@@ -307,8 +307,9 @@ class Upload extends \Opencart\System\Engine\Controller {
 
 		if (!$json) {
 			// Sanitize the filename
-			$filename = html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8');
+			$filename = basename(html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8'));
 
+			// Validate the filename length
 			if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 128)) {
 				$json['error'] = $this->language->get('error_filename');
 			}

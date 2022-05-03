@@ -1014,8 +1014,7 @@
                         <div class="col-sm-10 col-md-4">
 
                           <div class="input-group">
-                            <button type="button" data-oc-toggle="upload" data-oc-url="{{ upload }}" data-oc-size-max="{{ config_file_max_size }}" data-oc-size-error="{{ error_upload_size }}" data-oc-target="#input-option-{{ option.product_option_id }}" class="btn btn-light"><i class="fas fa-upload"></i> {{ button_upload }}</button>
-
+                            <button type="button" data-oc-toggle="upload" data-oc-size-max="{{ config_file_max_size }}" data-oc-size-error="{{ error_upload_size }}" data-oc-target="#input-option-{{ option.product_option_id }}" class="btn btn-light"><i class="fas fa-upload"></i> {{ button_upload }}</button>
                             <div class="input-group-text">
                               <div class="form-check form-switch">
                                 <input type="checkbox" name="override[variant][{{ option.product_option_id }}]" value="1" id="input-variant-option-{{ option.product_option_id }}" data-oc-toggle="switch" data-oc-target="#button-upload-{{ option.product_option_id }}" class="form-check-input"{% if override.variant[option.product_option_id] %} checked{% endif %}/> <label for="input-variant-option-{{ option.product_option_id }}" class="form-check-label"></label>
