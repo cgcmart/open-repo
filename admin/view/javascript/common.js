@@ -386,7 +386,7 @@ class Chain {
 var chain = new Chain();
 
 // Autocomplete
-+ (function($) {
+$(document).ready(function() {
 	$.fn.autocomplete = function(option) {
 		return this.each(function() {
 			var $this = $(this);
@@ -461,4 +461,4 @@ var chain = new Chain();
 			};
 		});
 	};
-})(jQuery);
+});
