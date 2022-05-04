@@ -1,7 +1,7 @@
 <?php
-namespace Opencart\Admin\Controller\Startup;
+namespace Opencart\Application\Controller\Startup;
 class Extension extends \Opencart\System\Engine\Controller {
-	public function index(): void {
+	public function index() {
 		// Add extension paths from the DB
 		$this->load->model('setting/extension');
 
