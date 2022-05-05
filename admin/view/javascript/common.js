@@ -326,12 +326,12 @@ $(document).on('click', '[data-oc-toggle=\'clear\']', function() {
 
 // Image Manager
 $(document).on('click', '[data-oc-toggle=\'image\']', function(e) {
-	e.preventDefault();
-
 	var element = this;
 
+$('#modal-image').remove();
+
 	$.ajax({
-		url: 'index.php?route=common/filemanager&user_token=' + getURLVar('user_token') + '&target=' + encodeURIComponent($(this).attr('data-oc-target')) + '&thumb=' + encodeURIComponent($(this).attr('data-oc-thumb')),
+		url: 'index.php?route=common/filemanager&user_token=' + getURLVar('user_token') + '&target=' + encodeURIComponent($(element).attr('data-oc-target')) + '&thumb=' + encodeURIComponent($(element).attr('data-oc-thumb')),
 		dataType: 'html',
 		beforeSend: function() {
 			$(element).prop('disabled', true).addClass('loading');
