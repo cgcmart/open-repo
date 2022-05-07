@@ -4,7 +4,7 @@
 
 # For any support issues please visit: http://www.opencart.com
 
-Options +FollowSymlinks
+# Options +FollowSymlinks
 
 # Prevent Directory listing
 Options -Indexes
