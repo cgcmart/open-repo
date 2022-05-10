@@ -220,15 +220,78 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<script language="javascript">
 ClassicEditor
-	.create( document.querySelector( '#editor' ) )
-    .then( editor => {
-    	console.log( editor );
-    } )
-    .catch( error => {
-    	console.error( error );
-    } );
+	.create(document.querySelector('#editor'), {
+		toolbar: [
+			'heading',
+			'removeFormat',
+			'sourceEditing',
+			'|',
+			'alignment',
+			'bold',
+			'italic',
+			'underline',
+			'bulletedList',
+			'numberedList',
+			'link',
+			'|',
+			'highlight',
+			'outdent',
+			'indent',
+			'|',
+			'imageUpload',
+			'blockQuote',
+			'insertTable',
+			'mediaEmbed',
+			'|',
+			'undo',
+			'redo',
+			'code',
+			'findAndReplace',
+			'htmlEmbed',
+			'|',
+			'specialCharacters',
+			'strikethrough',
+			'subscript',
+			'superscript',
+			'fontBackgroundColor',
+			'fontColor',
+			'horizontalLine'
+		],
+		image: {
+			toolbar: [
+				'imageTextAlternative',
+				'imageStyle:inline',
+				'imageStyle:block',
+				'imageStyle:side'
+			]
+		},
+		table: {
+			contentToolbar: [
+				'tableColumn',
+				'tableRow',
+				'mergeTableCells'
+			]
+		},
+		link: {
+			decorators: {
+				isExternal: {
+					mode: 'manual',
+					label: 'Open in a new tab',
+					attributes: {
+						target: '_blank'
+					}
+				}
+			}
+		}
+	})
+	.then(newEditor => {
+		window.editor = newEditor;
+	})
+	.catch(error => {
+		console.error(error);
+	});
 
 $('#input-parent').autocomplete({
 	'source': function(request, response) {
