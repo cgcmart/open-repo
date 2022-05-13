@@ -301,10 +301,6 @@ ClassicEditor
 $('#button-send').on('click', function() {
 	var element = this;
 
-	for (var instance in CKEDITOR.instances) {
-		CKEDITOR.instances[instance].updateElement();
-	}
-
 	var next = 'index.php?route=marketing/contact|send&user_token={{ user_token }}';
 
 	var send = function() {
