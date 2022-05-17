@@ -78,34 +78,37 @@ $(document).ready(function() {
 	});
 
 	// Product List
-	$('#list-view').click(function() {
-		$('#content .product-grid > .clearfix').remove();
+	$('#button-list').on('click', function () {
+        var element = this;
 
-		$('#content .row > .product-grid').attr('class', 'product-layout product-list col-12');
+		$('#product-list').attr('class', 'row row-cols-1 product-list');
 
-		$('#grid-view').removeClass('active');
-		$('#list-view').addClass('active');
+		$('#button-grid').removeClass('active');
+		$('#button-list').addClass('active');
 
 		localStorage.setItem('display', 'list');
 	});
 
 	// Product Grid
-	$('#grid-view').click(function() {
-		// What a shame bootstrap does not take into account dynamically loaded columns
-		$('#content .product-list').attr('class', 'product-layout product-grid');
+	$('#button-grid').on('click', function () {
+        var element = this;
 
-		$('#list-view').removeClass('active');
-		$('#grid-view').addClass('active');
+		// What a shame bootstrap does not take into account dynamically loaded columns
+		$('#product-list').attr('class', 'row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3');
+
+        $('#button-list').removeClass('active');
+        $('#button-grid').addClass('active');
 
 		localStorage.setItem('display', 'grid');
 	});
 
+	// Local Storage
 	if (localStorage.getItem('display') == 'list') {
-		$('#list-view').trigger('click');
-		$('#list-view').addClass('active');
+    	$('#product-list').attr('class', 'row row-cols-1 product-list');
+		$('#button-list').addClass('active');
 	} else {
-		$('#grid-view').trigger('click');
-		$('#grid-view').addClass('active');
+    	$('#product-list').attr('class', 'row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3');
+		$('#button-grid').addClass('active');
 	}
 
 	/* Agree to Terms */
@@ -407,8 +410,6 @@ var chain = new Chain();
 				var name;
 				var i = 0,
 					j = 0;
-
-				console.log(json);
 
 				if (json.length) {
 					for (i = 0; i < json.length; i++) {

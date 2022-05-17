@@ -588,7 +588,7 @@ INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 (254, 'Isle of Man', 'IM', 'IMN', 1, 0, 1),
 (255, 'Tristan da Cunha', 'TA', 'SHN', 1, 0, 1),
 (256, 'Guernsey', 'GG', 'GGY', 1, 0, 1),
-(257, 'Jersey', 'JE', 'JEY', '1', 0, 1);
+(257, 'Jersey', 'JE', 'JEY', 1, 0, 1);
 
 -----------------------------------------------------------
 
@@ -2252,7 +2252,7 @@ INSERT INTO `oc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
 -----------------------------------------------------------
 
 --
--- Dumping data for table `oc_stock_status`
+-- Dumping data for table `oc_subscription_status`
 --
 
 INSERT INTO `oc_subscription_status` (`subscription_status_id`, `language_id`, `name`) VALUES

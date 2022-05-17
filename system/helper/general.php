@@ -121,13 +121,13 @@ function format_size($file = '', $max = true) {
 		$unit = substr($size, -1);
 		switch ($unit){
 			case 'K':
-			$size = (int)$size*1024;
+			$size = (int)$size * 1024;
 			break;
 			case 'M':
-			$size = (int)$size*1024*1024;
+			$size = (int)$size * 1024 * 1024;
 			break;
 			case 'G':
-			$size = (int)$size*1024*1024*1024;
+			$size = (int)$size * 1024 * 1024 * 1024;
 			break;
 		}
 	} elseif (is_file($file) && !$max) {
@@ -145,7 +145,7 @@ function format_size($file = '', $max = true) {
 		];
 		
 		$code = !empty($suffix[intval(log($size, 1024))]) ? $suffix[intval(log($size, 1024))] : end($suffix);
-		$format_size = $size/(1024 ** array_search($code, $suffix));
+		$format_size = $size / (1024 ** array_search($code, $suffix));
 		
 		return [$code, $format_size, $size];	
 	}
