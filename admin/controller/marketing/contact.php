@@ -6,6 +6,10 @@ class Contact extends \Opencart\System\Engine\Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		$this->document->addScript('view/javascript/jquery/jquery-ui/jquery-ui.min.js');
+
+		$this->document->addScript('view/javascript/ckeditor/build/ckeditor.js');
+
 		$data['breadcrumbs'] = [];
 
 		$data['breadcrumbs'][] = [
@@ -37,8 +41,6 @@ class Contact extends \Opencart\System\Engine\Controller {
 
 	public function send(): void {
 		$this->load->language('marketing/contact');
-
-    	$this->document->addScript('view/javascript/ckeditor/build/ckeditor.js');
 
     	$json = [];
 
