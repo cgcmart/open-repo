@@ -159,6 +159,8 @@ class Category extends \Opencart\System\Engine\Controller {
 
     	$this->document->addScript('view/javascript/ckeditor/build/ckeditor.js');
 
+    	$this->document->addScript('view/javascript/jquery/jquery-ui/jquery-ui.min.js');
+
 		$data['text_form'] = !isset($this->request->get['category_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
 		$url = '';
