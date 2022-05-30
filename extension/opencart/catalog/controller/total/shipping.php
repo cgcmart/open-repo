@@ -20,7 +20,7 @@ class Shipping extends \Opencart\System\Engine\Controller {
 			$data['shipping_method'] = '';
 
 			if (isset($this->session->data['shipping_method'])) {
-				$shipping = explode('.', $this->session->data['shipping_method']['code']);
+				$shipping = explode('.', $this->session->data['shipping_method']);
 
 				if (isset($shipping[0]) && isset($shipping[1]) && isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {
 					$data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]]['code'];

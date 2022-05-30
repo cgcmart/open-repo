@@ -4,7 +4,7 @@
 		<div class="container-fluid">
 			<div class="float-end">
 				<button type="button" data-bs-toggle="tooltip" title="{{ button_filter }}" onclick="$('#filter-upload').toggleClass('d-none');" class="btn btn-light d-md-none"><i class="fas fa-filter"></i></button>
-				<button type="submit" form="form-upload" formaction="{{ delete }}" data-bs-toggle="tooltip" title="{{ button_delete }}" onclick="confirm('{{ text_confirm }}') ? $('#form-upload').submit() : false;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+				<button type="submit" form="form-upload" formaction="{{ delete }}" data-bs-toggle="tooltip" title="{{ button_delete }}" onclick="return confirm('{{ text_confirm }}')" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 			</div>
 			<h1>{{ heading_title }}</h1>
 			<ol class="breadcrumb">
@@ -48,33 +48,33 @@
 </div>
 <script type="text/javascript">
 $('#upload').on('click', 'thead a, .pagination a', function(e) {
-	e.preventDefault();
+    e.preventDefault();
 
-	$('#upload').load(this.href);
+    $('#upload').load(this.href);
 });
 
 $('#button-filter').on('click', function() {
-	url = '';
+    url = '';
 
-	var filter_name = $('#input-name').val();
+    var filter_name = $('#input-name').val();
 
-	if (filter_name) {
-		url += '&filter_name=' + encodeURIComponent(filter_name);
-	}
+    if (filter_name) {
+        url += '&filter_name=' + encodeURIComponent(filter_name);
+    }
 
-	var filter_filename = $('#input-filename').val();
+    var filter_filename = $('#input-filename').val();
 
-	if (filter_filename) {
-		url += '&filter_filename=' + encodeURIComponent(filter_filename);
-	}
+    if (filter_filename) {
+        url += '&filter_filename=' + encodeURIComponent(filter_filename);
+    }
 
-	var filter_date_added = $('#input-date-added').val();
+    var filter_date_added = $('#input-date-added').val();
 
-	if (filter_date_added) {
-		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
-	}
+    if (filter_date_added) {
+        url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+    }
 
-	$('#upload').load('index.php?route=tool/upload|list&user_token={{ user_token }}' + url);
+    $('#upload').load('index.php?route=tool/upload|list&user_token={{ user_token }}' + url);
 });
 </script>
 {{ footer }}

@@ -41,11 +41,11 @@ class Subscription extends \Opencart\System\Engine\Model {
 		}
 
 		if (!empty($data['filter_reference'])) {
-			$implode[] = "`s`.`reference` LIKE '" . $this->db->escape((string)$data['filter_reference']) . "%'";
+			$implode[] = "`s`.`reference` LIKE '" . $this->db->escape((string)$data['filter_reference'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_customer'])) {
-			$implode[] = "CONCAT(o.`firstname`, ' ', o.`lastname`) LIKE '" . $this->db->escape((string)$data['filter_customer']) . "%'";
+			$implode[] = "CONCAT(o.`firstname`, ' ', o.`lastname`) LIKE '" . $this->db->escape((string)$data['filter_customer'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_date_next'])) {
@@ -116,11 +116,11 @@ class Subscription extends \Opencart\System\Engine\Model {
 		}
 
 		if (!empty($data['filter_reference'])) {
-			$implode[] .= "`s`.`reference` LIKE '" . $this->db->escape((string)$data['filter_reference']) . "%'";
+			$implode[] .= "`s`.`reference` LIKE '" . $this->db->escape((string)$data['filter_reference'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_customer'])) {
-			$implode[] .= "CONCAT(o.`firstname`, ' ', o.`lastname`) LIKE '" . $this->db->escape((string)$data['filter_customer']) . "%'";
+			$implode[] .= "CONCAT(o.`firstname`, ' ', o.`lastname`) LIKE '" . $this->db->escape((string)$data['filter_customer'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_subscription_status_id'])) {
@@ -174,7 +174,7 @@ class Subscription extends \Opencart\System\Engine\Model {
 	}
 
 	public function addHistory(int $subscription_id, int $subscription_status_id, string $comment = '', bool $notify = false): void {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "subscription_history` SET `subscription_id` = '" . (int)$subscription_id . "', `subscription_status_id` = '" . (int)$subscription_status_id . "', `comment` = '" . $this->db->escape($comment) . "', `notify` = '" . (int)$notify . "', `date_added` = NOW()");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "subscription_history` SET `subscription_id` = '" . (int)$subscription_id . "', `subscription_status_id` = '" . (int)$subscription_status_id . "', `comment` = '" . $this->db->escape($comment) . "', `notify` = '" . (int)$notify . "', date_added = NOW()");
 
 		$this->db->query("UPDATE `" . DB_PREFIX . "subscription` SET `subscription_status_id` = '" . (int)$subscription_status_id . "' WHERE `subscription_id` = '" . (int)$subscription_id . "'");
 	}

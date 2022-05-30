@@ -27,6 +27,18 @@ class Country extends \Opencart\System\Engine\Model {
 		return $query->row;
 	}
 
+	public function getCountryByIsoCode2($iso_code_2) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country WHERE `iso_code_2` = '" . $this->db->escape($iso_code_2) . "' AND `status` = '1'");
+
+		return $query->row;
+	}
+
+	public function getCountryByIsoCode3($iso_code_3) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country WHERE `iso_code_3` = '" . $this->db->escape($iso_code_3) . "' AND `status` = '1'");
+
+		return $query->row;
+	}
+
 	public function getCountries(array $data = []): array {
 		if ($data) {
 			$sql = "SELECT * FROM `" . DB_PREFIX . "country`";
@@ -34,15 +46,15 @@ class Country extends \Opencart\System\Engine\Model {
 			$implode = [];
 
 			if (!empty($data['filter_name'])) {
-				$implode[] = "`name` LIKE '" . $this->db->escape((string)$data['filter_name']) . "%'";
+				$implode[] = "`name` LIKE '" . $this->db->escape((string)$data['filter_name'] . '%') . "'";
 			}
 
 			if (!empty($data['filter_iso_code_2'])) {
-				$implode[] = "`iso_code_2` LIKE '" . $this->db->escape((string)$data['filter_iso_code_2']) . "%'";
+				$implode[] = "`iso_code_2` LIKE '" . $this->db->escape((string)$data['filter_iso_code_2'] . '%') . "'";
 			}
 
 			if (!empty($data['filter_iso_code_3'])) {
-				$implode[] = "`iso_code_3` LIKE '" . $this->db->escape((string)$data['filter_iso_code_3']) . "%'";
+				$implode[] = "`iso_code_3` LIKE '" . $this->db->escape((string)$data['filter_iso_code_3'] . '%') . "'";
 			}
 
 			if ($implode) {
@@ -103,15 +115,15 @@ class Country extends \Opencart\System\Engine\Model {
 		$implode = [];
 
 		if (!empty($data['filter_name'])) {
-			$implode[] = "`name` LIKE '" . $this->db->escape((string)$data['filter_name']) . "%'";
+			$implode[] = "`name` LIKE '" . $this->db->escape((string)$data['filter_name'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_iso_code_2'])) {
-			$implode[] = "`iso_code_2` LIKE '" . $this->db->escape((string)$data['filter_iso_code_2']) . "%'";
+			$implode[] = "`iso_code_2` LIKE '" . $this->db->escape((string)$data['filter_iso_code_2'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_iso_code_3'])) {
-			$implode[] = "`iso_code_3` LIKE '" . $this->db->escape((string)$data['filter_iso_code_3']) . "%'";
+			$implode[] = "`iso_code_3` LIKE '" . $this->db->escape((string)$data['filter_iso_code_3'] . '%') . "'";
 		}
 
 		if ($implode) {

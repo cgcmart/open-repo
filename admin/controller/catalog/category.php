@@ -156,10 +156,7 @@ class Category extends \Opencart\System\Engine\Controller {
 		$this->load->language('catalog/category');
 
 		$this->document->setTitle($this->language->get('heading_title'));
-
-    	$this->document->addScript('view/javascript/ckeditor/build/ckeditor.js');
-
-    	$this->document->addScript('view/javascript/jquery/jquery-ui/jquery-ui.min.js');
+		$this->document->addScript('view/javascript/ckeditor/build/ckeditor.js');
 
 		$data['text_form'] = !isset($this->request->get['category_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
@@ -415,7 +412,7 @@ class Category extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -436,7 +433,7 @@ class Category extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -465,7 +462,7 @@ class Category extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -501,7 +498,7 @@ class Category extends \Opencart\System\Engine\Controller {
 
 		array_multisort($sort_order, SORT_ASC, $json);
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

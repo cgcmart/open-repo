@@ -365,8 +365,7 @@
                   {% if shipping_code %}
                     <option value="{{ shipping_code }}" selected>{{ shipping_method }}</option>
                   {% endif %}
-                </select>
-                <label for="input-shipping-method">{{ entry_shipping_method }}</label>
+                </select> <label for="input-shipping-method">{{ entry_shipping_method }}</label>
                 <button type="button" id="button-shipping-method" class="btn btn-outline-primary"><i class="fas fa-sync"></i></button>
               </div>
             </form>
@@ -380,8 +379,7 @@
                   {% if payment_code %}
                     <option value="{{ payment_code }}" selected>{{ payment_method }}</option>
                   {% endif %}
-                </select>
-                <label for="input-payment-method">{{ entry_payment_method }}</label>
+                </select> <label for="input-payment-method">{{ entry_payment_method }}</label>
                 <button type="button" id="button-payment-method" class="btn btn-outline-primary"><i class="fas fa-sync"></i></button>
               </div>
             </form>
@@ -459,8 +457,8 @@
                 <div class="row mb-3">
                   <label for="input-override" class="col-sm-2 col-form-label">{{ entry_override }}</label>
                   <div class="col-sm-10">
-                    <div class="btn-group">
-                      <input type="radio" name="override" value="1" id="input-override-yes" class="btn-check"/> <label for="input-override-yes" class="btn btn-outline-secondary">{{ text_yes }}</label> <input type="radio" name="override" value="0" id="input-override-no" class="btn-check" checked/> <label for="input-override-no" class="btn btn-outline-secondary">{{ text_no }}</label>
+                    <div class="form-check form-switch form-switch-lg">
+                      <input type="checkbox" name="override" value="1" id="input-override" class="form-check-input">
                     </div>
                     <div class="form-text">{{ help_override }}</div>
                   </div>
@@ -468,8 +466,8 @@
                 <div class="row mb-3">
                   <label for="input-notify" class="col-sm-2 col-form-label">{{ entry_notify }}</label>
                   <div class="col-sm-10">
-                    <div class="btn-group">
-                      <input type="radio" name="notify" value="1" id="input-notify-yes" class="btn-check"/> <label for="input-notify-yes" class="btn btn-outline-secondary">{{ text_yes }}</label> <input type="radio" name="notify" value="0" id="input-notify-no" class="btn-check" checked/> <label for="input-notify-no" class="btn btn-outline-secondary">{{ text_no }}</label>
+                    <div class="form-check form-switch form-switch-lg">
+                      <input type="checkbox" name="notify" value="1" id="input-notify" class="form-check-input"/>
                     </div>
                   </div>
                 </div>
@@ -525,6 +523,7 @@
     </div>
   </div>
 </div>
+
 <div id="modal-customer" class="modal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -550,13 +549,11 @@
             </select>
           </div>
           <div class="mb-3 required">
-            <label for="input-firstname" class="form-label">{{ entry_firstname }}</label>
-            <input type="text" name="firstname" value="{{ firstname }}" placeholder="{{ entry_firstname }}" id="input-firstname" class="form-control"/>
+            <label for="input-firstname" class="form-label">{{ entry_firstname }}</label> <input type="text" name="firstname" value="{{ firstname }}" placeholder="{{ entry_firstname }}" id="input-firstname" class="form-control"/>
             <div id="error-firstname" class="invalid-feedback"></div>
           </div>
           <div class="mb-3 required">
-            <label for="input-lastname" class="form-label">{{ entry_lastname }}</label>
-            <input type="text" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}" id="input-lastname" class="form-control"/>
+            <label for="input-lastname" class="form-label">{{ entry_lastname }}</label> <input type="text" name="lastname" value="{{ lastname }}" placeholder="{{ entry_lastname }}" id="input-lastname" class="form-control"/>
             <div id="error-lastname" class="invalid-feedback"></div>
           </div>
           <div class="mb-3 required">
@@ -567,8 +564,7 @@
             <div id="error-email" class="invalid-feedback"></div>
           </div>
           <div class="mb-3{% if config_telephone_required %} required{% endif %}">
-            <label for="input-telephone" class="form-label">{{ entry_telephone }}</label>
-            <input type="text" name="telephone" value="{{ telephone }}" placeholder="{{ entry_telephone }}" id="input-telephone" class="form-control"/>
+            <label for="input-telephone" class="form-label">{{ entry_telephone }}</label> <input type="text" name="telephone" value="{{ telephone }}" placeholder="{{ entry_telephone }}" id="input-telephone" class="form-control"/>
             <div id="error-telephone" class="invalid-feedback"></div>
           </div>
           {% for custom_field in custom_fields %}
@@ -612,18 +608,17 @@
               {% endif %}
               {% if custom_field.type == 'text' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
-                  <label for="input-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
-                  <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ account_custom_field[custom_field.custom_field_id] ? account_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" id="input-custom-field-{{ custom_field.custom_field_id }}" class="form-control"/>
+                  <label for="input-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label> <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ account_custom_field[custom_field.custom_field_id] ? account_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" id="input-custom-field-{{ custom_field.custom_field_id }}" class="form-control"/>
                   <div id="error-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
               {% if custom_field.type == 'textarea' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
-                  <label for="input-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
-                  <textarea name="custom_field[{{ custom_field.custom_field_id }}]" rows="5" placeholder="{{ custom_field.name }}" id="input-custom-field-{{ custom_field.custom_field_id }}" class="form-control">{{ custom_field.value }}</textarea>
+                  <label for="input-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label> <textarea name="custom_field[{{ custom_field.custom_field_id }}]" rows="5" placeholder="{{ custom_field.name }}" id="input-custom-field-{{ custom_field.custom_field_id }}" class="form-control">{{ custom_field.value }}</textarea>
                   <div id="error-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
+
               {% if custom_field.type == 'file' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label class="form-label">{{ custom_field.name }}</label>
@@ -632,9 +627,11 @@
                     <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ account_custom_field[custom_field.custom_field_id] ? account_custom_field[custom_field.custom_field_id] }}" id="input-custom-field-{{ custom_field.custom_field_id }}" class="form-control" readonly/>
                     <button type="button" data-oc-toggle="download" data-oc-target="#input-custom-field-{{ custom_field.custom_field_id }}"{% if not account_custom_field[custom_field.custom_field_id] %} disabled{% endif %} class="btn btn-outline-secondary"><i class="fas fa-download"></i> {{ button_download }}</button>
                     <button type="button" data-oc-toggle="clear" data-bs-toggle="tooltip" title="{{ button_clear }}" data-oc-target="#input-custom-field-{{ custom_field.custom_field_id }}"{% if not account_custom_field[custom_field.custom_field_id] %} disabled{% endif %} class="btn btn-outline-danger"><i class="fas fa-eraser"></i></button>
+                  </div>
                   <div id="error-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
+
               {% if custom_field.type == 'date' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label for="input-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
@@ -884,6 +881,7 @@
                   <div id="error-payment-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
+
               {% if custom_field.type == 'file' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label class="form-label">{{ custom_field.name }}</label>
@@ -896,6 +894,7 @@
                   <div id="error-payment-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
+
               {% if custom_field.type == 'date' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label for="input-payment-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
@@ -936,7 +935,6 @@
     </div>
   </div>
 </div>
-
 <div id="modal-shipping-address" class="modal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -948,8 +946,7 @@
         <form id="form-shipping-address">
 
           <div class="mb-3">
-            <label for="input-shipping-address" class="form-label">{{ entry_address }}</label>
-            <select name="shipping_address" id="input-shipping-address" class="form-select">
+            <label for="input-shipping-address" class="form-label">{{ entry_address }}</label> <select name="shipping_address" id="input-shipping-address" class="form-select">
               <option value="0" selected="selected">{{ text_none }}</option>
               {% for address in addresses %}
                 <option value="{{ address.address_id }}">{{ address.firstname }} {{ address.lastname }}, {{ address.address_1 }}, {{ address.city }}, {{ address.country }}</option>
@@ -958,47 +955,39 @@
           </div>
 
           <div class="mb-3 required">
-            <label for="input-shipping-firstname" class="form-label">{{ entry_firstname }}</label>
-            <input type="text" name="firstname" value="{{ shipping_firstname }}" placeholder="{{ entry_firstname }}" id="input-shipping-firstname" class="form-control"/>
+            <label for="input-shipping-firstname" class="form-label">{{ entry_firstname }}</label> <input type="text" name="firstname" value="{{ shipping_firstname }}" placeholder="{{ entry_firstname }}" id="input-shipping-firstname" class="form-control"/>
             <div id="error-shipping-firstname" class="invalid-feedback"></div>
           </div>
 
           <div class="mb-3 required">
-            <label for="input-shipping-lastname" class="form-label">{{ entry_lastname }}</label>
-            <input type="text" name="lastname" value="{{ shipping_lastname }}" placeholder="{{ entry_lastname }}" id="input-shipping-lastname" class="form-control"/>
+            <label for="input-shipping-lastname" class="form-label">{{ entry_lastname }}</label> <input type="text" name="lastname" value="{{ shipping_lastname }}" placeholder="{{ entry_lastname }}" id="input-shipping-lastname" class="form-control"/>
             <div id="error-shipping-lastname" class="invalid-feedback"></div>
           </div>
 
           <div class="mb-3">
-            <label for="input-shipping-company" class="form-label">{{ entry_company }}</label>
-            <input type="text" name="company" value="{{ shipping_company }}" placeholder="{{ entry_company }}" id="input-shipping-company" class="form-control"/>
+            <label for="input-shipping-company" class="form-label">{{ entry_company }}</label> <input type="text" name="company" value="{{ shipping_company }}" placeholder="{{ entry_company }}" id="input-shipping-company" class="form-control"/>
           </div>
 
           <div class="mb-3 required">
-            <label for="input-shipping-address-1" class="form-label">{{ entry_address_1 }}</label>
-            <input type="text" name="address_1" value="{{ shipping_address_1 }}" placeholder="{{ entry_address_1 }}" id="input-shipping-address-1" class="form-control"/>
+            <label for="input-shipping-address-1" class="form-label">{{ entry_address_1 }}</label> <input type="text" name="address_1" value="{{ shipping_address_1 }}" placeholder="{{ entry_address_1 }}" id="input-shipping-address-1" class="form-control"/>
             <div id="error-shipping-address-1" class="invalid-feedback"></div>
           </div>
 
           <div class="mb-3">
-            <label for="input-shipping-address-2" class="form-label">{{ entry_address_2 }}</label>
-            <input type="text" name="address_2" value="{{ shipping_address_2 }}" placeholder="{{ entry_address_2 }}" id="input-shipping-address-2" class="form-control"/>
+            <label for="input-shipping-address-2" class="form-label">{{ entry_address_2 }}</label> <input type="text" name="address_2" value="{{ shipping_address_2 }}" placeholder="{{ entry_address_2 }}" id="input-shipping-address-2" class="form-control"/>
           </div>
           <div class="mb-3 required">
-            <label for="input-shipping-city" class="form-label">{{ entry_city }}</label>
-            <input type="text" name="city" value="{{ shipping_city }}" placeholder="{{ entry_city }}" id="input-shipping-city" class="form-control"/>
+            <label for="input-shipping-city" class="form-label">{{ entry_city }}</label> <input type="text" name="city" value="{{ shipping_city }}" placeholder="{{ entry_city }}" id="input-shipping-city" class="form-control"/>
             <div id="error-shipping-city" class="invalid-feedback"></div>
           </div>
 
           <div class="mb-3 required">
-            <label for="input-shipping-postcode" class="form-label">{{ entry_postcode }}</label>
-            <input type="text" name="postcode" value="{{ shipping_postcode }}" placeholder="{{ entry_postcode }}" id="input-shipping-postcode" class="form-control"/>
+            <label for="input-shipping-postcode" class="form-label">{{ entry_postcode }}</label> <input type="text" name="postcode" value="{{ shipping_postcode }}" placeholder="{{ entry_postcode }}" id="input-shipping-postcode" class="form-control"/>
             <div id="error-shipping-postcode" class="invalid-feedback"></div>
           </div>
 
           <div class="mb-3 required">
-            <label for="input-shipping-country" class="form-label">{{ entry_country }}</label>
-            <select name="country_id" id="input-shipping-country" class="form-select">
+            <label for="input-shipping-country" class="form-label">{{ entry_country }}</label> <select name="country_id" id="input-shipping-country" class="form-select">
               <option value="">{{ text_select }}</option>
               {% for country in countries %}
                 <option value="{{ country.country_id }}"{% if country.country_id == shipping_country_id %} selected="selected"{% endif %}>{{ country.name }}</option>
@@ -1008,8 +997,7 @@
           </div>
 
           <div class="mb-3 required">
-            <label for="input-shipping-zone" class="form-label">{{ entry_zone }}</label>
-            <select name="zone_id" id="input-shipping-zone" class="form-select"></select>
+            <label for="input-shipping-zone" class="form-label">{{ entry_zone }}</label> <select name="zone_id" id="input-shipping-zone" class="form-select"></select>
             <div id="error-shipping-zone" class="invalid-feedback"></div>
           </div>
 
@@ -1018,8 +1006,7 @@
 
               {% if custom_field.type == 'select' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
-                  <label for="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
-                  <select name="custom_field[{{ custom_field.custom_field_id }}]" id="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-select">
+                  <label for="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label> <select name="custom_field[{{ custom_field.custom_field_id }}]" id="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-select">
                     <option value="">{{ text_select }}</option>
                     {% for custom_field_value in custom_field.custom_field_value %}
                       <option value="{{ custom_field_value.custom_field_value_id }}"{% if shipping_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id == shipping_custom_field[custom_field.custom_field_id] %} selected="selected"{% endif %}>{{ custom_field_value.name }}</option>
@@ -1044,31 +1031,25 @@
                   <div id="error-shipping-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
-
               {% if custom_field.type == 'checkbox' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label class="form-label">{{ custom_field.name }}</label>
                   <div id="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-control" style="height: 150px; overflow: auto;">
-
                     {% for custom_field_value in custom_field.custom_field_value %}
                       <div class="form-check">
                         <input type="checkbox" name="custom_field[{{ custom_field.custom_field_id }}][]" value="{{ custom_field_value.custom_field_value_id }}" id="input-shipping-custom-value-{{ custom_field_value.custom_field_value_id }}" class="form-check-input"{% if shipping_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id in shipping_custom_field[custom_field.custom_field_id] %} checked{% endif %}/> <label for="input-shipping-custom-value-{{ custom_field_value.custom_field_value_id }}" class="form-check-label">{{ custom_field_value.name }}</label>
                       </div>
                     {% endfor %}
-
                   </div>
                   <div id="error-shipping-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
-
               {% if custom_field.type == 'text' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
-                  <label for="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
-                  <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ shipping_custom_field[custom_field.custom_field_id] ? shipping_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" id="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-control"/>
+                  <label for="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label> <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ shipping_custom_field[custom_field.custom_field_id] ? shipping_custom_field[custom_field.custom_field_id] : custom_field.value }}" placeholder="{{ custom_field.name }}" id="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-control"/>
                   <div id="error-shipping-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
-
               {% if custom_field.type == 'textarea' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label for="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
@@ -1076,7 +1057,6 @@
                   <div id="error-shipping-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
-
               {% if custom_field.type == 'file' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label class="form-label">{{ custom_field.name }}</label>
@@ -1089,7 +1069,6 @@
                   <div id="error-shipping-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
-
               {% if custom_field.type == 'date' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label for="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
@@ -1100,7 +1079,6 @@
                   <div id="error-shipping-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
-
               {% if custom_field.type == 'time' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label for="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
@@ -1111,7 +1089,6 @@
                   <div id="error-shipping-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
-
               {% if custom_field.type == 'datetime' %}
                 <div class="mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                   <label for="input-shipping-custom-field-{{ custom_field.custom_field_id }}" class="form-label">{{ custom_field.name }}</label>
@@ -1122,22 +1099,17 @@
                   <div id="error-shipping-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                 </div>
               {% endif %}
-
             {% endif %}
-
           {% endfor %}
 
           <div class="text-end">
             <button type="submit" id="button-shipping-address" class="btn btn-primary"><i class="fas fa-save"></i> {{ button_save }}</button>
           </div>
-
         </form>
       </div>
-
     </div>
   </div>
 </div>
-
 <div id="modal-comment" class="modal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -1158,890 +1130,890 @@
     </div>
   </div>
 </div>
-<script language="JavaScript">
-$('#button-collapse').on('click', function() {
-	var element = this;
+<script type="text/javascript">
+$('#button-collapse').on('click', function () {
+    var element = this;
 
-	var target = $('#collapse-order');
+    var target = $('#collapse-order');
 
-	if (!target.is(':hidden')) {
-		target.slideUp('400', function() {
-			$(element).html('{{ text_more }} <i class="fas fa-angle-down"></i>');
-		});
-	} else {
-		target.slideDown('400', function() {
-			$(element).html('{{ text_less }} <i class="fas fa-angle-up"></i>');
-		});
-	}
+    if (!target.is(':hidden')) {
+        target.slideUp('400', function () {
+            $(element).html('{{ text_more }} <i class="fas fa-angle-down"></i>');
+        });
+    } else {
+        target.slideDown('400', function () {
+            $(element).html('{{ text_less }} <i class="fas fa-angle-up"></i>');
+        });
+    }
 });
 
-$(document).on('click', '#button-invoice', function() {
-	$.ajax({
-		url: 'index.php?route=sale/order|createinvoiceno&user_token={{ user_token }}&order_id={{ order_id }}',
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-invoice').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-invoice').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+$(document).on('click', '#button-invoice', function () {
+    $.ajax({
+        url: 'index.php?route=sale/order|createInvoiceNo&user_token={{ user_token }}&order_id={{ order_id }}',
+        dataType: 'json',
+        beforeSend: function () {
+            $('#button-invoice').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-invoice').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#invoice-value').html(json.invoice_no);
+                $('#invoice-value').html(json['invoice_no']);
 
-				$('#button-invoice').replaceWith('<button disabled="disabled" class="btn btn-outline-primary"><i class="fas fa-cog"></i></button>');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#button-invoice').replaceWith('<button disabled="disabled" class="btn btn-outline-primary"><i class="fas fa-cog"></i></button>');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Customer
 $('#input-customer').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				json.unshift({
-					customer_id: 0,
-					customer_group_id: {{ customer_group_id }},
-					name: '{{ text_none }}',
-					customer_group: '',
-					firstname: '',
-					lastname: '',
-					email: '',
-					telephone: '',
-					custom_field: [],
-					address: []
-				});
+    'source': function (request, response) {
+        $.ajax({
+            url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function (json) {
+                json.unshift({
+                    customer_id: 0,
+                    customer_group_id: {{ customer_group_id }},
+                    name: '{{ text_none }}',
+                    customer_group: '',
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    telephone: '',
+                    custom_field: [],
+                    address: []
+                });
 
-				response($.map(json, function(item) {
-					return {
-						category: item.customer_group,
-						label: item.name,
-						value: item.customer_id,
-						customer_group_id: item.customer_group_id,
-						firstname: item.firstname,
-						lastname: item.lastname,
-						email: item.email,
-						telephone: item.telephone,
-						custom_field: item.custom_field,
-						address: item.address
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {
-		// Reset all custom fields
-		$('#form-customer input[type=\'text\'], #form-customer textarea').not('#input-customer, #input-customer-id').val('');
-		$('#form-customer select option').removeAttr('selected');
-		$('#form-customer input[type=\'checkbox\'], #form-customer input[type=\'radio\']').removeAttr('checked');
+                response($.map(json, function (item) {
+                    return {
+                        category: item['customer_group'],
+                        label: item['name'],
+                        value: item['customer_id'],
+                        customer_group_id: item['customer_group_id'],
+                        firstname: item['firstname'],
+                        lastname: item['lastname'],
+                        email: item['email'],
+                        telephone: item['telephone'],
+                        custom_field: item['custom_field'],
+                        address: item['address']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function (item) {
+        // Reset all custom fields
+        $('#form-customer input[type=\'text\'], #form-customer textarea').not('#input-customer, #input-customer-id').val('');
+        $('#form-customer select option').removeAttr('selected');
+        $('#form-customer input[type=\'checkbox\'], #form-customer input[type=\'radio\']').removeAttr('checked');
 
-		$('#input-customer-id').val(item.value);
-		$('#input-customer-group').val(item.customer_group_id);
-		$('#input-firstname').val(item.firstname);
-		$('#input-lastname').val(item.lastname);
-		$('#input-email').val(item.email);
-		$('#input-telephone').val(item.telephone);
+        $('#input-customer-id').val(item['value']);
+        $('#input-customer-group').val(item['customer_group_id']);
+        $('#input-firstname').val(item['firstname']);
+        $('#input-lastname').val(item['lastname']);
+        $('#input-email').val(item['email']);
+        $('#input-telephone').val(item['telephone']);
 
-		for (var i in item.custom_field) {
-			$('#input-custom-field-' + i).val(item.custom_field[i]);
+        for (i in item.custom_field) {
+            $('#input-custom-field-' + i).val(item.custom_field[i]);
 
-			if (item.custom_field[i] instanceof Array) {
-				for (j = 0; j < item.custom_field[i].length; j++) {
-					$('#input-custom-field-value-' + item.custom_field[i][j]).prop('checked', true);
-				}
-			}
-		}
+            if (item.custom_field[i] instanceof Array) {
+                for (j = 0; j < item.custom_field[i].length; j++) {
+                    $('#input-custom-field-value-' + item.custom_field[i][j]).prop('checked', true);
+                }
+            }
+        }
 
-		$('#input-customer-group').trigger('change');
+        $('#input-customer-group').trigger('change');
 
-		html = '<option value="0">{{ text_none }}</option>';
+        html = '<option value="0">{{ text_none }}</option>';
 
-		for (i in item.address) {
-			html += '<option value="' + item.address[i].address_id + '">' + item.address[i].firstname + ' ' + item.address[i].lastname + ', ' + item.address[i].address_1 + ', ' + item.address[i].city + ', ' + item.address[i].country + '</option>';
-		}
+        for (i in item['address']) {
+            html += '<option value="' + item['address'][i]['address_id'] + '">' + item['address'][i]['firstname'] + ' ' + item['address'][i]['lastname'] + ', ' + item['address'][i]['address_1'] + ', ' + item['address'][i]['city'] + ', ' + item['address'][i]['country'] + '</option>';
+        }
 
-		$('#input-payment-address').html(html);
-		$('#input-shipping-address').html(html);
-	}
+        $('#input-payment-address').html(html);
+        $('#input-shipping-address').html(html);
+    }
 });
 
 // Custom Fields
-$('#input-customer-group').on('change', function() {
-	$.ajax({
-		url: 'index.php?route=customer/customer|customfield&user_token={{ user_token }}&customer_group_id=' + this.value,
-		dataType: 'json',
-		success: function(json) {
-			$('.custom-field').hide();
-			$('.custom-field').removeClass('required');
+$('#input-customer-group').on('change', function () {
+    $.ajax({
+        url: 'index.php?route=customer/customer|customfield&user_token={{ user_token }}&customer_group_id=' + this.value,
+        dataType: 'json',
+        success: function (json) {
+            $('.custom-field').hide();
+            $('.custom-field').removeClass('required');
 
-			for (i = 0; i < json.length; i++) {
-				custom_field = json[i];
+            for (i = 0; i < json.length; i++) {
+                custom_field = json[i];
 
-				$('.custom-field-' + custom_field.custom_field_id).show();
+                $('.custom-field-' + custom_field['custom_field_id']).show();
 
-				if (custom_field.required) {
-					$('.custom-field-' + custom_field.custom_field_id).addClass('required');
-				}
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                if (custom_field['required']) {
+                    $('.custom-field-' + custom_field['custom_field_id']).addClass('required');
+                }
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 $('#input-customer-group').trigger('change');
 
 // Customer
-$('#form-customer').on('submit', function(e) {
-	e.preventDefault();
+$('#form-customer').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/customer',
-		type: 'post',
-		data: $('#form-customer').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$('#button-customer').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-customer').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
-			$('.is-invalid').removeClass('is-invalid');
-			$('.invalid-feedback').removeClass('d-block');
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/customer',
+        type: 'post',
+        data: $('#form-customer').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $('#button-customer').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-customer').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').removeClass('d-block');
 
-			// Check for errors
-			if (json.error) {
-				if (json.error.warning) {
-					$('#form-customer').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error.warning + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-				}
+            // Check for errors
+            if (json['error']) {
+                if (json['error']['warning']) {
+                    $('#form-customer').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error']['warning'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+                }
 
-				for (var key in json.error) {
-					$('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
-					$('#error-' + key.replaceAll('_', '-')).html(json.error[key]).addClass('d-block');
-				}
-			}
+                for (key in json['error']) {
+                    $('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
+                    $('#error-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
+                }
+            }
 
-			if (json.success) {
-				$('#form-customer').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#form-customer').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#customer-value').html('<a href="index.php?route=customer/customer|form&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val() + '">' + $('#input-firstname').val() + ' ' + $('#input-lastname').val() + '</a>');
+                $('#customer-value').html('<a href="index.php?route=customer/customer|form&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val() + '">' + $('#input-firstname').val() + ' ' + $('#input-lastname').val() + '</a>');
 
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Product
 $('#input-product').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=catalog/product|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.product_id,
-						model: item.model,
-						option: item.option,
-                        subscription: item.subscription,
-						price: item.price
-					};
-				}));
+    'source': function (request, response) {
+        $.ajax({
+            url: 'index.php?route=catalog/product|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function (json) {
+                response($.map(json, function (item) {
+                    return {
+                        label: item['name'],
+                        value: item['product_id'],
+                        model: item['model'],
+                        option: item['option'],
+                        subscription: item['subscription'],
+                        price: item['price']
+                    }
+                }));
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	},
-	'select': function(item) {
-		$('#input-product-id').val(item.value);
+            }
+        });
+    },
+    'select': function (item) {
+        $('#input-product-id').val(item['value']);
 
-		if (item.option != '') {
-			html = '<fieldset class="mb-0">';
-			html += '  <legend>{{ entry_option }}</legend>';
+        if (item['option'] != '') {
+            html = '<fieldset class="mb-0">';
+            html += '  <legend>{{ entry_option }}</legend>';
 
-			for (i = 0; i < item.option.length; i++) {
-				option = item.option[i];
+            for (i = 0; i < item['option'].length; i++) {
+                option = item['option'][i];
 
-				if (option.type == 'select') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label for="input-option-' + option.product_option_id + '" class="form-label">' + option.name + '</label>';
-					html += '  <select name="option[' + option.product_option_id + ']" id="input-option-' + option.product_option_id + '" class="form-select">';
-					html += '    <option value="">{{ text_select }}</option>';
+                if (option['type'] == 'select') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label for="input-option-' + option['product_option_id'] + '" class="form-label">' + option['name'] + '</label>';
+                    html += '  <select name="option[' + option['product_option_id'] + ']" id="input-option-' + option['product_option_id'] + '" class="form-select">';
+                    html += '    <option value="">{{ text_select }}</option>';
 
-					for (j = 0; j < option.product_option_value.length; j++) {
-						option_value = option.product_option_value[j];
+                    for (j = 0; j < option['product_option_value'].length; j++) {
+                        option_value = option['product_option_value'][j];
 
-						html += '<option value="' + option_value.product_option_value_id + '">' + option_value.name;
+                        html += '<option value="' + option_value['product_option_value_id'] + '">' + option_value['name'];
 
-						if (option_value.price) {
-							html += ' (' + option_value.price_prefix + option_value.price + ')';
-						}
+                        if (option_value['price']) {
+                            html += ' (' + option_value['price_prefix'] + option_value['price'] + ')';
+                        }
 
-						html += '</option>';
-					}
+                        html += '</option>';
+                    }
 
-					html += '  </select>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
+                    html += '  </select>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
 
-				if (option.type == 'radio') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label for="input-option-' + option.product_option_id + '" class="form-label">' + option.name + '</label>';
+                if (option['type'] == 'radio') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label for="input-option-' + option['product_option_id'] + '" class="form-label">' + option['name'] + '</label>';
 
-					html += '  <select name="option[' + option.product_option_id + ']" id="input-option-' + option.product_option_id + '" class="form-select">';
-					html += '    <option value="">{{ text_select }}</option>';
+                    html += '  <select name="option[' + option['product_option_id'] + ']" id="input-option-' + option['product_option_id'] + '" class="form-select">';
+                    html += '    <option value="">{{ text_select }}</option>';
 
-					for (j = 0; j < option.product_option_value.length; j++) {
-						option_value = option.product_option_value[j];
+                    for (j = 0; j < option['product_option_value'].length; j++) {
+                        option_value = option['product_option_value'][j];
 
-						html += '<option value="' + option_value.product_option_value_id + '">' + option_value.name;
+                        html += '<option value="' + option_value['product_option_value_id'] + '">' + option_value['name'];
 
-						if (option_value.price) {
-							html += ' (' + option_value.price_prefix + option_value.price + ')';
-						}
+                        if (option_value['price']) {
+                            html += ' (' + option_value['price_prefix'] + option_value['price'] + ')';
+                        }
 
-						html += '</option>';
-					}
+                        html += '</option>';
+                    }
 
-					html += '  </select>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
+                    html += '  </select>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
 
-				if (option.type == 'checkbox') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label class="form-label">' + option.name + '</label>';
+                if (option['type'] == 'checkbox') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label class="form-label">' + option['name'] + '</label>';
 
-					html += '  <div id="input-option-' + option.product_option_id + '" class="form-control">';
+                    html += '  <div id="input-option-' + option['product_option_id'] + '" class="form-control">';
 
-					for (j = 0; j < option.product_option_value.length; j++) {
-						option_value = option.product_option_value[j];
+                    for (j = 0; j < option['product_option_value'].length; j++) {
+                        option_value = option['product_option_value'][j];
 
-						html += '<div class="form-check">';
-						html += '  <input type="checkbox" name="option[' + option.product_option_id + '][]" value="' + option_value.product_option_value_id + '" id="input-option-value-' + option_value.product_option_value_id + '" class="form-check-input"/> ';
-						html += '  <label for="input-option-value-' + option_value.product_option_value_id + '" class="form-check-label">' + option_value.name;
+                        html += '<div class="form-check">';
+                        html += '  <input type="checkbox" name="option[' + option['product_option_id'] + '][]" value="' + option_value['product_option_value_id'] + '" id="input-option-value-' + option_value['product_option_value_id'] + '" class="form-check-input"/> ';
+                        html += '  <label for="input-option-value-' + option_value['product_option_value_id'] + '" class="form-check-label">' + option_value['name'];
 
-						if (option_value.price) {
-							html += ' (' + option_value.price_prefix + option_value.price + ')';
-						}
+                        if (option_value['price']) {
+                            html += ' (' + option_value['price_prefix'] + option_value['price'] + ')';
+                        }
 
-						html += '  </label>';
-						html += '</div>';
-					}
+                        html += '  </label>';
+                        html += '</div>';
+                    }
 
-					html += '  </div>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
+                    html += '  </div>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
 
-				if (option.type == 'image') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label for="input-option-' + option.product_option_id + '" class="form-label">' + option.name + '</label>';
+                if (option['type'] == 'image') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label for="input-option-' + option['product_option_id'] + '" class="form-label">' + option['name'] + '</label>';
 
-					html += '  <select name="option[' + option.product_option_id + ']" id="input-option-' + option.product_option_id + '" class="form-select">';
-					html += '    <option value="">{{ text_select }}</option>';
+                    html += '  <select name="option[' + option['product_option_id'] + ']" id="input-option-' + option['product_option_id'] + '" class="form-select">';
+                    html += '    <option value="">{{ text_select }}</option>';
 
-					for (j = 0; j < option.product_option_value.length; j++) {
-						option_value = option.product_option_value[j];
+                    for (j = 0; j < option['product_option_value'].length; j++) {
+                        option_value = option['product_option_value'][j];
 
-						html += '<option value="' + option_value.product_option_value_id + '">' + option_value.name;
+                        html += '<option value="' + option_value['product_option_value_id'] + '">' + option_value['name'];
 
-						if (option_value.price) {
-							html += ' (' + option_value.price_prefix + option_value.price + ')';
-						}
+                        if (option_value['price']) {
+                            html += ' (' + option_value['price_prefix'] + option_value['price'] + ')';
+                        }
 
-						html += '</option>';
-					}
+                        html += '</option>';
+                    }
 
-					html += '  </select>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
+                    html += '  </select>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
 
-				if (option.type == 'text') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label for="input-option-' + option.product_option_id + '" class="form-label">' + option.name + '</label>';
-					html += '  <input type="text" name="option[' + option.product_option_id + ']" value="' + option.value + '" placeholder="' + option.name + '" id="input-option-' + option.product_option_id + '" class="form-control"/>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
+                if (option['type'] == 'text') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label for="input-option-' + option['product_option_id'] + '" class="form-label">' + option['name'] + '</label>';
+                    html += '  <input type="text" name="option[' + option['product_option_id'] + ']" value="' + option['value'] + '" placeholder="' + option['name'] + '" id="input-option-' + option['product_option_id'] + '" class="form-control"/>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
 
-				if (option.type == 'textarea') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label for="input-option-' + option.product_option_id + '" class="form-label">' + option.name + '</label>';
-					html += '  <textarea name="option[' + option.product_option_id + ']" rows="5" placeholder="' + option.name + '" id="input-option-' + option.product_option_id + '" class="form-control">' + option.value + '</textarea>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
+                if (option['type'] == 'textarea') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label for="input-option-' + option['product_option_id'] + '" class="form-label">' + option['name'] + '</label>';
+                    html += '  <textarea name="option[' + option['product_option_id'] + ']" rows="5" placeholder="' + option['name'] + '" id="input-option-' + option['product_option_id'] + '" class="form-control">' + option['value'] + '</textarea>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
 
-				if (option.type == 'file') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label class="form-label">' + option.name + '</label>';
-					html += '  <div>';
-					html += '    <button type="button" data-oc-toggle="upload" data-oc-url="{{ upload }}" class="btn btn-light"><i class="fas fa-upload"></i> {{ button_upload }}</button>';
+                if (option['type'] == 'file') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label class="form-label">' + option['name'] + '</label>';
+                    html += '  <div>';
+                    html += '    <button type="button" data-oc-toggle="upload" data-oc-url="{{ upload }}" class="btn btn-light"><i class="fas fa-upload"></i> {{ button_upload }}</button>';
                     html += '    <a href="" class="btn btn-light"><i class="fas fa-download"></i></a>';
-					html += '    <input type="hidden" name="option[' + option.product_option_id + ']" value="' + option.value + '" id="input-option-' + option.product_option_id + '"/>';
-					html += '  </div>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
+                    html += '    <input type="hidden" name="option[' + option['product_option_id'] + ']" value="' + option['value'] + '" id="input-option-' + option['product_option_id'] + '"/>';
+                    html += '  </div>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
 
-				if (option.type == 'date') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label for="input-option-' + option.product_option_id + '" class="form-label">' + option.name + '</label>';
-					html += '  <div class="input-group"><input type="text" name="option[' + option.product_option_id + ']" value="' + option.value + '" placeholder="' + option.name + '"  id="input-option-' + option.product_option_id + '" class="form-control date"/><div class="input-group-text"><i class="fas fa-calendar"></i></div></div>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
+                if (option['type'] == 'date') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label for="input-option-' + option['product_option_id'] + '" class="form-label">' + option['name'] + '</label>';
+                    html += '  <div class="input-group"><input type="text" name="option[' + option['product_option_id'] + ']" value="' + option['value'] + '" placeholder="' + option['name'] + '"  id="input-option-' + option['product_option_id'] + '" class="form-control date"/><div class="input-group-text"><i class="fas fa-calendar"></i></div></div>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
 
-				if (option.type == 'datetime') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label for="input-option-' + option.product_option_id + '" class="form-label">' + option.name + '</label>';
-					html += '  <div class="input-group"><input type="text" name="option[' + option.product_option_id + ']" value="' + option.value + '" placeholder="' + option.name + '" id="input-option-' + option.product_option_id + '" class="form-control datetime"/><div class="input-group-text"><i class="fas fa-calendar"></i></div></div>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
+                if (option['type'] == 'datetime') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label for="input-option-' + option['product_option_id'] + '" class="form-label">' + option['name'] + '</label>';
+                    html += '  <div class="input-group"><input type="text" name="option[' + option['product_option_id'] + ']" value="' + option['value'] + '" placeholder="' + option['name'] + '" id="input-option-' + option['product_option_id'] + '" class="form-control datetime"/><div class="input-group-text"><i class="fas fa-calendar"></i></div></div>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
 
-				if (option.type == 'time') {
-					html += '<div class="mb-3' + (option.required == 1 ? ' required' : '') + '">';
-					html += '  <label for="input-option-' + option.product_option_id + '" class="form-label">' + option.name + '</label>';
-					html += '  <div class="input-group"><input type="text" name="option[' + option.product_option_id + ']" value="' + option.value + '" placeholder="' + option.name + '" id="input-option-' + option.product_option_id + '" class="form-control time"/><div class="input-group-text"><i class="fas fa-calendar"></i></div></div>';
-					html += '  <div id="error-option-' + option.product_option_id + '" class="invalid-feedback"></div>';
-					html += '</div>';
-				}
-			}
+                if (option['type'] == 'time') {
+                    html += '<div class="mb-3' + (option['required'] == 1 ? ' required' : '') + '">';
+                    html += '  <label for="input-option-' + option['product_option_id'] + '" class="form-label">' + option['name'] + '</label>';
+                    html += '  <div class="input-group"><input type="text" name="option[' + option['product_option_id'] + ']" value="' + option['value'] + '" placeholder="' + option['name'] + '" id="input-option-' + option['product_option_id'] + '" class="form-control time"/><div class="input-group-text"><i class="fas fa-calendar"></i></div></div>';
+                    html += '  <div id="error-option-' + option['product_option_id'] + '" class="invalid-feedback"></div>';
+                    html += '</div>';
+                }
+            }
 
-			html += '</fieldset>';
+            html += '</fieldset>';
 
-			$('#option').html(html);
-		} else {
-			$('#option').html('');
-		}
+            $('#option').html(html);
+        } else {
+            $('#option').html('');
+        }
 
-        if (item.subscription != '') {
+        if (item['subscription'] != '') {
             html = '<fieldset class="mb-0">';
             html += '  <legend>{{ entry_subscription }}</legend>';
             html += '  <div class="mb-3 required">';
             html += '    <select name="subscription_plan_id" id="input-subscription-plan" class="form-select">';
             html += '      <option value="">{{ text_select }}</option>';
 
-            for (i = 0; i < item.subscription.length; i++) {
-                html += '<option value="' + item.subscription[i].subscription_plan_id + '">' + item.subscription[i].name + '</option>';
+            for (i = 0; i < item['subscription'].length; i++) {
+                html += '<option value="' + item['subscription'][i]['subscription_plan_id'] + '">' + item['subscription'][i]['name'] + '</option>';
             }
 
-			html += '  </select>';
+            html += '  </select>';
 
-			for (i = 0; i < item.subscription.length; i++) {
-                html += '  <div id="subscription-description-' + item.subscription[i].subscription_plan_id + '" class="form-text subscription d-none">' + item.subscription[i].description + '</div>';
+            for (i = 0; i < item['subscription'].length; i++) {
+                html += '  <div id="subscription-description-' + item['subscription'][i]['subscription_plan_id'] + '" class="form-text subscription d-none">' + item['subscription'][i]['description'] + '</div>';
             }
 
-			html += '  <div id="error-subscription" class="invalid-feedback"></div>';
+            html += '  <div id="error-subscription" class="invalid-feedback"></div>';
             html += '</div>';
             html += '</fieldset>';
 
-			$('#subscription').html(html);
+            $('#subscription').html(html);
         } else {
             $('#subscription').html('');
         }
-	}
+    }
 });
 
-$('#form-product-add').on('submit', function(e) {
-	e.preventDefault();
+$('#form-product-add').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/cart|add',
-		type: 'post',
-		data: $('#form-product-add').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$('#button-product-add').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-product-add').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
-			$('.is-invalid').removeClass('is-invalid');
-			$('.invalid-feedback').removeClass('d-block');
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/cart|add',
+        type: 'post',
+        data: $('#form-product-add').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $('#button-product-add').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-product-add').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').removeClass('d-block');
 
-			if (json.error) {
-				if (json.error.warning) {
-					$('#form-product-add').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error.warning + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-				}
+            if (json['error']) {
+                if (json['error']['warning']) {
+                    $('#form-product-add').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error']['warning'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+                }
 
-				for (var key in json.error) {
-					$('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
-					$('#error-' + key.replaceAll('_', '-')).html(json.error[key]).addClass('d-block');
-				}
-			}
+                for (key in json['error']) {
+                    $('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
+                    $('#error-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
+                }
+            }
 
-			if (json.success) {
-				$('#form-product-add').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#form-product-add').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				// Refresh products, vouchers and totals
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                // Refresh products, vouchers and totals
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Remove product
 $('#order-products').on('submit', 'form', function (e) {
     e.preventDefault();
 
-	var element = this;
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/cart/remove',
-		type: 'post',
-		data: $(element).serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$(e.target).prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$(e.target).prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/cart|remove',
+        type: 'post',
+        data: $(element).serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $(e.target).prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $(e.target).prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			// Check for errors
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            // Check for errors
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				// Refresh products, vouchers and totals
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                // Refresh products, vouchers and totals
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Voucher
-$('#form-voucher-add').on('submit', function(e) {
-	e.preventDefault();
+$('#form-voucher-add').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/voucher|add',
-		type: 'post',
-		data: $('#form-voucher-add').serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-voucher-add').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-voucher-add').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
-			$('.is-invalid').removeClass('is-invalid');
-			$('.invalid-feedback').removeClass('d-block');
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/voucher|add',
+        type: 'post',
+        data: $('#form-voucher-add').serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#button-voucher-add').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-voucher-add').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').removeClass('d-block');
 
-			if (json.error) {
-				if (json.error.warning) {
-					$('#form-voucher-add').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error.warning + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-				}
+            if (json['error']) {
+                if (json['error']['warning']) {
+                    $('#form-voucher-add').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error']['warning'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+                }
 
-				if (json.error) {
-					for (var key in json.error) {
-						$('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
-						$('#error-' + key.replaceAll('_', '-')).html(json.error[key]).addClass('d-block');
-					}
-				}
-			}
+                if (json['error']) {
+                    for (key in json['error']) {
+                        $('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
+                        $('#error-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
+                    }
+                }
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#input-to-name').val('');
-				$('#input-to-email').val('');
-				$('#input-from-name').val('');
-				$('#input-from-email').val('');
-				$('#input-message').val('');
+                $('#input-to-name').val('');
+                $('#input-to-email').val('');
+                $('#input-from-name').val('');
+                $('#input-from-email').val('');
+                $('#input-message').val('');
                 $('#input-amount').val('{{ voucher_min|escape('js') }}');
 
-				// Refresh products, vouchers and totals
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                // Refresh products, vouchers and totals
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Remove voucher
 $('#order-vouchers').on('submit', 'form', function (e) {
     e.preventDefault();
 
-	var element = this;
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/voucher/remove',
-		type: 'post',
-		data: $(element).serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$(e.target).prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$(e.target).prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/voucher|remove',
+        type: 'post',
+        data: $(element).serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $(e.target).prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $(e.target).prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			// Check for errors
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            // Check for errors
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				// Refresh products, vouchers and totals
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                // Refresh products, vouchers and totals
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#input-store').on('change', function(e) {
-	e.preventDefault();
+$('#input-store').on('change', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=localisation/store',
-		type: 'post',
-		data: $('#form-store').serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#input-store').prop('disabled', true);
-		},
-		complete: function() {
-			$('#input-store').prop('disabled', false);
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=localisation/store',
+        type: 'post',
+        data: $('#form-store').serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#input-store').prop('disabled', true);
+        },
+        complete: function () {
+            $('#input-store').prop('disabled', false);
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#input-language').on('change', function(e) {
-	e.preventDefault();
+$('#input-language').on('change', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=localisation/language',
-		type: 'post',
-		data: $('#form-language').serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#input-language').prop('disabled', true);
-		},
-		complete: function() {
-			$('#input-language').prop('disabled', false);
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=localisation/language',
+        type: 'post',
+        data: $('#form-language').serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#input-language').prop('disabled', true);
+        },
+        complete: function () {
+            $('#input-language').prop('disabled', false);
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#input-currency').on('change', function(e) {
-	e.preventDefault();
+$('#input-currency').on('change', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=localisation/currency',
-		type: 'post',
-		data: $('#form-currency').serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#input-currency').prop('disabled', true);
-		},
-		complete: function() {
-			$('#input-currency').prop('disabled', false);
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=localisation/currency',
+        type: 'post',
+        data: $('#form-currency').serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#input-currency').prop('disabled', true);
+        },
+        complete: function () {
+            $('#input-currency').prop('disabled', false);
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Coupon
-$('#form-coupon').on('submit', function(e) {
-	e.preventDefault();
+$('#form-coupon').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/coupon',
-		type: 'post',
-		data: $('#form-coupon').serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-coupon').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-coupon').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/coupon',
+        type: 'post',
+        data: $('#form-coupon').serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#button-coupon').addClass('loading').prop('disabled', true);
+        },
+        complete: function () {
+            $('#button-coupon').removeClass('loading').prop('disabled', false);
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				// Refresh products, vouchers and totals
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                // Refresh products, vouchers and totals
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Voucher
-$('#form-voucher').on('submit', function(e) {
-	e.preventDefault();
+$('#form-voucher').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/voucher',
-		type: 'post',
-		data: $('#form-voucher').serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-voucher').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-voucher').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/voucher',
+        type: 'post',
+        data: $('#form-voucher').serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#button-voucher').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-voucher').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				// Refresh products, vouchers and totals
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                // Refresh products, vouchers and totals
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Reward
-$('#form-reward').on('submit', function(e) {
-	e.preventDefault();
+$('#form-reward').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/reward',
-		type: 'post',
-		data: $('#form-reward').serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-reward').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-reward').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/reward',
+        type: 'post',
+        data: $('#form-reward').serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#button-reward').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-reward').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Reward
-$(document).on('click', '#button-reward-add, #button-reward-remove', function(e) {
-	var element = this;
+$(document).on('click', '#button-reward-add, #button-reward-remove', function (e) {
+    var element = this;
 
-	if ($(element).hasClass('btn-success')) {
-		var action = 'add';
-	} else {
-		var action = 'remove';
-	}
+    if ($(element).hasClass('btn-success')) {
+        var action = 'add';
+    } else {
+        var action = 'remove';
+    }
 
-	$.ajax({
-		url: 'index.php?route=sale/order|' + action + 'Reward&user_token={{ user_token }}&order_id=' + $('#input-order-id').val(),
-		type: 'post',
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$(element).prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|' + action + 'Reward&user_token={{ user_token }}&order_id=' + $('#input-order-id').val(),
+        type: 'post',
+        dataType: 'json',
+        beforeSend: function () {
+            $(element).prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $(element).prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				if (action == 'add') {
-					$(element).replaceWith('<button type="button" id="button-reward-remove" data-bs-toggle="tooltip" title="{{ button_reward_remove }}" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>');
-				}
+                if (action == 'add') {
+                    $(element).replaceWith('<button type="button" id="button-reward-remove" data-bs-toggle="tooltip" title="{{ button_reward_remove }}" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>');
+                }
 
-				if (action == 'remove') {
-					$(element).replaceWith('<button type="button" id="button-reward-add" data-bs-toggle="tooltip" title="{{ button_reward_add }}" class="btn btn-success"><i class="fas fa-plus-circle"></i></button>');
-				}
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                if (action == 'remove') {
+                    $(element).replaceWith('<button type="button" id="button-reward-add" data-bs-toggle="tooltip" title="{{ button_reward_add }}" class="btn btn-success"><i class="fas fa-plus-circle"></i></button>');
+                }
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Affiliate
 $('#input-affiliate').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_affiliate=1&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				json.unshift({
-					name: '{{ text_none }}',
+    'source': function (request, response) {
+        $.ajax({
+            url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_affiliate=1&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function (json) {
+                json.unshift({
+                    name: '{{ text_none }}',
                     customer_id: 0
-				});
+                });
 
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.customer_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {
-		$('#input-affiliate-id').val(item.value);
-	}
+                response($.map(json, function (item) {
+                    return {
+                        label: item['name'],
+                        value: item['customer_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function (item) {
+        $('#input-affiliate-id').val(item['value']);
+    }
 });
 
 // Affiliate
-$('#form-affiliate').on('submit', function(e) {
-	e.preventDefault();
+$('#form-affiliate').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/affiliate',
-		type: 'post',
-		data: $('#form-affiliate').serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-affiliate').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-affiliate').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/affiliate',
+        type: 'post',
+        data: $('#form-affiliate').serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#button-affiliate').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-affiliate').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#form-affiliate').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#form-affiliate').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#form-affiliate').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#form-affiliate').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
                 if ($('#input-affiliate-id').val()) {
                     $('#affiliate-value').html('<a href="index.php?route=marketing/affiliate|form&user_token={{ user_token }}&customer_id=' + $('#input-affiliate-id').val() + '" target="_blank">' + $('#input-affiliate').val() + '</a>');
@@ -2049,147 +2021,147 @@ $('#form-affiliate').on('submit', function(e) {
                     $('#affiliate-value').html('&nbsp;');
                 }
             }
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Commission
-$(document).on('click', '#button-commission-add, #button-commission-remove', function(e) {
-	var element = this;
+$(document).on('click', '#button-commission-add, #button-commission-remove', function (e) {
+    var element = this;
 
-	if ($(element).hasClass('btn-success')) {
-		var action = 'add';
-	} else {
-		var action = 'remove';
-	}
+    if ($(element).hasClass('btn-success')) {
+        var action = 'add';
+    } else {
+        var action = 'remove';
+    }
 
-	$.ajax({
-		url: 'index.php?route=sale/order|' + action + 'Commission&user_token={{ user_token }}&order_id=' + $('#input-order-id').val(),
-		type: 'post',
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$(element).prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|' + action + 'Commission&user_token={{ user_token }}&order_id=' + $('#input-order-id').val(),
+        type: 'post',
+        dataType: 'json',
+        beforeSend: function () {
+            $(element).prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $(element).prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				if (action == 'add') {
-					$(element).replaceWith('<button type="button" id="button-commission-remove" data-bs-toggle="tooltip" title="{{ button_commission_remove }}" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>');
-				}
+                if (action == 'add') {
+                    $(element).replaceWith('<button type="button" id="button-commission-remove" data-bs-toggle="tooltip" title="{{ button_commission_remove }}" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>');
+                }
 
-				if (action == 'remove') {
-					$(element).replaceWith('<button type="button" id="button-commission-add" data-bs-toggle="tooltip" title="{{ button_commission_add }}" class="btn btn-success"><i class="fas fa-plus-circle"></i></button>');
-				}
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                if (action == 'remove') {
+                    $(element).replaceWith('<button type="button" id="button-commission-add" data-bs-toggle="tooltip" title="{{ button_commission_add }}" class="btn btn-success"><i class="fas fa-plus-circle"></i></button>');
+                }
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Payment Address
-$('#input-payment-address').on('change', function() {
-	var element = this;
+$('#input-payment-address').on('change', function () {
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=customer/customer|address&user_token={{ user_token }}&address_id=' + this.value,
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true);
-		},
-		complete: function() {
-			$(element).prop('disabled', false);
-		},
-		success: function(json) {
+    $.ajax({
+        url: 'index.php?route=customer/customer|address&user_token={{ user_token }}&address_id=' + this.value,
+        dataType: 'json',
+        beforeSend: function () {
+            $(element).prop('disabled', true);
+        },
+        complete: function () {
+            $(element).prop('disabled', false);
+        },
+        success: function (json) {
             $('.alert-dismissible').remove();
 
-            if (json.error) {
-                $('#form-payment-address').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['error']) {
+                $('#form-payment-address').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
             }
 
-			// Reset all fields
-			$('#form-payment-address input[type=\'text\'], #form-payment-address textarea').val('');
-			$('#form-payment-address select option').not('#input-payment-address').removeAttr('selected');
-			$('#form-payment-address input[type=\'checkbox\'], #form-payment-address input[type=\'radio\']').removeAttr('checked');
+            // Reset all fields
+            $('#form-payment-address input[type=\'text\'], #form-payment-address textarea').val('');
+            $('#form-payment-address select option').not('#input-payment-address').removeAttr('selected');
+            $('#form-payment-address input[type=\'checkbox\'], #form-payment-address input[type=\'radio\']').removeAttr('checked');
 
-			$('#input-payment-firstname').val(json.firstname);
-			$('#input-payment-lastname').val(json.lastname);
-			$('#input-payment-company').val(json.company);
-			$('#input-payment-address-1').val(json.address_1);
-			$('#input-payment-address-2').val(json.address_2);
-			$('#input-payment-city').val(json.city);
-			$('#input-payment-postcode').val(json.postcode);
-			$('#input-payment-country').val(json.country_id);
+            $('#input-payment-firstname').val(json['firstname']);
+            $('#input-payment-lastname').val(json['lastname']);
+            $('#input-payment-company').val(json['company']);
+            $('#input-payment-address-1').val(json['address_1']);
+            $('#input-payment-address-2').val(json['address_2']);
+            $('#input-payment-city').val(json['city']);
+            $('#input-payment-postcode').val(json['postcode']);
+            $('#input-payment-country').val(json['country_id']);
 
-			payment_zone_id = json.zone_id;
+            payment_zone_id = json['zone_id'];
 
-			$('#input-payment-country').trigger('change');
+            $('#input-payment-country').trigger('change');
 
-			for (var i in json.custom_field) {
-				$('#input-payment-field-' + i).val(json.custom_field[i]);
+            for (i in json['custom_field']) {
+                $('#input-payment-custom-field-' + i).val(json['custom_field'][i]);
 
-				if (json.custom_field[i] instanceof Array) {
-					for (j = 0; j < json.custom_field[i].length; j++) {
-						$('#input-payment-custom-field-value-' + item.custom_field[i][j]).prop('checked', true);
-					}
-				}
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                if (json['custom_field'][i] instanceof Array) {
+                    for (j = 0; j < json['custom_field'][i].length; j++) {
+                        $('#input-payment-custom-field-value-' + item.custom_field[i][j]).prop('checked', true);
+                    }
+                }
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#form-payment-address').on('submit', function(e) {
-	e.preventDefault();
+$('#form-payment-address').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/payment_address',
-		type: 'post',
-		data: $('#form-payment-address').serialize(),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-payment-address').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-payment-address').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
-			$('.is-invalid').removeClass('is-invalid');
-			$('.invalid-feedback').removeClass('d-block');
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/payment_address',
+        type: 'post',
+        data: $('#form-payment-address').serialize(),
+        dataType: 'json',
+        beforeSend: function () {
+            $('#button-payment-address').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-payment-address').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').removeClass('d-block');
 
-			// Check for errors
-			if (json.error) {
-				if (json.error.warning) {
-					$('#form-payment-address').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error.warning + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            // Check for errors
+            if (json['error']) {
+                if (json['error']['warning']) {
+                    $('#form-payment-address').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error']['warning'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
                 }
 
-				for (var key in json.error) {
-					$('#input-payment-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
-					$('#error-payment-' + key.replaceAll('_', '-')).html(json.error[key]).addClass('d-block');
-				}
-			}
+                for (key in json['error']) {
+                    $('#input-payment-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
+                    $('#error-payment-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
+                }
+            }
 
-			if (json.success) {
-				$('#form-payment-address').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#form-payment-address').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				var address = $('#input-payment-firstname').val() + ' ' + $('#input-payment-lastname').val() + "<br/>";
+                var address = $('#input-payment-firstname').val() + ' ' + $('#input-payment-lastname').val() + "<br/>";
 
                 var company = $('#input-payment-company').val();
 
@@ -2218,150 +2190,150 @@ $('#form-payment-address').on('submit', function(e) {
 
                 $('#payment-address-value').html(address);
 
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 var payment_zone_id = '{{ payment_zone_id }}';
 
-$('#input-payment-country').on('change', function() {
-	var element = this;
+$('#input-payment-country').on('change', function () {
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=localisation/country|country&user_token={{ user_token }}&country_id=' + this.value,
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true);
-		},
-		complete: function() {
-			$(element).prop('disabled', false);
-		},
-		success: function(json) {
-			if (json.postcode_required == '1') {
-				$('#input-payment-postcode').parent().addClass('required');
-			} else {
-				$('#input-payment-postcode').parent().removeClass('required');
-			}
+    $.ajax({
+        url: 'index.php?route=localisation/country|country&user_token={{ user_token }}&country_id=' + this.value,
+        dataType: 'json',
+        beforeSend: function () {
+            $(element).prop('disabled', true);
+        },
+        complete: function () {
+            $(element).prop('disabled', false);
+        },
+        success: function (json) {
+            if (json['postcode_required'] == '1') {
+                $('#input-payment-postcode').parent().addClass('required');
+            } else {
+                $('#input-payment-postcode').parent().removeClass('required');
+            }
 
-			html = '<option value="">{{ text_select }}</option>';
+            html = '<option value="">{{ text_select }}</option>';
 
-			if (json.zone && json.zone != '') {
-				for (i = 0; i < json.zone.length; i++) {
-					html += '<option value="' + json.zone[i].zone_id + '"';
+            if (json['zone'] && json['zone'] != '') {
+                for (i = 0; i < json['zone'].length; i++) {
+                    html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
-					if (json.zone[i].zone_id == payment_zone_id) {
-						html += ' selected="selected"';
-					}
+                    if (json['zone'][i]['zone_id'] == payment_zone_id) {
+                        html += ' selected="selected"';
+                    }
 
-					html += '>' + json.zone[i].name + '</option>';
-				}
-			} else {
-				html += '<option value="0" selected="selected">{{ text_none }}</option>';
-			}
+                    html += '>' + json['zone'][i]['name'] + '</option>';
+                }
+            } else {
+                html += '<option value="0" selected="selected">{{ text_none }}</option>';
+            }
 
-			$('#input-payment-zone').html(html);
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+            $('#input-payment-zone').html(html);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 $('#input-payment-country').trigger('change');
 
 // Shipping Address
-$('#input-shipping-address').on('change', function() {
-	var element = this;
+$('#input-shipping-address').on('change', function () {
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=customer/customer|address&user_token={{ user_token }}&address_id=' + this.value,
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true);
-		},
-		complete: function() {
-			$(element).prop('disabled', false);
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=customer/customer|address&user_token={{ user_token }}&address_id=' + this.value,
+        dataType: 'json',
+        beforeSend: function () {
+            $(element).prop('disabled', true);
+        },
+        complete: function () {
+            $(element).prop('disabled', false);
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#form-shipping-address').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#form-shipping-address').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			// Reset all fields
-			$('#form-shipping-address input[type=\'text\'], #form-shipping-address input[type=\'text\'], #form-shipping-address textarea').val('');
-			$('#form-shipping-address select option').not('#input-shipping-address').removeAttr('selected');
-			$('#form-shipping-address input[type=\'checkbox\'], #form-shipping-address input[type=\'radio\']').removeAttr('checked');
+            // Reset all fields
+            $('#form-shipping-address input[type=\'text\'], #form-shipping-address input[type=\'text\'], #form-shipping-address textarea').val('');
+            $('#form-shipping-address select option').not('#input-shipping-address').removeAttr('selected');
+            $('#form-shipping-address input[type=\'checkbox\'], #form-shipping-address input[type=\'radio\']').removeAttr('checked');
 
-            $('#input-shipping-firstname').val(json.firstname);
-            $('#input-shipping-lastname').val(json.lastname);
-            $('#input-shipping-company').val(json.company);
-            $('#input-shipping-address-1').val(json.address_1);
-            $('#input-shipping-address-2').val(json.address_2);
-            $('#input-shipping-city').val(json.city);
-            $('#input-shipping-postcode').val(json.postcode);
-            $('#input-shipping-country').val(json.country_id);
+            $('#input-shipping-firstname').val(json['firstname']);
+            $('#input-shipping-lastname').val(json['lastname']);
+            $('#input-shipping-company').val(json['company']);
+            $('#input-shipping-address-1').val(json['address_1']);
+            $('#input-shipping-address-2').val(json['address_2']);
+            $('#input-shipping-city').val(json['city']);
+            $('#input-shipping-postcode').val(json['postcode']);
+            $('#input-shipping-country').val(json['country_id']);
 
-			shipping_zone_id = json.zone_id;
+            shipping_zone_id = json['zone_id'];
 
-			$('#input-shipping-country').trigger('change');
+            $('#input-shipping-country').trigger('change');
 
-			for (var i in json.custom_field) {
-				$('#input-shipping-custom-field-' + i).val(json.custom_field[i]);
+            for (i in json['custom_field']) {
+                $('#input-shipping-custom-field-' + i).val(json['custom_field'][i]);
 
-				if (json.custom_field[i] instanceof Array) {
-					for (j = 0; j < json.custom_field[i].length; j++) {
-						$('#input-shipping-custom-field-value-' + json.custom_field[i][j]).prop('checked', true);
-					}
-				}
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                if (json['custom_field'][i] instanceof Array) {
+                    for (j = 0; j < json['custom_field'][i].length; j++) {
+                        $('#input-shipping-custom-field-value-' + json['custom_field'][i][j]).prop('checked', true);
+                    }
+                }
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#form-shipping-address').on('submit', function(e) {
-	e.preventDefault();
+$('#form-shipping-address').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/shipping_address',
-		type: 'post',
-		data: $('#form-shipping-address').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$('#button-shipping-address').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-shipping-address').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('#form-shipping-address .alert-dismissible').remove();
-			$('#form-shipping-address .is-invalid').removeClass('is-invalid');
-			$('#form-shipping-address .invalid-feedback').removeClass('d-block');
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/shipping_address',
+        type: 'post',
+        data: $('#form-shipping-address').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $('#button-shipping-address').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-shipping-address').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('#form-shipping-address .alert-dismissible').remove();
+            $('#form-shipping-address .is-invalid').removeClass('is-invalid');
+            $('#form-shipping-address .invalid-feedback').removeClass('d-block');
 
-			// Check for errors
-			if (json.error) {
-				if (json.error.warning) {
-					$('#form-shipping-address').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error.warning + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-				}
+            // Check for errors
+            if (json['error']) {
+                if (json['error']['warning']) {
+                    $('#form-shipping-address').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error']['warning'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+                }
 
-				for (var key in json.error) {
-					$('#input-shipping-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
-					$('#error-shipping-' + key.replaceAll('_', '-')).html(json.error[key]).addClass('d-block');
-				}
-			}
+                for (key in json['error']) {
+                    $('#input-shipping-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
+                    $('#error-shipping-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
+                }
+            }
 
-			if (json.success) {
-				$('#form-shipping-address').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#form-shipping-address').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
                 var address = $('#input-shipping-firstname').val() + ' ' + $('#input-shipping-lastname').val() + "<br/>";
 
@@ -2392,479 +2364,479 @@ $('#form-shipping-address').on('submit', function(e) {
 
                 $('#shipping-address-value').html(address);
 
-				// Refresh products, vouchers and totals
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                // Refresh products, vouchers and totals
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 var shipping_zone_id = '{{ shipping_zone_id }}';
 
-$('#input-shipping-country').on('change', function() {
-	var element = this;
+$('#input-shipping-country').on('change', function () {
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=localisation/country|country&user_token={{ user_token }}&country_id=' + this.value,
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true);
-		},
-		complete: function() {
-			$(element).prop('disabled', false);
-		},
-		success: function(json) {
-			if (json.postcode_required == '1') {
-				$('#input-shipping-postcode').parent().addClass('required');
-			} else {
-				$('#input-shipping-postcode').parent().removeClass('required');
-			}
+    $.ajax({
+        url: 'index.php?route=localisation/country|country&user_token={{ user_token }}&country_id=' + this.value,
+        dataType: 'json',
+        beforeSend: function () {
+            $(element).prop('disabled', true);
+        },
+        complete: function () {
+            $(element).prop('disabled', false);
+        },
+        success: function (json) {
+            if (json['postcode_required'] == '1') {
+                $('#input-shipping-postcode').parent().addClass('required');
+            } else {
+                $('#input-shipping-postcode').parent().removeClass('required');
+            }
 
-			html = '<option value="">{{ text_select }}</option>';
+            html = '<option value="">{{ text_select }}</option>';
 
-			if (json.zone && json.zone != '') {
-				for (i = 0; i < json.zone.length; i++) {
-					html += '<option value="' + json.zone[i].zone_id + '"';
+            if (json['zone'] && json['zone'] != '') {
+                for (i = 0; i < json['zone'].length; i++) {
+                    html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
-					if (json.zone[i].zone_id == shipping_zone_id) {
-						html += ' selected="selected"';
-					}
+                    if (json['zone'][i]['zone_id'] == shipping_zone_id) {
+                        html += ' selected="selected"';
+                    }
 
-					html += '>' + json.zone[i].name + '</option>';
-				}
-			} else {
-				html += '<option value="0" selected="selected">{{ text_none }}</option>';
-			}
+                    html += '>' + json['zone'][i]['name'] + '</option>';
+                }
+            } else {
+                html += '<option value="0" selected="selected">{{ text_none }}</option>';
+            }
 
-			$('#input-shipping-zone').html(html);
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+            $('#input-shipping-zone').html(html);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 $('#input-shipping-country').trigger('change');
 
 // Payment Method
-$('#button-payment-method').on('click', function() {
-	var element = this;
+$('#button-payment-method').on('click', function () {
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/payment_method',
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$(element).prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('#alert .alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/payment_method',
+        dataType: 'json',
+        beforeSend: function () {
+            $(element).prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $(element).prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('#alert .alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			html = '<option value="">{{ text_select }}</option>';
+            html = '<option value="">{{ text_select }}</option>';
 
-			if (json.payment_methods) {
-				for (var i in json.payment_methods) {
-					if (json.payment_methods[i].code == $('#input-payment-method').val()) {
-						html += '<option value="' + json.payment_methods[i].code + '" selected>' + json.payment_methods[i].title + '</option>';
-					} else {
-						html += '<option value="' + json.payment_methods[i].code + '">' + json.payment_methods[i].title + '</option>';
-					}
-				}
-			}
+            if (json['payment_methods']) {
+                for (i in json['payment_methods']) {
+                    if (json['payment_methods'][i]['code'] == $('#input-payment-method').val()) {
+                        html += '<option value="' + json['payment_methods'][i]['code'] + '" selected>' + json['payment_methods'][i]['title'] + '</option>';
+                    } else {
+                        html += '<option value="' + json['payment_methods'][i]['code'] + '">' + json['payment_methods'][i]['title'] + '</option>';
+                    }
+                }
+            }
 
-			$('#input-payment-method').html(html);
+            $('#input-payment-method').html(html);
 
-			$('#button-refresh').trigger('click');
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+            $('#button-refresh').trigger('click');
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#input-payment-method').on('change', function(e) {
-	e.preventDefault();
+$('#input-payment-method').on('change', function (e) {
+    e.preventDefault();
 
-	var element = this;
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/payment_method|save',
-		type: 'post',
-		data: $('#form-payment-method').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$(element).prop('disabled', true);
-		},
-		complete: function() {
-			$(element).prop('disabled', false);
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/payment_method|save',
+        type: 'post',
+        data: $('#form-payment-method').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $(element).prop('disabled', true);
+        },
+        complete: function () {
+            $(element).prop('disabled', false);
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Shipping Method
-$('#button-shipping-method').on('click', function() {
-	var element = this;
+$('#button-shipping-method').on('click', function () {
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/shipping_method',
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$(element).prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/shipping_method',
+        dataType: 'json',
+        beforeSend: function () {
+            $(element).prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $(element).prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			html = '<option value="">{{ text_select }}</option>';
+            html = '<option value="">{{ text_select }}</option>';
 
-			if (json.shipping_methods) {
-				for (var i in json.shipping_methods) {
-					html += '<optgroup label="' + json.shipping_methods[i].title + '">';
+            if (json['shipping_methods']) {
+                for (i in json['shipping_methods']) {
+                    html += '<optgroup label="' + json['shipping_methods'][i]['title'] + '">';
 
-					if (!json.shipping_methods[i].error) {
-						for (var j in json.shipping_methods[i].quote) {
-							if (json.shipping_methods[i].quote[j].code == $('#input-shipping-method').val()) {
-								html += '<option value="' + json.shipping_methods[i].quote[j].code + '" selected>' + json.shipping_methods[i].quote[j].title + ' - ' + json.shipping_methods[i].quote[j].text + '</option>';
-							} else {
-								html += '<option value="' + json.shipping_methods[i].quote[j].code + '">' + json.shipping_methods[i].quote[j].title + ' - ' + json.shipping_methods[i].quote[j].text + '</option>';
-							}
-						}
-					} else {
-						html += '<option value="" class="text-danger" disabled>' + json.shipping_methods[i].error + '</span></li>';
-					}
+                    if (!json['shipping_methods'][i]['error']) {
+                        for (j in json['shipping_methods'][i]['quote']) {
+                            if (json['shipping_methods'][i]['quote'][j]['code'] == $('#input-shipping-method').val()) {
+                                html += '<option value="' + json['shipping_methods'][i]['quote'][j]['code'] + '" selected>' + json['shipping_methods'][i]['quote'][j]['title'] + ' - ' + json['shipping_methods'][i]['quote'][j]['text'] + '</option>';
+                            } else {
+                                html += '<option value="' + json['shipping_methods'][i]['quote'][j]['code'] + '">' + json['shipping_methods'][i]['quote'][j]['title'] + ' - ' + json['shipping_methods'][i]['quote'][j]['text'] + '</option>';
+                            }
+                        }
+                    } else {
+                        html += '<option value="" class="text-danger" disabled>' + json['shipping_methods'][i]['error'] + '</span></li>';
+                    }
 
-					html += '</optgroup>';
-				}
-			}
+                    html += '</optgroup>';
+                }
+            }
 
-			$('#input-shipping-method').html(html);
+            $('#input-shipping-method').html(html);
 
             $('#button-refresh').trigger('click');
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#input-shipping-method').on('change', function(e) {
-	var element = this;
+$('#input-shipping-method').on('change', function (e) {
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/shipping_method|save',
-		type: 'post',
-		data: $('#form-shipping-method').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$(element).prop('disabled', true);
-		},
-		complete: function() {
-			$(element).prop('disabled', false);
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/shipping_method|save',
+        type: 'post',
+        data: $('#form-shipping-method').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $(element).prop('disabled', true);
+        },
+        complete: function () {
+            $(element).prop('disabled', false);
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#button-refresh').trigger('click');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#button-refresh').trigger('click');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#form-comment').on('submit', function(e) {
-	e.preventDefault();
+$('#form-comment').on('submit', function (e) {
+    e.preventDefault();
 
-	var element = this;
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/order|comment',
-		type: 'post',
-		data: $('#form-comment').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$('#button-comment').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-comment').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/order|comment',
+        type: 'post',
+        data: $('#form-comment').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $('#button-comment').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-comment').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			// Check for errors
-			if (json.error) {
-				$('#form-comment').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            // Check for errors
+            if (json['error']) {
+                $('#form-comment').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#form-comment').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#form-comment').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#comment-value').html($('#input-comment').val().replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br/>$2'));
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#comment-value').html($('#input-comment').val().replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br/>$2'));
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Refresh all products, vouchers and totals
-$('#button-refresh').on('click', function() {
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/cart',
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-confirm').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-confirm').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			html = '';
+$('#button-refresh').on('click', function () {
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/cart',
+        dataType: 'json',
+        beforeSend: function () {
+            $('#button-confirm').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-confirm').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            html = '';
 
-			if (json.products.length) {
-				for (i = 0; i < json.products.length; i++) {
-					product = json.products[i];
+            if (json['products'].length) {
+                for (i = 0; i < json['products'].length; i++) {
+                    product = json['products'][i];
 
-					html += '<tr>';
-					html += '  <td class="text-start"><a href="index.php?route=catalog/product|form&user_token={{ user_token }}&product_id=' + product.product_id + '" target="_blank">' + product.name + '</a>' + (!product.stock ? ' <span class="text-danger">***</span>' : '');
+                    html += '<tr>';
+                    html += '  <td class="text-start"><a href="index.php?route=catalog/product|form&user_token={{ user_token }}&product_id=' + product['product_id'] + '" target="_blank">' + product['name'] + '</a>' + (!product['stock'] ? ' <span class="text-danger">***</span>' : '');
 
-					if (product.option) {
-						for (j = 0; j < product.option.length; j++) {
-							option = product.option[j];
+                    if (product['option']) {
+                        for (j = 0; j < product['option'].length; j++) {
+                            option = product['option'][j];
 
                             html += '<br/>';
-							html += '  - <small>' + option.name + ': ' + option.value + '</small>';
-						}
-					}
+                            html += '  - <small>' + option['name'] + ': ' + option['value'] + '</small>';
+                        }
+                    }
 
-					if (product.reward) {
+                    if (product['reward']) {
                         html += '<br/>';
-						html += '  - <small>{{ text_points }} ' + product.reward + '</small>';
-					}
+                        html += '  - <small>{{ text_points }} ' + product['reward'] + '</small>';
+                    }
 
-					if (product.subscription) {
-						html += '<br/>';
-						html += '  - <small>{{ text_subscription }} ' + product['subscription'] + '</small>';
-					}
+                    if (product['subscription']) {
+                        html += '<br/>';
+                        html += '  - <small>{{ text_subscription }} ' + product['subscription'] + '</small>';
+                    }
 
-					html += '  </td>';
-					html += '  <td class="text-start">' + product.model + '</td>';
-					html += '  <td class="text-end">' + product.quantity + '</td>';
-					html += '  <td class="text-end">' + product.price + '</td>';
-					html += '  <td class="text-end">' + product.total + '</td>';
-					html += '  <td class="text-end">';
-					html += '    <form>';
-					html += '      <button type="submit" data-bs-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>';
-					html += '      <input type="hidden" name="key" value="' + product.cart_id + '"/>';
-					html += '    </form>';
-					html += '  </td>';
-					html += '</tr>';
-				}
-			}
+                    html += '  </td>';
+                    html += '  <td class="text-start">' + product['model'] + '</td>';
+                    html += '  <td class="text-end">' + product['quantity'] + '</td>';
+                    html += '  <td class="text-end">' + product['price'] + '</td>';
+                    html += '  <td class="text-end">' + product['total'] + '</td>';
+                    html += '  <td class="text-end">';
+                    html += '    <form>';
+                    html += '      <button type="submit" data-bs-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>';
+                    html += '      <input type="hidden" name="key" value="' + product['cart_id'] + '"/>';
+                    html += '    </form>';
+                    html += '  </td>';
+                    html += '</tr>';
+                }
+            }
 
-			$('#order-products').html(html);
+            $('#order-products').html(html);
 
-			html = '';
+            html = '';
 
-			if (json.vouchers.length) {
-				for (var i in json.vouchers) {
-					voucher = json.vouchers[i];
+            if (json['vouchers'].length) {
+                for (i in json['vouchers']) {
+                    voucher = json['vouchers'][i];
 
-					html += '<tr>';
-					html += '  <td class="text-start">' + voucher.description + '</td>';
-					html += '  <td class="text-start"></td>';
-					html += '  <td class="text-end">1</td>';
-					html += '  <td class="text-end">' + voucher.amount + '</td>';
-					html += '  <td class="text-end">' + voucher.amount + '</td>';
-					html += '  <td class="text-end">';
-					html += '    <form>';
-					html += '      <button type="submit" data-bs-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>';
-					html += '      <input type="hidden" name="key" value="' + voucher.key + '"/>';
-					html += '    </form>';
-					html += '  </td>';
-					html += '</tr>';
-				}
-			}
+                    html += '<tr>';
+                    html += '  <td class="text-start">' + voucher['description'] + '</td>';
+                    html += '  <td class="text-start"></td>';
+                    html += '  <td class="text-end">1</td>';
+                    html += '  <td class="text-end">' + voucher['amount'] + '</td>';
+                    html += '  <td class="text-end">' + voucher['amount'] + '</td>';
+                    html += '  <td class="text-end">';
+                    html += '    <form>';
+                    html += '      <button type="submit" data-bs-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>';
+                    html += '      <input type="hidden" name="key" value="' + voucher['key'] + '"/>';
+                    html += '    </form>';
+                    html += '  </td>';
+                    html += '</tr>';
+                }
+            }
 
-			if (!json.products.length && !json.vouchers.length) {
-				html += '<tr>';
-				html += '  <td colspan="6" class="text-center">{{ text_no_results }}</td>';
-				html += '</tr>';
-			}
+            if (!json['products'].length && !json['vouchers'].length) {
+                html += '<tr>';
+                html += '  <td colspan="6" class="text-center">{{ text_no_results }}</td>';
+                html += '</tr>';
+            }
 
-			$('#order-vouchers').html(html);
+            $('#order-vouchers').html(html);
 
-			// Totals
-			html = '';
+            // Totals
+            html = '';
 
-			if (json.totals.length) {
-				for (i in json.totals) {
-					total = json.totals[i];
+            if (json['totals'].length) {
+                for (i in json['totals']) {
+                    total = json['totals'][i];
 
-					html += '<tr>';
-					html += '  <td class="text-end"><strong>' + total.title + '</strong></td>';
-					html += '  <td class="text-end" style="width: 1px;">' + total.text + '</td>';
-					html += '</tr>';
-				}
-			}
+                    html += '<tr>';
+                    html += '  <td class="text-end"><strong>' + total['title'] + '</strong></td>';
+                    html += '  <td class="text-end" style="width: 1px;">' + total['text'] + '</td>';
+                    html += '</tr>';
+                }
+            }
 
-			$('#order-totals').html(html);
+            $('#order-totals').html(html);
 
-			if (json.shipping_required) {
-				$('#shipping-address').removeClass('d-none');
-				$('#shipping-method').removeClass('d-none');
-				$('#button-shipping').prop('disabled', false);
-			} else {
-				$('#shipping-address').addClass('d-none');
-				$('#shipping-method').addClass('d-none');
-				$('#button-shipping').prop('disabled', true);
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+            if (json['shipping_required']) {
+                $('#shipping-address').removeClass('d-none');
+                $('#shipping-method').removeClass('d-none');
+                $('#button-shipping').prop('disabled', false);
+            } else {
+                $('#shipping-address').addClass('d-none');
+                $('#shipping-method').addClass('d-none');
+                $('#button-shipping').prop('disabled', true);
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 // Checkout
-$('#button-confirm').on('click', function() {
-	var element = this;
+$('#button-confirm').on('click', function () {
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/order|confirm',
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$(element).prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/order|confirm',
+        dataType: 'json',
+        beforeSend: function () {
+            $(element).prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $(element).prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				for (var i in json.error) {
-					$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error[i] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-				}
-			}
+            if (json['error']) {
+                for (i in json['error']) {
+                    $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'][i] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+                }
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				if (json.order_id) {
-					$('#input-order-id').val(json.order_id);
-				}
+                if (json['order_id']) {
+                    $('#input-order-id').val(json['order_id']);
+                }
 
-				if (json.points) {
-					$('#reward-value').html(json.points);
-					$('#button-reward-add').prop('disabled', false);
-					$('#button-reward-remove').prop('disabled', false);
-				} else {
-					$('#reward-value').html(0);
-					$('#button-reward-add').prop('disabled', true);
-					$('#button-reward-remove').prop('disabled', true);
-				}
+                if (json['points']) {
+                    $('#reward-value').html(json['points']);
+                    $('#button-reward-add').prop('disabled', false);
+                    $('#button-reward-remove').prop('disabled', false);
+                } else {
+                    $('#reward-value').html(0);
+                    $('#button-reward-add').prop('disabled', true);
+                    $('#button-reward-remove').prop('disabled', true);
+                }
 
-				if (json.commission) {
-					$('#commission-value').html(json.commission);
-					$('#button-commission-add').prop('disabled', false);
-					$('#button-commission-remove').prop('disabled', false);
-				} else {
-					$('#commission-value').html('&nbsp;');
-					$('#button-commission-add').prop('disabled', true);
-					$('#button-commission-remove').prop('disabled', true);
-				}
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                if (json['commission']) {
+                    $('#commission-value').html(json['commission']);
+                    $('#button-commission-add').prop('disabled', false);
+                    $('#button-commission-remove').prop('disabled', false);
+                } else {
+                    $('#commission-value').html('&nbsp;');
+                    $('#button-commission-add').prop('disabled', true);
+                    $('#button-commission-remove').prop('disabled', true);
+                }
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#history').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#history').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#history').load(this.href);
+    $('#history').load(this.href);
 });
 
-$('#form-history').on('submit', function(e) {
-	e.preventDefault();
+$('#form-history').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/order|addHistory&order_id=' + $('#input-order-id').val(),
-		type: 'post',
-		dataType: 'json',
-		data: $('#form-history').serialize(),
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$('#button-history').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-history').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/order|addHistory&order_id=' + $('#input-order-id').val(),
+        type: 'post',
+        dataType: 'json',
+        data: $('#form-history').serialize(),
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $('#button-history').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-history').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#history').load('index.php?route=sale/order|history&user_token={{ user_token }}&order_id=' + $('#input-order-id').val());
+                $('#history').load('index.php?route=sale/order|history&user_token={{ user_token }}&order_id=' + $('#input-order-id').val());
 
-				$('#input-history').val('');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#input-history').val('');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 </script>
 {{ footer }}

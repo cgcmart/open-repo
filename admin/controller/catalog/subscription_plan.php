@@ -327,7 +327,7 @@ class SubscriptionPlan extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-    	if ((int)$this->request->post['trial_duration'] < 1) {
+		if ((int)$this->request->post['trial_duration'] < 1) {
 			$json['error']['trial_duration'] = $this->language->get('error_trial_duration');
 		}
 

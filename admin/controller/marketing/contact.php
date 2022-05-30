@@ -6,8 +6,6 @@ class Contact extends \Opencart\System\Engine\Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->document->addScript('view/javascript/jquery/jquery-ui/jquery-ui.min.js');
-
 		$this->document->addScript('view/javascript/ckeditor/build/ckeditor.js');
 
 		$data['breadcrumbs'] = [];
@@ -42,7 +40,7 @@ class Contact extends \Opencart\System\Engine\Controller {
 	public function send(): void {
 		$this->load->language('marketing/contact');
 
-    	$json = [];
+		$json = [];
 
 		if (!$this->user->hasPermission('modify', 'marketing/contact')) {
 			$json['error']['warning'] = $this->language->get('error_permission');
@@ -232,7 +230,7 @@ class Contact extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=UTF-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

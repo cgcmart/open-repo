@@ -188,7 +188,7 @@ class SeoUrl extends \Opencart\System\Engine\Controller {
 			}
 
 			$data['seo_urls'][] = [
-            	'seo_url_id' => $result['seo_url_id'],
+				'seo_url_id' => $result['seo_url_id'],
 				'keyword'    => $result['keyword'],
 				'key'        => $result['key'],
 				'value'      => $result['value'],
@@ -411,7 +411,7 @@ class SeoUrl extends \Opencart\System\Engine\Controller {
 			$data['keyword'] = '';
 		}
 
-    	if (!empty($seo_profile_info)) {
+		if (!empty($seo_profile_info)) {
 			$data['sort_order'] = $seo_profile_info['sort_order'];
 		} else {
 			$data['sort_order'] = '';

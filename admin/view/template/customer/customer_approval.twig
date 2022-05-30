@@ -71,114 +71,114 @@
 		</div>
 	</div>
 </div>
-<script language="javascript">
+<script type="text/javascript">
 $('#customer-approval').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+    e.preventDefault();
 
-	$('#customer-approval').load(this.href);
+    $('#customer-approval').load(this.href);
 });
 
 $('#customer-approval').on('click', '.btn-success, .btn-danger', function(e) {
-	e.preventDefault();
+    e.preventDefault();
 
-	var element = this;
+    var element = this;
 
-	$.ajax({
-		url: $(element).val(),
-		dataType: 'json',
-		beforeSend: function() {
-			$(element).prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$(element).prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+    $.ajax({
+        url: $(element).val(),
+        dataType: 'json',
+        beforeSend: function() {
+            $(element).prop('disabled', true).addClass('loading');
+        },
+        complete: function() {
+            $(element).prop('disabled', false).removeClass('loading');
+        },
+        success: function(json) {
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#customer-approval').load($('#form-customer-approval').attr('data-oc-load'));
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#customer-approval').load($('#form-customer-approval').attr('data-oc-load'));
+            }
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 $('#button-filter').on('click', function() {
-	var url = '';
+    var url = '';
 
-	var filter_customer = $('#input-customer').val();
+    var filter_customer = $('#input-customer').val();
 
-	if (filter_customer) {
-		url += '&filter_customer=' + encodeURIComponent(filter_customer);
-	}
+    if (filter_customer) {
+        url += '&filter_customer=' + encodeURIComponent(filter_customer);
+    }
 
-	var filter_email = $('#input-email').val();
+    var filter_email = $('#input-email').val();
 
-	if (filter_email) {
-		url += '&filter_email=' + encodeURIComponent(filter_email);
-	}
+    if (filter_email) {
+        url += '&filter_email=' + encodeURIComponent(filter_email);
+    }
 
-	var filter_customer_group_id = $('#input-customer-group').val();
+    var filter_customer_group_id = $('#input-customer-group').val();
 
-	if (filter_customer_group_id !== '') {
-		url += '&filter_customer_group_id=' + filter_customer_group_id;
-	}
+    if (filter_customer_group_id !== '') {
+        url += '&filter_customer_group_id=' + filter_customer_group_id;
+    }
 
-	var filter_type = $('#input-type').val();
+    var filter_type = $('#input-type').val();
 
-	if (filter_type !== '') {
-		url += '&filter_type=' + filter_type;
-	}
+    if (filter_type !== '') {
+        url += '&filter_type=' + filter_type;
+    }
 
-	var filter_date_added = $('#input-date-added').val();
+    var filter_date_added = $('#input-date-added').val();
 
-	if (filter_date_added) {
-		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
-	}
+    if (filter_date_added) {
+        url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+    }
 
-	$('#customer-approval').load('index.php?route=customer/customer_approval|list&user_token={{ user_token }}' + url);
+    $('#customer-approval').load('index.php?route=customer/customer_approval|list&user_token={{ user_token }}' + url);
 });
 
 $('#input-customer').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.customer_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {}
+    'source': function(request, response) {
+        $.ajax({
+            url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function(json) {
+                response($.map(json, function(item) {
+                    return {
+                        label: item['name'],
+                        value: item['customer_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function(item) {}
 });
 
 $('#input-email').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_email=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.email,
-						value: item.customer_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {}
+    'source': function(request, response) {
+        $.ajax({
+            url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_email=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function(json) {
+                response($.map(json, function(item) {
+                    return {
+                        label: item['email'],
+                        value: item['customer_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function(item) {}
 });
 </script>
 {{ footer }}

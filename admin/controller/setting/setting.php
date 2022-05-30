@@ -122,8 +122,6 @@ class Setting extends \Opencart\System\Engine\Controller {
 			];
 		}
 
-		date_default_timezone_set($this->config->get('config_timezone'));
-
 		$this->load->model('localisation/language');
 
 		$data['languages'] = $this->model_localisation_language->getLanguages();
@@ -232,7 +230,7 @@ class Setting extends \Opencart\System\Engine\Controller {
 		}
 
 		$data['config_customer_price'] = $this->config->get('config_customer_price');
-    	$data['config_telephone_display'] = $this->config->get('config_telephone_display');
+		$data['config_telephone_display'] = $this->config->get('config_telephone_display');
 		$data['config_telephone_required'] = $this->config->get('config_telephone_required');
 
 		if ($this->config->has('config_login_attempts')) {

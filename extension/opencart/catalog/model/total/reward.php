@@ -5,18 +5,14 @@ class Reward extends \Opencart\System\Engine\Model {
 		if (isset($this->session->data['reward'])) {
 			$this->load->language('extension/opencart/total/reward', 'reward');
 
-        	$this->load->model('checkout/cart');
-
 			$points = $this->customer->getRewardPoints();
-
-        	$products = $this->model_checkout_cart->getProducts();
 
 			if ($this->session->data['reward'] <= $points) {
 				$discount_total = 0;
 
 				$points_total = 0;
 
-				foreach ($products() as $product) {
+				foreach ($this->cart->getProducts() as $product) {
 					if ($product['points']) {
 						$points_total += $product['points'];
 					}
@@ -24,7 +20,7 @@ class Reward extends \Opencart\System\Engine\Model {
 
 				$points = min($points, $points_total);
 
-				foreach ($products() as $product) {
+				foreach ($this->cart->getProducts() as $product) {
 					$discount = 0;
 
 					if ($product['points']) {

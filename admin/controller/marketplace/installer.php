@@ -70,10 +70,10 @@ class Installer extends \Opencart\System\Engine\Controller {
 		}
 
 		$data['extensions'] = [];
-
-    	$filter_data = [];
 		
 		$this->load->model('setting/extension');
+		
+		$filter_data = [];
 
 		$filter_data = [
 			'filter_extension_download_id' => $filter_extension_download_id,
@@ -165,7 +165,7 @@ class Installer extends \Opencart\System\Engine\Controller {
 			if (is_file($file)) {
 				$json['error'] = $this->language->get('error_file_exists');
 
-				unlink($this->request->files['file']['name']);
+				unlink($this->request->files['file']['tmp_name']);
 			}
 
 			if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
@@ -181,13 +181,13 @@ class Installer extends \Opencart\System\Engine\Controller {
 
 			// Unzip the files
 			$zip = new \ZipArchive();
-
-        	$extension_data = [];
+			
+			$extension_data = [];
 
 			if ($zip->open($file, \ZipArchive::RDONLY)) {
                 $install_info = json_decode($zip->getFromName('install.json'), true);
 
-				if ($install_info) {    
+				if ($install_info) {                    
                     if ($this->model_setting_extension->getInstallByCode(basename($filename, '.ocmod.zip'))) {
                         $json['error'] = $this->language->get('error_installed');
                     }
@@ -197,7 +197,6 @@ class Installer extends \Opencart\System\Engine\Controller {
                             'extension_id'          => 0,
                             'extension_download_id' => 0,
                             'name'                  => isset($install_info['name']) ? $install_info['name'] : $this->language->get('text_unknown'),
-                            'package_name'          => basename($filename, '.ocmod.zip'),
                             'code'              	=> basename($filename, '.ocmod.zip'),
                             'version'               => isset($install_info['version']) ? $install_info['version'] : $this->language->get('text_unknown'),
                             'author'                => isset($install_info['author']) ? $install_info['author'] : $this->language->get('text_unknown'),
@@ -212,24 +211,24 @@ class Installer extends \Opencart\System\Engine\Controller {
                     }
 				} else {
                     $file_paths = [];
-
+					
                     for ($i = 0; $i < $zip->numFiles; $i++) {
                         $path = $zip->getNameIndex($i);
-
+						
                         $path_parts = explode('/', $path);
-
-                    	if (!empty($path_parts[1]) && $path_parts[1] == 'install.json') {
+						
+                        if (!empty($path_parts[1]) && $path_parts[1] == 'install.json') {
                             $file_paths[] = $path;
                         }
                     }
 
                     if ($file_paths) {
-                        foreach($file_paths as $file_path) {
+                        foreach ($file_paths as $file_path) {
                             $path_parts = explode('/', $file_path);
-
-                        	$install_info = json_decode($zip->getFromName($path_parts[0] . '/install.json'), true);
-
-                        	$code = $path_parts[0];
+							
+                            $install_info = json_decode($zip->getFromName($path_parts[0] . '/install.json'), true);
+							
+                            $code = $path_parts[0];							
 
                             if (!$this->model_setting_extension->getInstallByCode($code)) {
                                 $extension_data = [
@@ -244,8 +243,8 @@ class Installer extends \Opencart\System\Engine\Controller {
                                 ];
     
                                 $this->load->model('setting/extension');		
-
-                            	$this->model_setting_extension->addInstall($extension_data);
+								
+                                $this->model_setting_extension->addInstall($extension_data);
     
                                 $json['success'] = $this->language->get('text_upload');
                             }
@@ -259,9 +258,9 @@ class Installer extends \Opencart\System\Engine\Controller {
 			} else {
 				$json['error'] = $this->language->get('error_unzip');
 			}
-		}
+		}		
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -291,10 +290,10 @@ class Installer extends \Opencart\System\Engine\Controller {
 		$extension_install_info = $this->model_setting_extension->getInstall($extension_install_id);
 
 		if ($extension_install_info) {
-			$file = DIR_STORAGE . 'marketplace/' . $extension_install_info['package_name'] . '.ocmod.zip';
+			$file = DIR_STORAGE . 'marketplace/' . $extension_install_info['code'] . '.ocmod.zip';
 
 			if (!is_file($file)) {
-				$json['error'] = sprintf($this->language->get('error_file'), $extension_install_info['package_name'] . '.ocmod.zip');
+				$json['error'] = sprintf($this->language->get('error_file'), $extension_install_info['code'] . '.ocmod.zip');
 			}
 
 			if ($page == 1 && is_dir(DIR_EXTENSION . $extension_install_info['code'] . '/')) {
@@ -313,10 +312,9 @@ class Installer extends \Opencart\System\Engine\Controller {
 			$zip = new \ZipArchive();
 
 			if ($zip->open($file)) {
-
                 $install_info = json_decode($zip->getFromName('install.json'), true);
-
-            	if($install_info) {
+				
+                if ($install_info) {
                     $total = $zip->numFiles;
 
                     $start = ($page - 1) * 200;
@@ -376,8 +374,8 @@ class Installer extends \Opencart\System\Engine\Controller {
                         $destination = str_replace('\\', '/', $source);
 
                         $name_folder_length = strlen($extension_install_info['code']) + 1;
-
-                    	if (substr($destination, 0, $name_folder_length) == $extension_install_info['code'] . '/') {
+						
+                        if (substr($destination, 0, $name_folder_length) == $extension_install_info['code'] . '/') {
                             $path = $destination;
                             $base = DIR_EXTENSION;
 
@@ -444,7 +442,7 @@ class Installer extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -549,7 +547,7 @@ class Installer extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_install');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -619,7 +617,7 @@ class Installer extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_uninstall');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -648,24 +646,24 @@ class Installer extends \Opencart\System\Engine\Controller {
 
 		if (!$json) {
 			$file = DIR_STORAGE . 'marketplace/' . $extension_install_info['package_name'] . '.ocmod.zip';
-
-        	// Unzip the files
+			
+			// Unzip the files
 			$zip = new \ZipArchive();
 
 			// Remove file
 			if (is_file($file)) {
 				if ($zip->open($file)) {
 					$install_info = json_decode($zip->getFromName('install.json'), true);
-
-                	if ($install_info) {
+					
+					if ($install_info) {
 						$zip->close();
-
-                    	unlink($file);
+						
+						unlink($file);
 					} else {
 						for ($i = 0; $i < $zip->numFiles; $i++) {
 							$entry_info = $zip->statIndex($i);
-
-                        	if (substr($entry_info["name"], 0, strlen($extension_install_info['code'] . '/')) == $extension_install_info['code'] . '/') {
+							
+							if (substr($entry_info["name"], 0, strlen($extension_install_info['code'] . '/')) == $extension_install_info['code'] . '/') {
 								$zip->deleteIndex($i);
 							}
 						}
@@ -680,7 +678,7 @@ class Installer extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_delete');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

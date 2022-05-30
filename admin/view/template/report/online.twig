@@ -45,45 +45,45 @@
 </div>
 <script type="text/javascript">
 $('#online').on('click', 'thead a, .pagination a', function(e) {
-	e.preventDefault();
+    e.preventDefault();
 
-	$('#online').load(this.href);
+    $('#online').load(this.href);
 });
 
 $('#button-filter, #button-refresh').on('click', function() {
-	var url = '';
+    var url = '';
 
-	var filter_customer = $('#input-customer').val();
+    var filter_customer = $('#input-customer').val();
 
-	if (filter_customer) {
-		url += '&filter_customer=' + encodeURIComponent(filter_customer);
-	}
+    if (filter_customer) {
+        url += '&filter_customer=' + encodeURIComponent(filter_customer);
+    }
 
-	var filter_ip = $('#input-ip').val();
+    var filter_ip = $('#input-ip').val();
 
-	if (filter_ip) {
-		url += '&filter_ip=' + encodeURIComponent(filter_ip);
-	}
+    if (filter_ip) {
+        url += '&filter_ip=' + encodeURIComponent(filter_ip);
+    }
 
-	$('#online').load('index.php?route=report/online|list&user_token={{ user_token }}' + url);
+    $('#online').load('index.php?route=report/online|list&user_token={{ user_token }}' + url);
 });
 
 $('#input-customer').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.customer_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {}
+    'source': function(request, response) {
+        $.ajax({
+            url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function(json) {
+                response($.map(json, function(item) {
+                    return {
+                        label: item['name'],
+                        value: item['customer_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function(item) {}
 });
 </script>
 {{ footer }}

@@ -41,7 +41,7 @@ class PaymentMethod extends \Opencart\System\Engine\Controller {
 
 			// Validate shipping method
 			if (isset($this->session->data['shipping_method']) && isset($this->session->data['shipping_methods'])) {
-				$shipping = explode('.', $this->session->data['shipping_method']['code']);
+				$shipping = explode('.', $this->session->data['shipping_method']);
 
 				if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {
 					$status = false;

@@ -7,7 +7,7 @@
           <a href="{{ orders }}" data-bs-toggle="tooltip" title="{{ button_order }}" class="btn btn-warning"><i class="fas fa-receipt"></i></a>
         {% endif %}
 
-        <button type="submit" form="form-customer" formaction="{{ save }}" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
+        <button type="submit" form="form-customer" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
 
         <a href="{{ back }}" data-bs-toggle="tooltip" title="{{ button_back }}" class="btn btn-light"><i class="fas fa-reply"></i></a></div>
       <h1>{{ heading_title }}</h1>
@@ -160,12 +160,14 @@
                       <div class="row mb-3 custom-field custom-field-{{ custom_field.custom_field_id }}">
                         <label class="col-sm-2 col-form-label">{{ custom_field.name }}</label>
                         <div class="col-sm-10">
+
                           <div class="input-group">
                             <button type="button" data-oc-toggle="upload" data-oc-target="#input-custom-field-{{ custom_field.custom_field_id }}" data-oc-size-max="{{ config_file_max_size }}" data-oc-size-error="{{ error_upload_size }}" class="btn btn-primary"><i class="fas fa-upload"></i> {{ button_upload }}</button>
                             <input type="text" name="custom_field[{{ custom_field.custom_field_id }}]" value="{{ account_custom_field[custom_field.custom_field_id] ? account_custom_field[custom_field.custom_field_id] }}" id="input-custom-field-{{ custom_field.custom_field_id }}" class="form-control" readonly/>
                             <button type="button" data-oc-toggle="download" data-oc-target="#input-custom-field-{{ custom_field.custom_field_id }}"{% if not account_custom_field[custom_field.custom_field_id] %} disabled{% endif %} class="btn btn-outline-secondary"><i class="fas fa-download"></i> {{ button_download }}</button>
                             <button type="button" data-oc-toggle="clear" data-bs-toggle="tooltip" title="{{ button_clear }}" data-oc-target="#input-custom-field-{{ custom_field.custom_field_id }}"{% if not account_custom_field[custom_field.custom_field_id] %} disabled{% endif %} class="btn btn-outline-danger"><i class="fas fa-eraser"></i></button>
                           </div>
+
                           <div id="error-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                         </div>
                       </div>
@@ -235,24 +237,24 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">{{ entry_newsletter }}</label>
                   <div class="col-sm-10">
-                    <div class="btn-group">
-                      <input type="radio" name="newsletter" value="1" id="input-newsletter-yes" class="btn-check"{% if newsletter %} checked{% endif %}/> <label for="input-newsletter-yes" class="btn btn-outline-secondary">{{ text_yes }}</label> <input type="radio" name="newsletter" value="0" id="input-newsletter-no" class="btn-check"{% if not newsletter %} checked{% endif %}/> <label for="input-newsletter-no" class="btn btn-outline-secondary">{{ text_no }}</label>
+                    <div class="form-check form-switch form-switch-lg">
+                      <input type="checkbox" name="newsletter" value="1" id="input-newsletter" class="form-check-input"{% if newsletter %} checked{% endif %}/>
                     </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">{{ entry_status }}</label>
                   <div class="col-sm-10">
-                    <div class="btn-group">
-                      <input type="radio" name="status" value="1" id="input-status-yes" class="btn-check"{% if status %} checked{% endif %}/> <label for="input-status-yes" class="btn btn-outline-secondary">{{ text_yes }}</label> <input type="radio" name="status" value="0" id="input-status-no" class="btn-check"{% if not status %} checked{% endif %}/> <label for="input-status-no" class="btn btn-outline-secondary">{{ text_no }}</label>
+                    <div class="form-check form-switch form-switch-lg">
+                      <input type="checkbox" name="status" value="1" id="input-status" class="form-check-input"{% if status %} checked{% endif %}/>
                     </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">{{ entry_safe }}</label>
                   <div class="col-sm-10">
-                    <div class="btn-group">
-                      <input type="radio" name="safe" value="1" id="input-safe-yes" class="btn-check"{% if safe %} checked{% endif %}/> <label for="input-safe-yes" class="btn btn-outline-secondary">{{ text_yes }}</label> <input type="radio" name="safe" value="0" id="input-safe-no" class="btn-check"{% if not safe %} checked{% endif %}/> <label for="input-safe-no" class="btn btn-outline-secondary">{{ text_no }}</label>
+                    <div class="form-check form-switch form-switch-lg">
+                      <input type="checkbox" name="safe" value="1" id="input-safe" class="form-check-input"{% if safe %} checked{% endif %}/>
                     </div>
                     <div class="form-text">{{ help_safe }}</div>
                   </div>
@@ -414,7 +416,7 @@
                               <button type="button" data-oc-toggle="upload" data-oc-target="#input-address-{{ address_row }}-custom-field-{{ custom_field.custom_field_id }}" data-oc-size-max="{{ config_file_max_size }}" data-oc-size-error="{{ error_upload_size }}" class="btn btn-primary"><i class="fas fa-upload"></i> {{ button_upload }}</button>
                               <input type="text" name="address[{{ address_row }}][custom_field][{{ custom_field.custom_field_id }}]" value="{{ address.custom_field[custom_field.custom_field_id] ? address.custom_field[custom_field.custom_field_id] }}" id="input-address-{{ address_row }}-custom-field-{{ custom_field.custom_field_id }}" class="form-control" readonly/>
                               <button type="button" data-oc-toggle="download" data-oc-target="#input-address-{{ address_row }}-custom-field-{{ custom_field.custom_field_id }}" class="btn btn-outline-secondary"{% if not address.custom_field[custom_field.custom_field_id] %} disabled{% endif %}><i class="fas fa-download"></i> {{ button_download }}</button>
-                              <button type="button" data-oc-toggle="clear" data-oc-target="#input-address-{{ address_row }}-custom-field-{{ custom_field.custom_field_id }}" data-bs-toggle="tooltip" title="{{ button_clear }}" class="btn btn-outline-danger"{% if not address_custom_field[custom_field.custom_field_id] %} disabled{% endif %}><i class="fas fa-eraser"></i></button>
+                              <button type="button" data-oc-toggle="clear" data-oc-target="#input-address-{{ address_row }}-custom-field-{{ custom_field.custom_field_id }}" data-bs-toggle="tooltip" title="{{ button_clear }}" class="btn btn-outline-danger"{% if not address.custom_field[custom_field.custom_field_id] %} disabled{% endif %}><i class="fas fa-eraser"></i></button>
                             </div>
                             <div id="error-address-{{ address_row }}-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>
                           </div>
@@ -572,26 +574,26 @@
     </div>
   </div>
 </div>
-<script language="javascript">
-$('#input-customer-group').on('change', function() {
+<script type="text/javascript">
+$('#input-customer-group').on('change', function () {
     $.ajax({
         url: 'index.php?route=customer/customer|customfield&user_token={{ user_token }}&customer_group_id=' + this.value,
         dataType: 'json',
-        success: function(json) {
+        success: function (json) {
             $('.custom-field').hide();
             $('.custom-field').removeClass('required');
 
             for (i = 0; i < json.length; i++) {
                 custom_field = json[i];
 
-                $('.custom-field-' + custom_field.custom_field_id).show();
+                $('.custom-field-' + custom_field['custom_field_id']).show();
 
-                if (custom_field.required) {
-                    $('.custom-field-' + custom_field.custom_field_id).addClass('required');
+                if (custom_field['required']) {
+                    $('.custom-field-' + custom_field['custom_field_id']).addClass('required');
                 }
             }
         },
-        error: function(xhr, ajaxOptions, thrownError) {
+        error: function (xhr, ajaxOptions, thrownError) {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });
@@ -601,7 +603,7 @@ $('#input-customer-group').trigger('change');
 
 var address_row = {{ address_row }};
 
-$('#button-address').on('click', function(e) {
+$('#button-address').on('click', function (e) {
     e.preventDefault();
 
     html = '<fieldset id="address-row-' + address_row + '">';
@@ -768,7 +770,7 @@ $('#button-address').on('click', function(e) {
     html += '      <button type="button" data-oc-toggle="download" data-oc-target="#input-address-' + address_row + '-custom-field-{{ custom_field.custom_field_id }}" class="btn btn-outline-secondary" disabled><i class="fas fa-download"></i> {{ button_download }}</button>';
     html += '      <button type="button" data-oc-toggle="clear" data-bs-toggle="tooltip" title="{{ button_clear }}" data-oc-target="#input-address-' + address_row + '-custom-field-{{ custom_field.custom_field_id }}" class="btn btn-outline-danger" disabled><i class="fas fa-eraser"></i></button>';
     html += '    </div>';
-    html += '	 <div id="error-address-' + address_row + '-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>';
+    html += '	   <div id="error-address-' + address_row + '-custom-field-{{ custom_field.custom_field_id }}" class="invalid-feedback"></div>';
     html += '  </div>';
     html += '</div>';
   {% endif %}
@@ -832,85 +834,85 @@ $('#button-address').on('click', function(e) {
 
 var zone = [];
 
-$('#tab-address').on('change', 'select[name$=\'[country_id]\']', function() {
-	var element = this;
+$('#tab-address').on('change', 'select[name$=\'[country_id]\']', function () {
+    var element = this;
 
-	$(element).prop('disabled', true);
+    $(element).prop('disabled', true);
 
-	$('select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').prop('disabled', false);
+    $('select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').prop('disabled', false);
 
-	if (!zone[$(element).val()]) {
-		$.ajax({
-			url: 'index.php?route=localisation/country|country&user_token={{ user_token }}&country_id=' + $(element).val(),
-			dataType: 'json',
-			beforeSend: function() {
-				$(element).prop('disabled', true);
-			},
-			complete: function() {
-				$(element).prop('disabled', false);
-			},
-			success: function(json) {
-				zone[$(element).val()] = json;
+    if (!zone[$(element).val()]) {
+        $.ajax({
+            url: 'index.php?route=localisation/country|country&user_token={{ user_token }}&country_id=' + $(element).val(),
+            dataType: 'json',
+            beforeSend: function () {
+                $(element).prop('disabled', true);
+            },
+            complete: function () {
+                $(element).prop('disabled', false);
+            },
+            success: function (json) {
+                zone[$(element).val()] = json;
 
-				if (json.postcode_required == '1') {
-					$('#input-address-' + $(element).attr('data-address-row') + '-postcode').parent().parent().addClass('required');
-				} else {
-					$('#input-address-' + $(element).attr('data-address-row') + '-postcode').parent().parent().removeClass('required');
-				}
+                if (json['postcode_required'] == '1') {
+                    $('#input-address-' + $(element).attr('data-address-row') + '-postcode').parent().parent().addClass('required');
+                } else {
+                    $('#input-address-' + $(element).attr('data-address-row') + '-postcode').parent().parent().removeClass('required');
+                }
 
-				html = '<option value="">{{ text_select }}</option>';
+                html = '<option value="">{{ text_select }}</option>';
 
-				if (json.zone && json.zone != '') {
-					for (i = 0; i < json.zone.length; i++) {
-						html += '<option value="' + json.zone[i].zone_id + '"';
+                if (json['zone'] && json['zone'] != '') {
+                    for (i = 0; i < json['zone'].length; i++) {
+                        html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
-						if (json.zone[i].zone_id == $(element).attr('data-zone-id')) {
-							html += ' selected="selected"';
-						}
+                        if (json['zone'][i]['zone_id'] == $(element).attr('data-zone-id')) {
+                            html += ' selected="selected"';
+                        }
 
-						html += '>' + json.zone[i].name + '</option>';
-					}
-				} else {
-					html += '<option value="0">{{ text_none }}</option>';
-				}
+                        html += '>' + json['zone'][i]['name'] + '</option>';
+                    }
+                } else {
+                    html += '<option value="0">{{ text_none }}</option>';
+                }
 
-				$('#tab-address select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').html(html);
+                $('#tab-address select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').html(html);
 
-				$('#tab-address select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').prop('disabled', false);
+                $('#tab-address select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').prop('disabled', false);
 
-				$(element).prop('disabled', false);
+                $(element).prop('disabled', false);
 
-				$('#tab-address select[name$=\'[country_id]\']:disabled:first').trigger('change');
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	} else {
-		html = '<option value="">{{ text_select }}</option>';
+                $('#tab-address select[name$=\'[country_id]\']:disabled:first').trigger('change');
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    } else {
+        html = '<option value="">{{ text_select }}</option>';
 
-		if (zone[$(element).val()].zone && zone[$(element).val()].zone != '') {
-			for (i = 0; i < zone[$(element).val()].zone.length; i++) {
-				html += '<option value="' + zone[$(element).val()].zone[i].zone_id + '"';
+        if (zone[$(element).val()]['zone'] && zone[$(element).val()]['zone'] != '') {
+            for (i = 0; i < zone[$(element).val()]['zone'].length; i++) {
+                html += '<option value="' + zone[$(element).val()]['zone'][i]['zone_id'] + '"';
 
-				if (zone[$(element).val()].zone[i].zone_id == $(element).attr('data-zone-id')) {
-					html += ' selected="selected"';
-				}
+                if (zone[$(element).val()]['zone'][i]['zone_id'] == $(element).attr('data-zone-id')) {
+                    html += ' selected="selected"';
+                }
 
-				html += '>' + zone[$(element).val()].zone[i].name + '</option>';
-			}
-		} else {
-			html += '<option value="0">{{ text_none }}</option>';
-		}
+                html += '>' + zone[$(element).val()]['zone'][i]['name'] + '</option>';
+            }
+        } else {
+            html += '<option value="0">{{ text_none }}</option>';
+        }
 
-		$('#tab-address select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').html(html);
+        $('#tab-address select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').html(html);
 
-		$('#tab-address select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').prop('disabled', false);
+        $('#tab-address select[name=\'address[' + $(element).attr('data-address-row') + '][zone_id]\']').prop('disabled', false);
 
-		$(element).prop('disabled', false);
+        $(element).prop('disabled', false);
 
-		$('#tab-address select[name$=\'[country_id]\']:disabled:first').trigger('change');
-	}
+        $('#tab-address select[name$=\'[country_id]\']:disabled:first').trigger('change');
+    }
 });
 
 $('#tab-address select[name$=\'[country_id]\']:first').trigger('change');
@@ -935,22 +937,22 @@ $('#form-customer, #form-address').on('submit', function (e) {
             $('.is-invalid').removeClass('is-invalid');
             $('.invalid-feedback').removeClass('d-block');
 
-            if (json.error) {
-                if (json.error.warning) {
-                    $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error.warning + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['error']) {
+                if (json['error']['warning']) {
+                    $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error']['warning'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
                 }
 
-                for (var key in json.error) {
+                for (key in json['error']) {
                     $('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
-                    $('#error-' + key.replaceAll('_', '-')).html(json.error[key]).addClass('d-block');
+                    $('#error-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
                 }
             }
 
-            if (json.success) {
-                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
                 // Replace any form values that correspond to form names.
-                for (var key in json) {
+                for (key in json) {
                     $('#form-customer, #form-address').find('[name=\'' + key + '\']').val(json[key]);
                 }
             }
@@ -961,181 +963,181 @@ $('#form-customer, #form-address').on('submit', function (e) {
     });
 });
 
-$('#payment-method').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#payment-method').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#payment-method').load(this.href);
+    $('#payment-method').load(this.href);
 });
 
-$('#form-payment-method').on('submit', function(e) {
-	e.preventDefault();
+$('#form-payment-method').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=customer/customer|addtransaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
-		type: 'post',
-		data: $('#form-transaction').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$('#button-transaction').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-transaction').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=customer/customer|addtransaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
+        type: 'post',
+        data: $('#form-transaction').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $('#button-transaction').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-transaction').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#transaction').load('index.php?route=customer/customer|transaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
+                $('#transaction').load('index.php?route=customer/customer|transaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
 
-				$('#input-transaction-amount').val('');
-				$('#input-transaction-description').val('');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#input-transaction-amount').val('');
+                $('#input-transaction-description').val('');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#history').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#history').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#history').load(this.href);
+    $('#history').load(this.href);
 });
 
-$('#form-history').on('submit', function(e) {
-	e.preventDefault();
+$('#form-history').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=customer/customer|addhistory&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
-		type: 'post',
-		data: $('#form-history').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$('#button-history').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-history').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=customer/customer|addhistory&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
+        type: 'post',
+        data: $('#form-history').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $('#button-history').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-history').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#history').load('index.php?route=customer/customer|history&user_token={{ user_token }}&customer_id={{ customer_id }}');
+                $('#history').load('index.php?route=customer/customer|history&user_token={{ user_token }}&customer_id={{ customer_id }}');
 
-				$('#input-comment').val('');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#input-comment').val('');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#transaction').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#transaction').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#transaction').load(this.href);
+    $('#transaction').load(this.href);
 });
 
-$('#form-transaction').on('submit', function(e) {
-	e.preventDefault();
+$('#form-transaction').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=customer/customer|addtransaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
-		type: 'post',
-		data: $('#form-transaction').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$('#button-transaction').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-transaction').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=customer/customer|addtransaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
+        type: 'post',
+        data: $('#form-transaction').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $('#button-transaction').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-transaction').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#transaction').load('index.php?route=customer/customer|transaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
+                $('#transaction').load('index.php?route=customer/customer|transaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
 
-				$('#input-transaction-amount').val('');
-				$('#input-transaction-description').val('');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#input-transaction-amount').val('');
+                $('#input-transaction-description').val('');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#reward').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#reward').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#reward').load(this.href);
+    $('#reward').load(this.href);
 });
 
-$('#form-reward').on('submit', function(e) {
-	e.preventDefault();
+$('#form-reward').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=customer/customer|addreward&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
-		type: 'post',
+    $.ajax({
+        url: 'index.php?route=customer/customer|addReward&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
+        type: 'post',
         data: $('#form-reward').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		beforeSend: function() {
-			$('#button-reward').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-reward').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        beforeSend: function () {
+            $('#button-reward').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-reward').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#reward').load('index.php?route=customer/customer|reward&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
+                $('#reward').load('index.php?route=customer/customer|reward&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
 
-				$('#input-reward-points').val('');
-				$('#input-reward-description').val('');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#input-reward-points').val('');
+                $('#input-reward-description').val('');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#ip').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#ip').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#ip').load(this.href);
+    $('#ip').load(this.href);
 });
 </script>
 {{ footer }}

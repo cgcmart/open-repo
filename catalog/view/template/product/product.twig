@@ -328,7 +328,6 @@
           {% endif %}</div>
       </div>
 
-
       {% if products %}
         <h3>{{ text_related }}</h3>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4">
@@ -355,108 +354,139 @@
     {{ column_right }}
   </div>
 </div>
-<script language="javascript">
-$('#input-subscription').on('change', function(e) {
-	var element = this;
+<script type="text/javascript">
+$('#input-subscription').on('change', function (e) {
+    var element = this;
 
-	$('.subscription').addClass('d-none');
+    $('.subscription').addClass('d-none');
 
-	$('#subscription-description-' + $(element).val()).removeClass('d-none');
+    $('#subscription-description-' + $(element).val()).removeClass('d-none');
 });
 
-$('#form-product').on('submit', function(e) {
-	e.preventDefault();
+$('#form-product').on('submit', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=checkout/cart|add&language={{ language }}',
-		type: 'post',
-		data: $('#form-product').serialize(),
-		dataType: 'json',
-		contentType: 'application/x-www-form-urlencoded',
-		cache: false,
-		processData: false,
-		beforeSend: function() {
-			$('#button-cart').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-cart').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('#form-product').find('.is-invalid').removeClass('is-invalid');
-			$('#form-product').find('.invalid-feedback').removeClass('d-block');
+    $.ajax({
+        url: 'index.php?route=checkout/cart|add&language={{ language }}',
+        type: 'post',
+        data: $('#form-product').serialize(),
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded',
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+            $('#button-cart').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-cart').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('#form-product').find('.is-invalid').removeClass('is-invalid');
+            $('#form-product').find('.invalid-feedback').removeClass('d-block');
 
-			if (json.error) {
-				for (var key in json.error) {
-					$('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
-					$('#error-' + key.replaceAll('_', '-')).html(json.error[key]).addClass('d-block');
-				}
-			}
+            if (json['error']) {
+                for (key in json['error']) {
+                    $('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
+                    $('#error-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
+                }
+            }
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#header-cart').load('index.php?route=common/cart|info');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#header-cart').load('index.php?route=common/cart|info');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#review').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#review').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#review').fadeOut('slow');
+    $('#review').fadeOut('slow');
 
-	$('#review').load(this.href);
+    $('#review').load(this.href);
 
-	$('#review').fadeIn('slow');
+    $('#review').fadeIn('slow');
 });
 
 $('#review').load('index.php?route=product/review|review&product_id={{ product_id }}');
 
-$('#button-review').on('click', function() {
-	$.ajax({
-		url: 'index.php?route=product/review|write&product_id={{ product_id }}',
-		type: 'post',
-		dataType: 'json',
-		data: $('#form-review').serialize(),
-		beforeSend: function() {
-			$('#button-review').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-review').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+$('#button-review').on('click', function () {
+    $.ajax({
+        url: 'index.php?route=product/review|write&product_id={{ product_id }}',
+        type: 'post',
+        dataType: 'json',
+        data: $('#form-review').serialize(),
+        beforeSend: function () {
+            $('#button-review').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-review').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				for (var key in json.error) {
-					$('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
-					$('#error-' + key.replaceAll('_', '-')).html(json.error[key]).addClass('d-block');
-				}
-			}
+            if (json['error']) {
+                for (key in json['error']) {
+                    $('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
+                    $('#error-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
+                }
+            }
 
-			if (json.success) {
-				$('#form-review').after('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#form-review').after('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#input-name').val('');
-				$('#input-text').val('');
-				$('input[name=\'rating\']:checked').prop('checked', false);
-			}
-		}
-	});
+                $('#input-name').val('');
+                $('#input-text').val('');
+                $('input[name=\'rating\']:checked').prop('checked', false);
+            }
+        }
+    });
 });
 
-$(document).ready(function() {
-	$('.magnific-popup').magnificPopup({
-		type: 'image',
-		delegate: 'a',
-		gallery: {
-			enabled: true
-		}
-	});
+$(document).ready(function () {
+    $('.magnific-popup').magnificPopup({
+        type: 'image',
+        delegate: 'a',
+        gallery: {
+            enabled: true
+        }
+    });
+
+    $('.date').daterangepicker({
+        singleDatePicker: true,
+        autoApply: true,
+        locale: {
+            format: 'YYYY-MM-DD'
+        }
+    });
+
+    $('.time').daterangepicker({
+        singleDatePicker: true,
+        datePicker: false,
+        autoApply: true,
+        timePicker: true,
+        timePicker24Hour: true,
+        locale: {
+            format: 'HH:mm'
+        }
+    }).on('show.daterangepicker', function (ev, picker) {
+        picker.container.find('.calendar-table').hide();
+    });
+
+    $('.datetime').daterangepicker({
+        singleDatePicker: true,
+        autoApply: true,
+        timePicker: true,
+        timePicker24Hour: true,
+        locale: {
+            format: 'YYYY-MM-DD HH:mm'
+        }
+    });
 });
 </script>
 {{ footer }}

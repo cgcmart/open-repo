@@ -6,13 +6,13 @@ class Search extends \Opencart\System\Engine\Controller {
 
 		$data['text_search'] = $this->language->get('text_search');
 
-		$data['language'] = $this->config->get('config_language');
-
 		if (isset($this->request->get['search'])) {
 			$data['search'] = $this->request->get['search'];
 		} else {
 			$data['search'] = '';
 		}
+
+		$data['language'] = $this->config->get('config_language');
 
 		return $this->load->view('common/search', $data);
 	}

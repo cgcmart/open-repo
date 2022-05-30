@@ -13,7 +13,7 @@ class Information extends \Opencart\System\Engine\Model {
 		return $query->rows;
 	}
 
-	public function getLayoutId($information_id): int {
+	public function getLayoutId(int $information_id): int {
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "information_to_layout` WHERE `information_id` = '" . (int)$information_id . "' AND `store_id` = '" . (int)$this->config->get('config_store_id') . "'");
 
 		if ($query->num_rows) {

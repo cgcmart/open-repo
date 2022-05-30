@@ -84,134 +84,134 @@
     </div>
   </div>
 </div>
-<script language="javascript">
+<script type="text/javascript">
 $('#order').on('click', 'thead a, .pagination a', function(e) {
-	e.preventDefault();
+    e.preventDefault();
 
-	$('#order').load(this.href);
+    $('#order').load(this.href);
 });
 
 $('#button-filter').on('click', function() {
-	url = '';
+    url = '';
 
-	var filter_order_id = $('#input-order-id').val();
+    var filter_order_id = $('#input-order-id').val();
 
-	if (filter_order_id) {
-		url += '&filter_order_id=' + filter_order_id;
-	}
+    if (filter_order_id) {
+        url += '&filter_order_id=' + filter_order_id;
+    }
 
-	var filter_customer = $('#input-customer').val();
+    var filter_customer = $('#input-customer').val();
 
-	if (filter_customer) {
-		url += '&filter_customer=' + encodeURIComponent(filter_customer);
-	}
+    if (filter_customer) {
+        url += '&filter_customer=' + encodeURIComponent(filter_customer);
+    }
 
-	var filter_store_id = $('#input-store').val();
+    var filter_store_id = $('#input-store').val();
 
-	if (filter_store_id !== '') {
-		url += '&filter_store_id=' + filter_store_id;
-	}
+    if (filter_store_id !== '') {
+        url += '&filter_store_id=' + filter_store_id;
+    }
 
-	var filter_order_status_id = $('#input-order-status').val();
+    var filter_order_status_id = $('#input-order-status').val();
 
-	if (filter_order_status_id !== '') {
-		url += '&filter_order_status_id=' + filter_order_status_id;
-	}
+    if (filter_order_status_id !== '') {
+        url += '&filter_order_status_id=' + filter_order_status_id;
+    }
 
-	var filter_total = $('#input-total').val();
+    var filter_total = $('#input-total').val();
 
-	if (filter_total) {
-		url += '&filter_total=' + encodeURIComponent(filter_total);
-	}
+    if (filter_total) {
+        url += '&filter_total=' + encodeURIComponent(filter_total);
+    }
 
-	var filter_date_added = $('#input-date-added').val();
+    var filter_date_added = $('#input-date-added').val();
 
-	if (filter_date_added) {
-		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
-	}
+    if (filter_date_added) {
+        url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+    }
 
-	var filter_date_modified = $('#input-date-modified').val();
+    var filter_date_modified = $('#input-date-modified').val();
 
-	if (filter_date_modified) {
-		url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
-	}
+    if (filter_date_modified) {
+        url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+    }
 
-	$('#order').load('index.php?route=sale/order|list&user_token={{ user_token }}' + url);
+    $('#order').load('index.php?route=sale/order|list&user_token={{ user_token }}' + url);
 });
 
 $('#input-customer').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.customer_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {}
+    'source': function(request, response) {
+        $.ajax({
+            url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function(json) {
+                response($.map(json, function(item) {
+                    return {
+                        label: item['name'],
+                        value: item['customer_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function(item) {}
 });
 
 $('input[name^=\'selected\']').on('change', function() {
-	$('#button-shipping, #button-invoice').prop('disabled', true);
+    $('#button-shipping, #button-invoice').prop('disabled', true);
 
-	var selected = $('input[name^=\'selected\']:checked');
+    var selected = $('input[name^=\'selected\']:checked');
 
-	if (selected.length) {
-		$('#button-invoice').prop('disabled', false);
-	}
+    if (selected.length) {
+        $('#button-invoice').prop('disabled', false);
+    }
 
-	for (i = 0; i < selected.length; i++) {
-		if ($(selected[i]).parent().find('input[name^=\'shipping_code\']').val()) {
-			$('#button-shipping').prop('disabled', false);
+    for (i = 0; i < selected.length; i++) {
+        if ($(selected[i]).parent().find('input[name^=\'shipping_code\']').val()) {
+            $('#button-shipping').prop('disabled', false);
 
-			break;
-		}
-	}
+            break;
+        }
+    }
 });
 
 $('#button-shipping, #button-invoice').prop('disabled', true);
 
 $('#button-delete').on('click', function(e) {
-	e.preventDefault();
+    e.preventDefault();
 
-	var element = this;
+    var element = this;
 
-	if (confirm('{{ text_confirm }}')) {
-		$.ajax({
-			url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/order|delete',
-			type: 'post',
-			data: $('#form-order').serialize(),
-			dataType: 'json',
-			beforeSend: function() {
-				$(element).prop('disabled', true).addClass('loading');
-			},
-			complete: function() {
-				$(element).prop('disabled', false).removeClass('loading');
-			},
-			success: function(json) {
-				$('.alert-dismissible').remove();
+    if (confirm('{{ text_confirm }}')) {
+        $.ajax({
+            url: 'index.php?route=sale/order|call&user_token={{ user_token }}&action=sale/order|delete',
+            type: 'post',
+            data: $('#form-order').serialize(),
+            dataType: 'json',
+            beforeSend: function() {
+                $(element).prop('disabled', true).addClass('loading');
+            },
+            complete: function() {
+                $(element).prop('disabled', false).removeClass('loading');
+            },
+            success: function(json) {
+                $('.alert-dismissible').remove();
 
-				if (json.error) {
-					$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-				}
+                if (json['error']) {
+                    $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+                }
 
-				if (json.success) {
-					$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+                if (json['success']) {
+                    $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-					$('#order').load($('#form-order').attr('data-load'));
-				}
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	}
+                    $('#order').load($('#form-order').attr('data-load'));
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    }
 });
 </script>
 {{ footer }}

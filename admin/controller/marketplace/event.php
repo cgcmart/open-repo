@@ -105,6 +105,7 @@ class Event extends \Opencart\System\Engine\Controller {
 			$data['events'][] = [
 				'event_id'    => $result['event_id'],
 				'code'        => $result['code'],
+				'description' => $result['description'],
 				'trigger'     => $result['trigger'],
 				'action'      => $result['action'],
 				'status'      => $result['status'],

@@ -6,7 +6,6 @@ $_['heading_title']                        = 'Subscriptions';
 $_['text_account']                         = 'Account';
 $_['text_recurring']                       = 'Recurring Payment Information';
 $_['text_recurring_detail']                = 'Recurring Payment Details';
-$_['text_order_recurring_id']              = 'Recurring ID:';
 $_['text_date_added']                      = 'Date Added:';
 $_['text_status']                          = 'Status:';
 $_['text_payment_method']                  = 'Payment Method:';
@@ -39,12 +38,12 @@ $_['text_error']                           = 'The recurring order you requested 
 $_['text_cancelled']                       = 'Recurring payment has been cancelled';
 
 // Column
+$_['column_subscription_id']               = 'Subscription ID';
+$_['column_product']                       = 'Product';
+$_['column_status']                        = 'Status';
 $_['column_date_added']                    = 'Date Added';
 $_['column_type']                          = 'Type';
 $_['column_amount']                        = 'Amount';
-$_['column_status']                        = 'Status';
-$_['column_product']                       = 'Product';
-$_['column_order_recurring_id']            = 'Recurring ID';
 
 // Error
 $_['error_not_cancelled']                  = 'Error: %s';

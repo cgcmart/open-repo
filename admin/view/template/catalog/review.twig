@@ -5,7 +5,7 @@
       <div class="float-end">
         <button type="button" data-bs-toggle="tooltip" title="{{ button_filter }}" onclick="$('#filter-review').toggleClass('d-none');" class="btn btn-light d-md-none d-lg-none"><i class="fas fa-filter"></i></button>
         <a href="{{ add }}" data-bs-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
-        <button type="submit" form="form-review" formaction="{{ delete }}" data-bs-toggle="tooltip" title="{{ button_delete }}" onclick="confirm('{{ text_confirm }}') ? $('#form-review').submit() : false;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+        <button type="submit" form="form-review" formaction="{{ delete }}" data-bs-toggle="tooltip" title="{{ button_delete }}" onclick="return confirm('{{ text_confirm }}')" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
       </div>
       <h1>{{ heading_title }}</h1>
       <ol class="breadcrumb">
@@ -59,58 +59,58 @@
   </div>
 </div>
 <script type="text/javascript">
-$('#review').on('click', 'thead a, .pagination a', function(e) {
-	e.preventDefault();
+$('#review').on('click', 'thead a, .pagination a', function (e) {
+    e.preventDefault();
 
-	$('#review').load(this.href);
+    $('#review').load(this.href);
 });
 
-$('#button-filter').on('click', function() {
-	url = '';
+$('#button-filter').on('click', function () {
+    url = '';
 
-	var filter_product = $('#input-product').val();
+    var filter_product = $('#input-product').val();
 
-	if (filter_product) {
-		url += '&filter_product=' + encodeURIComponent(filter_product);
-	}
+    if (filter_product) {
+        url += '&filter_product=' + encodeURIComponent(filter_product);
+    }
 
-	var filter_author = $('#input-author').val();
+    var filter_author = $('#input-author').val();
 
-	if (filter_author) {
-		url += '&filter_author=' + encodeURIComponent(filter_author);
-	}
+    if (filter_author) {
+        url += '&filter_author=' + encodeURIComponent(filter_author);
+    }
 
-	var filter_status = $('#input-status').val();
+    var filter_status = $('#input-status').val();
 
-	if (filter_status !== '') {
-		url += '&filter_status=' + filter_status;
-	}
+    if (filter_status !== '') {
+        url += '&filter_status=' + filter_status;
+    }
 
-	var filter_date_added = $('#input-date-added').val();
+    var filter_date_added = $('#input-date-added').val();
 
-	if (filter_date_added) {
-		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
-	}
+    if (filter_date_added) {
+        url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+    }
 
-	$('#review').load('index.php?route=catalog/review|list&user_token={{ user_token }}' + url);
+    $('#review').load('index.php?route=catalog/review|list&user_token={{ user_token }}' + url);
 });
 
 $('#input-product').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=catalog/product|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.product_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {}
+    'source': function (request, response) {
+        $.ajax({
+            url: 'index.php?route=catalog/product|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function (json) {
+                response($.map(json, function (item) {
+                    return {
+                        label: item['name'],
+                        value: item['product_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function (item) {}
 });
 </script>
 {{ footer }}

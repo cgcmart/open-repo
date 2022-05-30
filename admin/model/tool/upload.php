@@ -2,7 +2,7 @@
 namespace Opencart\Admin\Model\Tool;
 class Upload extends \Opencart\System\Engine\Model {
 	public function addUpload(string $name, string $filename): string {
-		$code = sha1(uniqid(mt_rand(), true));
+		$code = token(32);
 
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "upload` SET `name` = '" . $this->db->escape($name) . "', `filename` = '" . $this->db->escape($filename) . "', `code` = '" . $this->db->escape($code) . "', `date_added` = NOW()");
 
@@ -31,11 +31,11 @@ class Upload extends \Opencart\System\Engine\Model {
 		$implode = [];
 
 		if (!empty($data['filter_name'])) {
-			$implode[] = "`name` LIKE '" . $this->db->escape((string)$data['filter_name']) . "%'";
+			$implode[] = "`name` LIKE '" . $this->db->escape((string)$data['filter_name'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_code'])) {
-			$implode[] = "`code` LIKE '" . $this->db->escape((string)$data['filter_code']) . "%'";
+			$implode[] = "`code` LIKE '" . $this->db->escape((string)$data['filter_code'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_date_added'])) {
@@ -87,11 +87,11 @@ class Upload extends \Opencart\System\Engine\Model {
 		$implode = [];
 
 		if (!empty($data['filter_name'])) {
-			$implode[] = "`name` LIKE '" . $this->db->escape((string)$data['filter_name']) . "%'";
+			$implode[] = "`name` LIKE '" . $this->db->escape((string)$data['filter_name'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_code'])) {
-			$implode[] = "`code` LIKE '" . $this->db->escape((string)$data['filter_code']) . "%'";
+			$implode[] = "`code` LIKE '" . $this->db->escape((string)$data['filter_code'] . '%') . "'";
 		}
 
 		if (!empty($data['filter_date_added'])) {

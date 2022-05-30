@@ -52,7 +52,7 @@ class Mail {
 			$message  = '--' . $boundary . $eol;
 			$message .= 'Content-Type: text/plain; charset="utf-8"' . $eol;
 			$message .= 'Content-Transfer-Encoding: base64' . $eol . $eol;
-			$message .= chunk_split(base64_encode($this->text)) . $eol;
+			$message .= base64_encode($this->text) . $eol;
 		} else {
 			$message  = '--' . $boundary . $eol;
 			$message .= 'Content-Type: multipart/alternative; boundary="' . $boundary . '_alt"' . $eol . $eol;
@@ -61,15 +61,15 @@ class Mail {
 			$message .= 'Content-Transfer-Encoding: base64' . $eol . $eol;
 
 			if ($this->text) {
-				$message .= chunk_split(base64_encode($this->text)) . $eol;
+				$message .= base64_encode($this->text) . $eol;
 			} else {
-				$message .= chunk_split(base64_encode('This is a HTML email and your email client software does not support HTML email!')) . $eol;
+				$message .= base64_encode('This is a HTML email and your email client software does not support HTML email!') . $eol;
 			}
 
 			$message .= '--' . $boundary . '_alt' . $eol;
 			$message .= 'Content-Type: text/html; charset="utf-8"' . $eol;
 			$message .= 'Content-Transfer-Encoding: base64' . $eol . $eol;
-			$message .= chunk_split(base64_encode($this->html)) . $eol;
+			$message .= base64_encode($this->html) . $eol;
 			$message .= '--' . $boundary . '_alt--' . $eol;
 		}
 
@@ -83,7 +83,7 @@ class Mail {
 
 				$message .= '--' . $boundary . $eol;
 				$message .= 'Content-Type: application/octet-stream; name="' . basename($attachment) . '"' . $eol;
-				$message .= 'Content-Transfer-Encoding: base64' . $eol;
+				$message .= 'Content-Transfer-Encoding: base64' . PHP_EOL;
 				$message .= 'Content-Disposition: attachment; filename="' . basename($attachment) . '"' . $eol;
 				$message .= 'Content-ID: <' . urlencode(basename($attachment)) . '>' . $eol;
 				$message .= 'X-Attachment-Id: ' . urlencode(basename($attachment)) . $eol . $eol;

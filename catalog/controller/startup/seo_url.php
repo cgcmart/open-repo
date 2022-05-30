@@ -59,7 +59,7 @@ class SeoUrl extends \Opencart\System\Engine\Controller {
 		foreach ($parts as $part) {
 			[$key, $value] = explode('=', $part);
 
-        	$result = $this->model_design_seo_url->getSeoUrlByKeyValue($key, $value);
+			$result = $this->model_design_seo_url->getSeoUrlByKeyValue($key, $value);
 
 			if ($result) {
 				$paths[] = $result;

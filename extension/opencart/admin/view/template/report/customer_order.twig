@@ -84,54 +84,54 @@
     </div>
   </div>
 </div>
-<script language"javascript">
-$('#button-filter').on('click', function() {
-	var url = '';
+<script type="text/javascript">
+$('#button-filter').on('click', function () {
+    var url = '';
 
-	var filter_customer = $('#input-customer').val();
+    var filter_customer = $('#input-customer').val();
 
-	if (filter_customer) {
-		url += '&filter_customer=' + encodeURIComponent(filter_customer);
-	}
+    if (filter_customer) {
+        url += '&filter_customer=' + encodeURIComponent(filter_customer);
+    }
 
-	var filter_order_status_id = $('#input-order-status').val();
+    var filter_order_status_id = $('#input-order-status').val();
 
-	if (filter_order_status_id != 0) {
-		url += '&filter_order_status_id=' + encodeURIComponent(filter_order_status_id);
-	}
+    if (filter_order_status_id != 0) {
+        url += '&filter_order_status_id=' + encodeURIComponent(filter_order_status_id);
+    }
 
-	var filter_date_start = $('#input-date-start').val();
+    var filter_date_start = $('#input-date-start').val();
 
-	if (filter_date_start) {
-		url += '&filter_date_start=' + encodeURIComponent(filter_date_start);
-	}
+    if (filter_date_start) {
+        url += '&filter_date_start=' + encodeURIComponent(filter_date_start);
+    }
 
-	var filter_date_end = $('#input-date-end').val();
+    var filter_date_end = $('#input-date-end').val();
 
-	if (filter_date_end) {
-		url += '&filter_date_end=' + encodeURIComponent(filter_date_end);
-	}
+    if (filter_date_end) {
+        url += '&filter_date_end=' + encodeURIComponent(filter_date_end);
+    }
 
-	$('#report').load('index.php?route=extension/opencart/report/customer_order|report&user_token={{ user_token }}' + url);
+    $('#report').load('index.php?route=extension/opencart/report/customer_order|report&user_token={{ user_token }}' + url);
 });
 
 $('#input-customer').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.customer_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {
-		$('#input-customer').val(item.label);
-	}
+    'source': function (request, response) {
+        $.ajax({
+            url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function (json) {
+                response($.map(json, function (item) {
+                    return {
+                        label: item['name'],
+                        value: item['customer_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function (item) {
+        $('#input-customer').val(item['label']);
+    }
 });
 </script>

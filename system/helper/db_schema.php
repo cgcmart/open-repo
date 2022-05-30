@@ -87,8 +87,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -115,8 +115,8 @@ function db_schema() {
 			'address_format_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -158,8 +158,8 @@ function db_schema() {
 			'api_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -186,8 +186,8 @@ function db_schema() {
 			'api_ip_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -229,8 +229,8 @@ function db_schema() {
 			'api_session_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -257,8 +257,8 @@ function db_schema() {
 			'attribute_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -285,8 +285,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -308,8 +308,8 @@ function db_schema() {
 			'attribute_group_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -336,8 +336,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -364,8 +364,8 @@ function db_schema() {
 			'banner_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -413,8 +413,8 @@ function db_schema() {
 			'banner_image_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -483,8 +483,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -551,8 +551,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -607,8 +607,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -630,8 +630,8 @@ function db_schema() {
 			'filter_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -658,8 +658,8 @@ function db_schema() {
 			'path_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -686,8 +686,8 @@ function db_schema() {
 			'store_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -709,8 +709,8 @@ function db_schema() {
 			'store_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -758,8 +758,8 @@ function db_schema() {
 			'country_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -841,8 +841,8 @@ function db_schema() {
 			'coupon_id'
 		],
 		'engine'  => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -864,8 +864,8 @@ function db_schema() {
 			'category_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -907,8 +907,8 @@ function db_schema() {
 			'coupon_history_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -935,8 +935,8 @@ function db_schema() {
 			'coupon_product_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -988,8 +988,8 @@ function db_schema() {
 			'cron_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1046,8 +1046,8 @@ function db_schema() {
 			'currency_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1151,8 +1151,8 @@ function db_schema() {
 			'customer_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1194,8 +1194,8 @@ function db_schema() {
 			'customer_activity_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1292,8 +1292,8 @@ function db_schema() {
 			'customer_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1335,8 +1335,8 @@ function db_schema() {
 			'customer_affiliate_report_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1368,8 +1368,8 @@ function db_schema() {
 			'customer_approval_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1396,8 +1396,8 @@ function db_schema() {
 			'customer_group_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1429,8 +1429,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1462,8 +1462,8 @@ function db_schema() {
 			'customer_history_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1519,8 +1519,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1570,8 +1570,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1607,8 +1607,8 @@ function db_schema() {
 			'ip'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1653,8 +1653,8 @@ function db_schema() {
 			'customer_reward_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1696,8 +1696,8 @@ function db_schema() {
 			'customer_transaction_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1764,8 +1764,8 @@ function db_schema() {
 			'customer_search_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1792,8 +1792,8 @@ function db_schema() {
 			'product_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1840,8 +1840,8 @@ function db_schema() {
 			'custom_field_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1868,8 +1868,8 @@ function db_schema() {
 			'customer_group_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1896,8 +1896,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1924,8 +1924,8 @@ function db_schema() {
 			'custom_field_value_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1957,8 +1957,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -1990,8 +1990,8 @@ function db_schema() {
 			'download_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2018,8 +2018,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2061,8 +2061,8 @@ function db_schema() {
 			'download_report_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2111,8 +2111,8 @@ function db_schema() {
 			'event_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2144,8 +2144,8 @@ function db_schema() {
 			'extension_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2170,11 +2170,6 @@ function db_schema() {
 			[
 				'name' => 'name',
 				'type' => 'varchar(128)',
-				'not_null' => true
-			],
-        	[
-				'name' => 'package_name',
-				'type' => 'varchar(64)',
 				'not_null' => true
 			],
 			[
@@ -2212,8 +2207,8 @@ function db_schema() {
 			'extension_install_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2248,8 +2243,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2276,8 +2271,8 @@ function db_schema() {
 			'filter_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2309,8 +2304,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2332,8 +2327,8 @@ function db_schema() {
 			'filter_group_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2360,8 +2355,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2413,8 +2408,8 @@ function db_schema() {
 			'gdpr_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2451,8 +2446,8 @@ function db_schema() {
 			'geo_zone_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2487,8 +2482,8 @@ function db_schema() {
 			'information_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2535,8 +2530,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2563,8 +2558,8 @@ function db_schema() {
 			'store_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2586,8 +2581,8 @@ function db_schema() {
 			'store_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2643,8 +2638,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2666,8 +2661,8 @@ function db_schema() {
 			'layout_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2704,8 +2699,8 @@ function db_schema() {
 			'layout_module_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2737,8 +2732,8 @@ function db_schema() {
 			'layout_route_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2760,8 +2755,8 @@ function db_schema() {
 			'length_class_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2793,8 +2788,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2854,8 +2849,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2887,8 +2882,8 @@ function db_schema() {
 			'manufacturer_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2915,8 +2910,8 @@ function db_schema() {
 			'store_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2938,8 +2933,8 @@ function db_schema() {
 			'store_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -2982,8 +2977,8 @@ function db_schema() {
 			'marketing_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3025,8 +3020,8 @@ function db_schema() {
 			'marketing_report_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3058,8 +3053,8 @@ function db_schema() {
 			'module_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3096,8 +3091,8 @@ function db_schema() {
 			'notification_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3124,8 +3119,8 @@ function db_schema() {
 			'option_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3152,8 +3147,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3185,8 +3180,8 @@ function db_schema() {
 			'option_value_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3218,8 +3213,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3548,8 +3543,8 @@ function db_schema() {
 			'order_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3592,8 +3587,8 @@ function db_schema() {
 			'order_history_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3646,8 +3641,8 @@ function db_schema() {
 			'order_option_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3725,8 +3720,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3754,8 +3749,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3811,8 +3806,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3884,8 +3879,8 @@ function db_schema() {
 			'order_voucher_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -3965,8 +3960,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4166,8 +4161,8 @@ function db_schema() {
 			'product_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4200,8 +4195,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4261,8 +4256,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4325,8 +4320,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4348,8 +4343,8 @@ function db_schema() {
 			'filter_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4390,8 +4385,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4428,8 +4423,8 @@ function db_schema() {
 			'product_option_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4506,8 +4501,8 @@ function db_schema() {
 			'product_option_value_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4535,8 +4530,8 @@ function db_schema() {
 			'customer_group_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4558,8 +4553,8 @@ function db_schema() {
 			'related_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4603,8 +4598,8 @@ function db_schema() {
 			'product_report_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4639,8 +4634,8 @@ function db_schema() {
 			'product_reward_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4697,8 +4692,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4728,8 +4723,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4751,8 +4746,8 @@ function db_schema() {
 			'download_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4779,8 +4774,8 @@ function db_schema() {
 			'store_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4803,8 +4798,8 @@ function db_schema() {
 			'store_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4911,8 +4906,8 @@ function db_schema() {
 			'return_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4941,8 +4936,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -4984,8 +4979,8 @@ function db_schema() {
 			'return_history_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5014,8 +5009,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5044,8 +5039,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5111,8 +5106,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5149,8 +5144,8 @@ function db_schema() {
 			'startup_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5177,8 +5172,8 @@ function db_schema() {
 			'statistics_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5212,8 +5207,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5257,8 +5252,8 @@ function db_schema() {
 			'setting_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5286,8 +5281,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5314,8 +5309,8 @@ function db_schema() {
 			'store_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5369,7 +5364,7 @@ function db_schema() {
 			],
 			[
 				'name' => 'trial_frequency',
-				'type' => 'enum('day','week','semi_month','month','year')',
+				'type' => 'enum(\'day\',\'week\',\'semi_month\',\'month\',\'year\')',
 				'not_null' => true
 			],
 			[
@@ -5399,7 +5394,7 @@ function db_schema() {
 			],
 			[
 				'name' => 'frequency',
-				'type' => 'enum('day','week','semi_month','month','year')',
+				'type' => 'enum(\'day\',\'week\',\'semi_month\',\'month\',\'year\')',
 				'not_null' => true
 			],
 			[
@@ -5417,7 +5412,7 @@ function db_schema() {
 				'type' => 'smallint(6)',
 				'not_null' => true
 			],
-        	[
+			[
 				'name' => 'date_next',
 				'type' => 'datetime',
 				'not_null' => true
@@ -5450,8 +5445,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5494,8 +5489,8 @@ function db_schema() {
 			'subscription_history_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5568,8 +5563,8 @@ function db_schema() {
 			'subscription_plan_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5601,8 +5596,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5630,8 +5625,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5668,7 +5663,7 @@ function db_schema() {
 				'type' => 'decimal(10,4)',
 				'not_null' => true
 			],
-        	[
+			[
 				'name' => 'payment_method',
 				'type' => 'varchar(128)',
 				'not_null' => true
@@ -5702,8 +5697,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5740,8 +5735,8 @@ function db_schema() {
 			'tax_class_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5790,8 +5785,8 @@ function db_schema() {
 			'tax_rate_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5813,8 +5808,8 @@ function db_schema() {
 			'customer_group_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5852,8 +5847,8 @@ function db_schema() {
 			'tax_rule_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5890,8 +5885,8 @@ function db_schema() {
 			'theme_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5938,8 +5933,8 @@ function db_schema() {
 			'translation_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -5976,8 +5971,8 @@ function db_schema() {
 			'upload_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6039,8 +6034,8 @@ function db_schema() {
 			]
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6115,8 +6110,8 @@ function db_schema() {
 			'user_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6143,8 +6138,8 @@ function db_schema() {
 			'user_group_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6181,8 +6176,8 @@ function db_schema() {
 			'vendor_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6254,8 +6249,8 @@ function db_schema() {
 			'voucher_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6292,8 +6287,8 @@ function db_schema() {
 			'voucher_history_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6315,8 +6310,8 @@ function db_schema() {
 			'voucher_theme_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6343,8 +6338,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6367,8 +6362,8 @@ function db_schema() {
 			'weight_class_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6400,8 +6395,8 @@ function db_schema() {
 			'language_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6439,8 +6434,8 @@ function db_schema() {
 			'zone_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	$tables[] = [
@@ -6483,8 +6478,8 @@ function db_schema() {
 			'zone_to_geo_zone_id'
 		],
 		'engine' => 'InnoDB',
-		'charset' => 'utf8',
-		'collate' => 'utf8_general_ci'
+		'charset' => 'utf8mb4',
+		'collate' => 'utf8mb4_general_ci'
 	];
 
 	return $tables;

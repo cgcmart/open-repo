@@ -5,7 +5,7 @@
       <div class="float-end">
         <button type="button" data-bs-toggle="tooltip" title="{{ button_filter }}" onclick="$('#filter-country').toggleClass('d-none');" class="btn btn-light d-md-none d-lg-none"><i class="fas fa-filter"></i></button>
         <a href="{{ add }}" data-bs-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
-        <button type="submit" form="form-country" formaction="{{ delete }}" data-bs-toggle="tooltip" title="{{ button_delete }}" onclick="confirm('{{ text_confirm }}') ? $('#form-country').submit() : false;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+        <button type="submit" form="form-country" formaction="{{ delete }}" data-bs-toggle="tooltip" title="{{ button_delete }}" onclick="return confirm('{{ text_confirm }}')" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
       </div>
       <h1>{{ heading_title }}</h1>
       <ol class="breadcrumb">
@@ -47,33 +47,33 @@
 </div>
 <script type="text/javascript">
 $('#country').on('click', 'thead a, .pagination a', function(e) {
-	e.preventDefault();
+    e.preventDefault();
 
-	$('#country').load(this.href);
+    $('#country').load(this.href);
 });
 
 $('#button-filter').on('click', function() {
-	var url = '';
+    var url = '';
 
-	var filter_name = $('#input-name').val();
+    var filter_name = $('#input-name').val();
 
-	if (filter_name) {
-		url += '&filter_name=' + encodeURIComponent(filter_name);
-	}
+    if (filter_name) {
+        url += '&filter_name=' + encodeURIComponent(filter_name);
+    }
 
-	var filter_iso_code_2 = $('#input-iso_code_2').val();
+    var filter_iso_code_2 = $('#input-iso_code_2').val();
 
-	if (filter_iso_code_2) {
-		url += '&filter_iso_code_2=' + encodeURIComponent(filter_iso_code_2);
-	}
+    if (filter_iso_code_2) {
+        url += '&filter_iso_code_2=' + encodeURIComponent(filter_iso_code_2);
+    }
 
-	var filter_iso_code_3 = $('#input-iso_code_3').val();
+    var filter_iso_code_3 = $('#input-iso_code_3').val();
 
-	if (filter_iso_code_3) {
-		url += '&filter_iso_code_3=' + encodeURIComponent(filter_iso_code_3);
-	}
+    if (filter_iso_code_3) {
+        url += '&filter_iso_code_3=' + encodeURIComponent(filter_iso_code_3);
+    }
 
-	$('#country').load('index.php?route=localisation/country|list&user_token={{ user_token }}' + url);
+    $('#country').load('index.php?route=localisation/country|list&user_token={{ user_token }}' + url);
 });
 </script>
 {{ footer }}

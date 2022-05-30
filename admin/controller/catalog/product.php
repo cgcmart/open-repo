@@ -297,8 +297,6 @@ class Product extends \Opencart\System\Engine\Controller {
 
 		$this->document->addScript('view/javascript/ckeditor/build/ckeditor.js');
 
-    	$this->document->addScript('view/javascript/jquery/jquery-ui/jquery-ui.min.js');
-
 		$data['text_form'] = !isset($this->request->get['product_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
 		$data['error_upload_size'] = sprintf($this->language->get('error_upload_size'), $this->config->get('config_file_max_size'));
@@ -990,6 +988,8 @@ class Product extends \Opencart\System\Engine\Controller {
 			$data['product_layout'] = [];
 		}
 
+		$data['report'] = $this->getReport();
+
 		$data['user_token'] = $this->session->data['user_token'];
 
 		$data['header'] = $this->load->controller('common/header');
@@ -1081,7 +1081,7 @@ class Product extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1110,7 +1110,7 @@ class Product extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1139,7 +1139,7 @@ class Product extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1307,7 +1307,7 @@ class Product extends \Opencart\System\Engine\Controller {
 			];
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

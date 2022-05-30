@@ -43,6 +43,10 @@ $_['text_month_ago']                = '%s month ago';
 $_['text_months_ago']               = '%s months ago';
 $_['text_year_ago']                 = '%s year ago';
 $_['text_years_ago']                = '%s years ago';
+$_['text_terabyte']		         	= '%dT';
+$_['text_megabyte']			        = '%dM';
+$_['text_kilobyte']			        = '%dK';
+$_['text_byte']				        = '%dB';
 
 // Button
 $_['button_add']                    = 'Add New';
@@ -166,6 +170,10 @@ $_['error_upload_8']                = 'Warning: File upload stopped by extension
 $_['error_upload_999']              = 'Warning: No error code available!';
 $_['error_upload_size']             = 'Warning: The uploaded file exceeds the %smb max file size!';
 $_['error_curl']                    = 'CURL: Error Code(%s): %s';
+$_['error_format_b']				= 'Warning: The uploaded file exceeds the max file size: %s bytes!';
+$_['error_format_kb']				= 'Warning: The uploaded file exceeds the max file size: %s kilobytes!';
+$_['error_format_mb']				= 'Warning: The uploaded file exceeds the max file size: %s megabytes!';
+$_['error_format_gb']				= 'Warning: The uploaded file exceeds the max file size: %s gigabytes!';
 
 /* When doing translations only include the matching language code */
 

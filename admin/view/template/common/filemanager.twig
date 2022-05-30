@@ -9,7 +9,7 @@
     </div>
   </div>
 </div>
-<script language="javascript">
+<script type="text/javascript">
 $('#modal-image .modal-body').load('index.php?route=common/filemanager|list&user_token={{ user_token }}');
 
 $('#modal-image').on('click', '#button-parent', function(e) {
@@ -45,17 +45,17 @@ $('#modal-image').on('click', '#button-search', function(e) {
 		url += '&filter_name=' + encodeURIComponent(filter_name);
 	}
 
-    {% if thumb %}
+	{% if thumb %}
 		url += '&thumb={{ thumb|escape('js') }}';
-    {% endif %}
+	{% endif %}
 
-    {% if target %}
+	{% if target %}
 		url += '&target={{ target|escape('js') }}';
-    {% endif %}
+	{% endif %}
 
-    {% if ckeditor %}
-		url += '&ckeditor={{ ckeditor|escape('js') }}';
-    {% endif %}
+	{% if editor %}
+		url += '&editor={{ ckeditor|escape('js') }}';
+	{% endif %}
 
 	$('#modal-image .modal-body').load(url);
 });
@@ -69,11 +69,11 @@ $('#modal-image').on('click', '#button-upload', function() {
 
 	$('#form-upload input[name=\'file[]\']').on('change', function() {
 		for (i = 0; i < this.files.length; i++) {
-            if (this.files[i].size > {{ config_file_max_size }}) {
-                $(this).val('');
+			if (this.files[i].size > {{	config_file_max_size }}) {
+				$(this).val('');
 
-                alert('{{ error_upload_size }}');
-            }
+				alert('{{ error_upload_size }}');
+			}
 		}
 	});
 
@@ -108,12 +108,12 @@ $('#modal-image').on('click', '#button-upload', function() {
 					$('#button-upload').prop('disabled', false).removeClass('loading');
 				},
 				success: function(json) {
-					if (json.error) {
-						alert(json.error);
+					if (json['error']) {
+						alert(json['error']);
 					}
 
-					if (json.success) {
-						alert(json.success);
+					if (json['success']) {
+						alert(json['success']);
 
 						$('#button-refresh').trigger('click');
 					}
@@ -151,12 +151,12 @@ $('#modal-image').on('click', '#button-create', function() {
 			$('#button-create').prop('disabled', false).removeClass('loading');
 		},
 		success: function(json) {
-			if (json.error) {
-				alert(json.error);
+			if (json['error']) {
+				alert(json['error']);
 			}
 
-			if (json.success) {
-				alert(json.success);
+			if (json['success']) {
+				alert(json['success']);
 
 				$('#button-refresh').trigger('click');
 			}
@@ -181,12 +181,12 @@ $('#modal-image').on('click', '#button-delete', function(e) {
 				$('#button-delete').prop('disabled', false).removeClass('loading');
 			},
 			success: function(json) {
-				if (json.error) {
-					alert(json.error);
+				if (json['error']) {
+					alert(json['error']);
 				}
 
-				if (json.success) {
-					alert(json.success);
+				if (json['success']) {
+					alert(json['success']);
 
 					$('#button-refresh').trigger('click');
 				}
@@ -207,15 +207,15 @@ $('#modal-image').on('click', 'a.directory', function(e) {
 $('#modal-image').on('click', 'a.thumbnail', function(e) {
 	e.preventDefault();
 
-    {% if thumb %}
+	{% if thumb %}
 		$('{{ thumb|escape('js') }}').attr('src', $(this).find('img').attr('src'));
 
-		$('{{ target|escape('js') }}').val($(this).parent().find('input').val());
-    {% endif %}
+		$('{{ target|escape('js') }}').val('catalog/' + $(this).parent().find('input').val());
+	{% endif %}
 
-    {% if ckeditor %}
-		CKEDITOR.instances['{{ ckeditor|escape('js') }}'].insertHtml('<img src="' + $(this).attr('href') + '" alt="" title="" />');
-    {% endif %}
+	{% if editor %}
+		EDITOR.instances['{{ editor|escape('js') }}'].insertHtml('<img src="' + $(this).attr('href') + '" alt="" title="" />');
+	{% endif %}
 
 	$('#modal-image').modal('hide');
 });

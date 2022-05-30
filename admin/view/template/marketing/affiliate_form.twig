@@ -31,9 +31,7 @@
                 <div class="row mb-3 required" class="tab-pane active">
                   <label for="input-customer" class="col-sm-2 col-form-label">{{ entry_customer }}</label>
                   <div class="col-sm-10">
-                    <input type="text" name="customer" value="{{ customer }}" placeholder="{{ entry_customer }}" id="input-customer" list="list-customer" class="form-control"{% if customer_id %} disabled{% endif %}/>
-                    <input type="hidden" name="customer_id" value="{{ customer_id }}" id="input-customer-id"/>
-                    <input type="hidden" name="customer_group_id" value="{{ customer_group_id }}" id="input-customer-group"/>
+                    <input type="text" name="customer" value="{{ customer }}" placeholder="{{ entry_customer }}" id="input-customer" list="list-customer" class="form-control"{% if customer_id %} disabled{% endif %}/> <input type="hidden" name="customer_id" value="{{ customer_id }}" id="input-customer-id"/> <input type="hidden" name="customer_group_id" value="{{ customer_group_id }}" id="input-customer-group"/>
                     <datalist id="list-customer"></datalist>
                     <div id="error-customer" class="invalid-feedback"></div>
                   </div>
@@ -343,152 +341,152 @@
     </div>
   </div>
 </div>
-<script language="javascript">
+<script type="text/javascript">
 $('#input-customer').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						category: item.customer_group,
-						label: item.name,
-						value: item.customer_id,
-						customer_group_id: item.customer_group_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {
-		$('#input-customer').val(item.label);
-		$('#input-customer-id').val(item.value);
-		$('#input-customer-group').val(item.customer_group_id);
+    'source': function (request, response) {
+        $.ajax({
+            url: 'index.php?route=customer/customer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function (json) {
+                response($.map(json, function (item) {
+                    return {
+                        category: item['customer_group'],
+                        label: item['name'],
+                        value: item['customer_id'],
+                        customer_group_id: item['customer_group_id'],
+                    }
+                }));
+            }
+        });
+    },
+    'select': function (item) {
+        $('#input-customer').val(item['label']);
+        $('#input-customer-id').val(item['value']);
+        $('#input-customer-group').val(item['customer_group_id']);
 
-		$('#input-customer-group').trigger('change');
-	}
+        $('#input-customer-group').trigger('change');
+    }
 });
 
-$('#input-customer-group').on('change', function() {
-	$.ajax({
-		url: 'index.php?route=customer/customer|customfield&user_token={{ user_token }}&customer_group_id=' + this.value,
-		dataType: 'json',
-		success: function(json) {
-			$('.custom-field').hide();
-			$('.custom-field').removeClass('required');
+$('#input-customer-group').on('change', function () {
+    $.ajax({
+        url: 'index.php?route=customer/customer|customfield&user_token={{ user_token }}&customer_group_id=' + this.value,
+        dataType: 'json',
+        success: function (json) {
+            $('.custom-field').hide();
+            $('.custom-field').removeClass('required');
 
-			for (i = 0; i < json.length; i++) {
-				custom_field = json[i];
+            for (i = 0; i < json.length; i++) {
+                custom_field = json[i];
 
-				$('.custom-field-' + custom_field.custom_field_id).show();
+                $('.custom-field-' + custom_field['custom_field_id']).show();
 
-				if (custom_field.required) {
-					$('.custom-field-' + custom_field.custom_field_id).addClass('required');
-				}
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                if (custom_field['required']) {
+                    $('.custom-field-' + custom_field['custom_field_id']).addClass('required');
+                }
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
 $('#input-customer-group').trigger('change');
 
-$('#history').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#history').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#history').load(this.href);
+    $('#history').load(this.href);
 });
 
-$('#button-history').on('click', function(e) {
-	var element = this;
+$('#button-history').on('click', function (e) {
+    var element = this;
 
-	$.ajax({
-		url: 'index.php?route=customer/customer|addhistory&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
-		type: 'post',
-		dataType: 'json',
-		data: 'comment=' + encodeURIComponent($('#input-comment').val()),
-		beforeSend: function() {
-			$(element).prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$(element).prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=customer/customer|addhistory&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
+        type: 'post',
+        dataType: 'json',
+        data: 'comment=' + encodeURIComponent($('#input-comment').val()),
+        beforeSend: function () {
+            $(element).prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $(element).prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#tab-history').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#tab-history').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#tab-history').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#tab-history').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#history').load('index.php?route=customer/customer|history&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
+                $('#history').load('index.php?route=customer/customer|history&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
 
-				$('#input-comment').val('');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#input-comment').val('');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#transaction').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#transaction').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#transaction').load(this.href);
+    $('#transaction').load(this.href);
 });
 
-$('#button-transaction').on('click', function(e) {
-	e.preventDefault();
+$('#button-transaction').on('click', function (e) {
+    e.preventDefault();
 
-	$.ajax({
-		url: 'index.php?route=customer/customer|addtransaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
-		type: 'post',
-		dataType: 'json',
-		data: 'description=' + encodeURIComponent($('#input-transaction-description').val()) + '&amount=' + encodeURIComponent($('#input-transaction-amount').val()),
-		beforeSend: function() {
-			$('#button-transaction').prop('disabled', true).addClass('loading');
-		},
-		complete: function() {
-			$('#button-transaction').prop('disabled', false).removeClass('loading');
-		},
-		success: function(json) {
-			$('.alert-dismissible').remove();
+    $.ajax({
+        url: 'index.php?route=customer/customer|addtransaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val(),
+        type: 'post',
+        dataType: 'json',
+        data: 'description=' + encodeURIComponent($('#input-transaction-description').val()) + '&amount=' + encodeURIComponent($('#input-transaction-amount').val()),
+        beforeSend: function () {
+            $('#button-transaction').prop('disabled', true).addClass('loading');
+        },
+        complete: function () {
+            $('#button-transaction').prop('disabled', false).removeClass('loading');
+        },
+        success: function (json) {
+            $('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#tab-transaction').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-			}
+            if (json['error']) {
+                $('#tab-transaction').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            }
 
-			if (json.success) {
-				$('#tab-transaction').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+            if (json['success']) {
+                $('#tab-transaction').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-				$('#transaction').load('index.php?route=customer/customer|transaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
+                $('#transaction').load('index.php?route=customer/customer|transaction&user_token={{ user_token }}&customer_id=' + $('#input-customer-id').val());
 
-				$('#input-transaction-amount').val('');
-				$('#input-transaction-description').val('');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
+                $('#input-transaction-amount').val('');
+                $('#input-transaction-description').val('');
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+    });
 });
 
-$('#report').on('click', '.pagination a', function(e) {
-	e.preventDefault();
+$('#report').on('click', '.pagination a', function (e) {
+    e.preventDefault();
 
-	$('#report').load(this.href);
+    $('#report').load(this.href);
 });
 
-$('input[name=\'payment\']').on('change', function() {
-	$('.payment').hide();
+$('input[name=\'payment\']').on('change', function () {
+    $('.payment').hide();
 
-	$('#payment-' + this.value).show();
+    $('#payment-' + this.value).show();
 });
 
 $('input[name=\'payment\']:checked').trigger('change');

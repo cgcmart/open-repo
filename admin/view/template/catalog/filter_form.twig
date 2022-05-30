@@ -93,6 +93,7 @@ $('#button-filter').on('click', function() {
     html += '    <input type="text" name="filter[' + filter_row + '][filter_description][{{ language.language_id }}][name]" value="" placeholder="{{ entry_name }}" id="input-filter-' + filter_row + '-{{ language.language_id }}" class="form-control"/>';
     html += '  </div>';
     html += '  <div id="error-filter-' + filter_row + '-{{ language.language_id }}" class="invalid-feedback"></div>';
+
   {% endfor %}
     html += '  </td>';
     html += '  <td class="text-end"><input type="text" name="filter[' + filter_row + '][sort_order]" value="" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control"/></td>';

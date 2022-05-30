@@ -96,7 +96,6 @@ class Contact extends \Opencart\System\Engine\Controller {
 		$keys = [
 			'name',
 			'email',
-        	'telephone',
 			'enquiry'
 		];
 
@@ -141,7 +140,9 @@ class Contact extends \Opencart\System\Engine\Controller {
 			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
 
 			$mail->setTo($this->config->get('config_email'));
+        	// less spam and fix bug when using SMPT like sendgrid
 			$mail->setFrom($this->config->get('config_email'));
+			$mail->setFrom($this->request->post['email']);
 			$mail->setReplyTo($this->request->post['email']);
 			$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('email_subject'), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
@@ -151,7 +152,7 @@ class Contact extends \Opencart\System\Engine\Controller {
 			$json['redirect'] = $this->url->link('information/contact|success', 'language=' . $this->config->get('config_language'), true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 

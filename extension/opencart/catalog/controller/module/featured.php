@@ -9,7 +9,7 @@ class Featured extends \Opencart\System\Engine\Controller {
 
 		$data['products'] = [];
 
-		if (isset($setting['product'])) {
+		if (!empty($setting['product'])) {
 			$product_data = [];
 
 			foreach ($setting['product'] as $product_id) {

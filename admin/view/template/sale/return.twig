@@ -5,7 +5,7 @@
       <div class="float-end">
         <button type="button" data-bs-toggle="tooltip" title="{{ button_filter }}" onclick="$('#filter-return').toggleClass('d-none');" class="btn btn-light d-md-none"><i class="fas fa-filter"></i></button>
         <a href="{{ add }}" data-bs-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
-        <button type="submit" form="form-return" formaction="{{ delete }}" data-bs-toggle="tooltip" title="{{ button_delete }}" onclick="confirm('{{ text_confirm }}') ? $('#form-return').submit() : false;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+        <button type="submit" form="form-return" formaction="{{ delete }}" data-bs-toggle="tooltip" title="{{ button_delete }}" onclick="return confirm('{{ text_confirm }}')" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
       </div>
       <h1>{{ heading_title }}</h1>
       <ol class="breadcrumb">
@@ -83,121 +83,121 @@
 </div>
 <script type="text/javascript">
 $('#return').on('click', 'thead a, .pagination a', function(e) {
-	e.preventDefault();
+    e.preventDefault();
 
-	$('#return').load(this.href);
+    $('#return').load(this.href);
 });
 
 $('#button-filter').on('click', function() {
-	url = '';
+    url = '';
 
-	var filter_return_id = $('#input-return-id').val();
+    var filter_return_id = $('#input-return-id').val();
 
-	if (filter_return_id) {
-		url += '&filter_return_id=' + filter_return_id;
-	}
+    if (filter_return_id) {
+        url += '&filter_return_id=' + filter_return_id;
+    }
 
-	var filter_order_id = $('#input-order-id').val();
+    var filter_order_id = $('#input-order-id').val();
 
-	if (filter_order_id) {
-		url += '&filter_order_id=' + filter_order_id;
-	}
+    if (filter_order_id) {
+        url += '&filter_order_id=' + filter_order_id;
+    }
 
-	var filter_customer = $('#input-customer').val();
+    var filter_customer = $('#input-customer').val();
 
-	if (filter_customer) {
-		url += '&filter_customer=' + encodeURIComponent(filter_customer);
-	}
+    if (filter_customer) {
+        url += '&filter_customer=' + encodeURIComponent(filter_customer);
+    }
 
-	var filter_product = $('#input-product').val();
+    var filter_product = $('#input-product').val();
 
-	if (filter_product) {
-		url += '&filter_product=' + encodeURIComponent(filter_product);
-	}
+    if (filter_product) {
+        url += '&filter_product=' + encodeURIComponent(filter_product);
+    }
 
-	var filter_model = $('#input-model').val();
+    var filter_model = $('#input-model').val();
 
-	if (filter_model) {
-		url += '&filter_model=' + encodeURIComponent(filter_model);
-	}
+    if (filter_model) {
+        url += '&filter_model=' + encodeURIComponent(filter_model);
+    }
 
-	var filter_return_status_id = $('#input-return-status').val();
+    var filter_return_status_id = $('#input-return-status').val();
 
-	if (filter_return_status_id !== '') {
-		url += '&filter_return_status_id=' + filter_return_status_id;
-	}
+    if (filter_return_status_id !== '') {
+        url += '&filter_return_status_id=' + filter_return_status_id;
+    }
 
-	var filter_date_added = $('#input-date-added').val();
+    var filter_date_added = $('#input-date-added').val();
 
-	if (filter_date_added) {
-		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
-	}
+    if (filter_date_added) {
+        url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+    }
 
-	var filter_date_modified = $('#input-date-modified').val();
+    var filter_date_modified = $('#input-date-modified').val();
 
-	if (filter_date_modified) {
-		url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
-	}
+    if (filter_date_modified) {
+        url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+    }
 
-	$('#return').load('index.php?route=sale/returns|list&user_token={{ user_token }}' + url);
+    $('#return').load('index.php?route=sale/returns|list&user_token={{ user_token }}' + url);
 });
 
 $('#input-customer').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=customer/customer/|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.customer_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {
-		$('#input-customer').val(item.label);
-	}
+    'source': function(request, response) {
+        $.ajax({
+            url: 'index.php?route=customer/customer/|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function(json) {
+                response($.map(json, function(item) {
+                    return {
+                        label: item['name'],
+                        value: item['customer_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function(item) {
+        $('#input-customer').val(item['label']);
+    }
 });
 
 $('#input-product').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=catalog/product|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.name,
-						value: item.product_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {
-		$('#input-product').val(item.label);
-	}
+    'source': function(request, response) {
+        $.ajax({
+            url: 'index.php?route=catalog/product|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function(json) {
+                response($.map(json, function(item) {
+                    return {
+                        label: item['name'],
+                        value: item['product_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function(item) {
+        $('#input-product').val(item['label']);
+    }
 });
 
 $('#input-model').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=catalog/product|autocomplete&user_token={{ user_token }}&filter_model=' + encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item.model,
-						value: item.product_id
-					};
-				}));
-			}
-		});
-	},
-	'select': function(item) {}
+    'source': function(request, response) {
+        $.ajax({
+            url: 'index.php?route=catalog/product|autocomplete&user_token={{ user_token }}&filter_model=' + encodeURIComponent(request),
+            dataType: 'json',
+            success: function(json) {
+                response($.map(json, function(item) {
+                    return {
+                        label: item['model'],
+                        value: item['product_id']
+                    }
+                }));
+            }
+        });
+    },
+    'select': function(item) {}
 });
 </script>
 {{ footer }}

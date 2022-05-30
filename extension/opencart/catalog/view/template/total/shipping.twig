@@ -43,7 +43,7 @@
     </div>
   </div>
 </div>
-<script language="javascript">
+<script type="text/javascript">
 $('#form-quote').on('submit', function(e) {
 	e.preventDefault();
 
@@ -63,20 +63,20 @@ $('#form-quote').on('submit', function(e) {
 			$('#form-shipping').find('.is-invalid').removeClass('is-invalid');
 			$('#form-shipping').find('.invalid-feedback').removeClass('d-block');
 
-			if (json.error) {
-				if (json.error.warning) {
-					$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error.warning + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+			if (json['error']) {
+				if (json['error']['warning']) {
+					$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error']['warning'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 				}
 
-				for (var key in json.error) {
+				for (key in json['error']) {
 					$('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
-					$('#error-' + key.replaceAll('_', '-')).html(json.error[key]).addClass('d-block');
+					$('#error-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
 				}
 			}
 
 			console.log(json);
 
-			if (json.shipping_method) {
+			if (json['shipping_method']) {
 				$('#modal-shipping').remove();
 
 				html = '<div id="modal-shipping" class="modal">';
@@ -90,24 +90,24 @@ $('#form-quote').on('submit', function(e) {
 				html += '        <form id="form-shipping">';
 				html += '          <p>{{ text_estimate }}</p>';
 
-				for (var i in json.shipping_method) {
-					html += '<p><strong>' + json.shipping_method[i].title + '</strong></p>';
+				for (i in json['shipping_method']) {
+					html += '<p><strong>' + json['shipping_method'][i]['title'] + '</strong></p>';
 
-					if (!json.shipping_method[i].error) {
-						for (var j in json.shipping_method[i].quote) {
+					if (!json['shipping_method'][i]['error']) {
+						for (j in json['shipping_method'][i]['quote']) {
 							html += '<div class="form-check">';
 
-							if (json.shipping_method[i].quote[j].code == '{{ shipping_method }}') {
-								html += '<input type="radio" name="shipping_method" value="' + json.shipping_method[i].quote[j].code + '" id="input-shipping-method-' + i + '" checked/>';
+							if (json['shipping_method'][i]['quote'][j]['code'] == '{{ shipping_method }}') {
+								html += '<input type="radio" name="shipping_method" value="' + json['shipping_method'][i]['quote'][j]['code'] + '" id="input-shipping-method-' + i + '" checked/>';
 							} else {
-								html += '<input type="radio" name="shipping_method" value="' + json.shipping_method[i].quote[j].code + '" id="input-shipping-method-' + i + '"/>';
+								html += '<input type="radio" name="shipping_method" value="' + json['shipping_method'][i]['quote'][j]['code'] + '" id="input-shipping-method-' + i + '"/>';
 							}
 
-							html += '  <label for="input-shipping-method-' + i + '">' + json.shipping_method[i].quote[j].title + ' - ' + json.shipping_method[i].quote[j].text + '</label>';
+							html += '  <label for="input-shipping-method-' + i + '">' + json['shipping_method'][i]['quote'][j]['title'] + ' - ' + json['shipping_method'][i]['quote'][j]['text'] + '</label>';
 							html += '</div>';
 						}
 					} else {
-						html += '<div class="alert alert-danger alert-dismissible">' + json.shipping_method[i].error + '</div>';
+						html += '<div class="alert alert-danger alert-dismissible">' + json['shipping_method'][i]['error'] + '</div>';
 					}
 				}
 
@@ -118,7 +118,7 @@ $('#form-quote').on('submit', function(e) {
 				html += '      </div>';
 				html += '    </div>';
 				html += '  </div>';
-				html += '</div>';
+				html += '</div> ';
 
 				$('body').append(html);
 
@@ -149,12 +149,12 @@ $(document).on('submit', '#form-shipping', function(e) {
 		success: function(json) {
 			$('.alert-dismissible').remove();
 
-			if (json.error) {
-				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json.error + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+			if (json['error']) {
+				$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 			}
 
-			if (json.success) {
-				$('#alert').prepend('<div class="alert alert-success"><i class="fas fa-exclamation-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+			if (json['success']) {
+				$('#alert').prepend('<div class="alert alert-success"><i class="fas fa-exclamation-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
 				$('#shopping-cart').load('index.php?route=checkout/cart|list&language={{ language }}');
 
@@ -182,7 +182,7 @@ $('#input-country').on('change', function() {
 			$(element).prop('disabled', false);
 		},
 		success: function(json) {
-			if (json.postcode_required == '1') {
+			if (json['postcode_required'] == '1') {
 				$('#input-postcode').parent().parent().addClass('required');
 			} else {
 				$('#input-postcode').parent().parent().removeClass('required');
@@ -190,15 +190,15 @@ $('#input-country').on('change', function() {
 
 			html = '<option value="">{{ text_select }}</option>';
 
-			if (json.zone && json.zone != '') {
-				for (i = 0; i < json.zone.length; i++) {
-					html += '<option value="' + json.zone[i].zone_id + '"';
+			if (json['zone'] && json['zone'] != '') {
+				for (i = 0; i < json['zone'].length; i++) {
+					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
-					if (json.zone[i].zone_id == '{{ zone_id }}') {
+					if (json['zone'][i]['zone_id'] == '{{ zone_id }}') {
 						html += ' selected="selected"';
 					}
 
-					html += '>' + json.zone[i].name + '</option>';
+					html += '>' + json['zone'][i]['name'] + '</option>';
 				}
 			} else {
 				html += '<option value="0" selected="selected">{{ text_none }}</option>';

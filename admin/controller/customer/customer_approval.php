@@ -192,15 +192,21 @@ class CustomerApproval extends \Opencart\System\Engine\Controller {
 				$approvals = $this->request->post['selected'];
 			}
 
-			if (isset($this->request->get['customer_id'])) {
-				$approvals[] = (int)$this->request->get['customer_id'];
+			if (isset($this->request->get['customer_approval_id'])) {
+				$approvals[] = (int)$this->request->get['customer_approval_id'];
 			}
 
-			foreach ($approvals as $customer_id) {
-				if ($this->request->get['type'] == 'customer') {
-					$this->model_customer_customer_approval->approveCustomer($customer_id);
-				} elseif ($this->request->get['type'] == 'affiliate') {
-					$this->model_customer_customer_approval->approveAffiliate($customer_id);
+			foreach ($approvals as $customer_approval_id) {
+				$customer_approval_info = $this->model_customer_customer_approval->getCustomerApproval($customer_approval_id);
+
+				if ($customer_approval_info) {
+					if ($customer_approval_info['type'] == 'customer') {
+						$this->model_customer_customer_approval->approveCustomer($customer_approval_info['customer_id']);
+					}
+
+					if ($customer_approval_info['type'] == 'affiliate') {
+						$this->model_customer_customer_approval->approveAffiliate($customer_approval_info['customer_id']);
+					}
 				}
 			}
 
@@ -229,15 +235,21 @@ class CustomerApproval extends \Opencart\System\Engine\Controller {
 				$denials = $this->request->post['selected'];
 			}
 
-			if (isset($this->request->get['customer_id'])) {
-				$denials[] = (int)$this->request->get['customer_id'];
+			if (isset($this->request->get['customer_approval_id'])) {
+				$denials[] = (int)$this->request->get['customer_approval_id'];
 			}
 
-			foreach ($denials as $customer_id) {
-				if ($this->request->get['type'] == 'customer') {
-					$this->model_customer_customer_approval->denyCustomer($customer_id);
-				} elseif ($this->request->get['type'] == 'affiliate') {
-					$this->model_customer_customer_approval->denyAffiliate($customer_id);
+			foreach ($denials as $customer_approval_id) {
+				$customer_approval_info = $this->model_customer_customer_approval->getCustomerApproval($customer_approval_id);
+
+				if ($customer_approval_info) {
+					if ($customer_approval_info['type'] == 'customer') {
+						$this->model_customer_customer_approval->denyCustomer($customer_approval_info['customer_id']);
+					}
+
+					if ($customer_approval_info['type'] == 'affiliate') {
+						$this->model_customer_customer_approval->denyAffiliate($customer_approval_info['customer_id']);
+					}
 				}
 			}
 

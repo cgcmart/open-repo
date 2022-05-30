@@ -32,7 +32,7 @@ class Upgrade1 extends \Opencart\System\Engine\Controller {
 		if (!$json) {
 			$capture = [
 				'APPLICATION',
-            	'HOST_NAME',
+				'HOST_NAME',
 				'HTTP_SERVER',
 				'HTTPS_SERVER',
 				'HTTP_CATALOG',
@@ -69,7 +69,7 @@ class Upgrade1 extends \Opencart\System\Engine\Controller {
 
 			// Capture values
 			foreach ($lines as $number => $line) {
-				if (preg_match('/define\(\'(.*)\',\s+\'(.*)\'\)/', $line, $match, PREG_OFFSET_CAPTURE) && isset($match[2][0])) {
+				if (preg_match('/define\(\'(.*)\',\s+\'(.*)\'\)/', $line, $match, PREG_OFFSET_CAPTURE)) {
 					$config[$match[1][0]] = $match[2][0];
 				}
 			}
@@ -183,7 +183,7 @@ class Upgrade1 extends \Opencart\System\Engine\Controller {
 
 			// Capture values
 			foreach ($lines as $number => $line) {
-				if (preg_match('/define\(\'(.*)\',\s+\'(.*)\'\)/', $line, $match, PREG_OFFSET_CAPTURE) && isset($match[2][0])) {
+				if (preg_match('/define\(\'(.*)\',\s+\'(.*)\'\)/', $line, $match, PREG_OFFSET_CAPTURE)) {
 					$config[$match[1][0]] = $match[2][0];
 				}
 			}
