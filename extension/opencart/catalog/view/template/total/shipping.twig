@@ -44,7 +44,7 @@
   </div>
 </div>
 <script type="text/javascript">
-$('#form-quote').on('submit', function(e) {
+$('#form-quote').on('submit', function (e) {
 	e.preventDefault();
 
 	$.ajax({
@@ -73,8 +73,6 @@ $('#form-quote').on('submit', function(e) {
 					$('#error-' + key.replaceAll('_', '-')).html(json['error'][key]).addClass('d-block');
 				}
 			}
-
-			console.log(json);
 
 			if (json['shipping_method']) {
 				$('#modal-shipping').remove();
@@ -118,7 +116,7 @@ $('#form-quote').on('submit', function(e) {
 				html += '      </div>';
 				html += '    </div>';
 				html += '  </div>';
-				html += '</div> ';
+				html += '</div>';
 
 				$('body').append(html);
 
@@ -131,7 +129,7 @@ $('#form-quote').on('submit', function(e) {
 	});
 });
 
-$(document).on('submit', '#form-shipping', function(e) {
+$(document).on('submit', '#form-shipping', function (e) {
 	e.preventDefault();
 
 	$.ajax({
@@ -169,7 +167,7 @@ $(document).on('submit', '#form-shipping', function(e) {
 	});
 });
 
-$('#input-country').on('change', function() {
+$('#input-country').on('change', function () {
 	var element = this;
 
 	$.ajax({

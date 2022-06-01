@@ -119,7 +119,7 @@
   </div>
 </div>
 <script type="text/javascript">
-$('#button-generate').on('click', function() {
+$('#button-generate').on('click', function () {
     rand = '';
 
     string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -133,7 +133,7 @@ $('#button-generate').on('click', function() {
 
 var ip_row = {{ ip_row }};
 
-$('#button-ip').on('click', function() {
+$('#button-ip').on('click', function () {
     html = '<tr id="ip-row-' + ip_row + '">';
     html += '  <td class="text-end"><input type="text" name="api_ip[]" value="" placeholder="{{ entry_ip }}" class="form-control"/></td>';
     html += '  <td class="text-end"><button type="button" onclick="$(\'#ip-row-' + ip_row + '\').remove();" data-bs-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button></td>';
@@ -144,7 +144,7 @@ $('#button-ip').on('click', function() {
     ip_row++;
 });
 
-$('#session button').on('click', function(e) {
+$('#session button').on('click', function (e) {
     e.preventDefault();
 
     var element = this;
@@ -153,13 +153,13 @@ $('#session button').on('click', function(e) {
         url: 'index.php?route=user/api|deletesession&user_token={{ user_token }}&api_session_id=' + $(element).val(),
         type: 'post',
         dataType: 'json',
-        beforeSend: function() {
+        beforeSend: function () {
             $(element).prop('disabled', true).addClass('loading');
         },
-        complete: function() {
+        complete: function () {
             $(element).prop('disabled', false).removeClass('loading');
         },
-        success: function(json) {
+        success: function (json) {
             $('.alert-dismissible').remove();
 
             if (json['error']) {
@@ -172,7 +172,7 @@ $('#session button').on('click', function(e) {
                 $(element).parent().parent().remove();
             }
         },
-        error: function(xhr, ajaxOptions, thrownError) {
+        error: function (xhr, ajaxOptions, thrownError) {
             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
     });

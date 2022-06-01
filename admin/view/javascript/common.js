@@ -182,14 +182,6 @@ $(document).on('submit', 'form[data-oc-toggle=\'ajax\']', function (e) {
         }
     }
 
-    console.log(e);
-    console.log('element ' + element);
-    console.log('action ' + action);
-    console.log('button ' + button);
-    console.log('formaction ' + formaction);
-    console.log('method ' + method);
-    console.log('enctype ' + enctype);
-
     $.ajax({
         url: action,
         type: method,
@@ -203,14 +195,14 @@ $(document).on('submit', 'form[data-oc-toggle=\'ajax\']', function (e) {
             $(button).prop('disabled', false).removeClass('loading');
         },
         success: function (json) {
+            console.log(json);
+
             $('.alert-dismissible').remove();
             $(element).find('.is-invalid').removeClass('is-invalid');
             $(element).find('.invalid-feedback').removeClass('d-block');
 
-            console.log(json);
-
             if (json['redirect']) {
-                location = json['redirect'];
+                location = json['redirect'].replaceAll('&amp;', '&');
             }
 
             if (typeof json['error'] == 'string') {
@@ -229,7 +221,7 @@ $(document).on('submit', 'form[data-oc-toggle=\'ajax\']', function (e) {
             }
 
             if (json['success']) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json.success + ' <button type="button" class="btn-close" data-bs-dismiss="alert"="Close"><span class="visually-hidden">Close</span></button></div>');
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
                 // Refresh
                 var url = $(form).attr('data-oc-load');

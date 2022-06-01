@@ -81,8 +81,8 @@ $('#modal-image').on('click', '#button-upload', function() {
 		clearInterval(timer);
 	}
 
-	timer = setInterval(function() {
-		if ($('#form-upload input[name=\'file[]\']').val() != '') {
+	timer = setInterval(function () {
+		if ($('#form-upload input[name=\'file[]\']').val() !== '') {
 			clearInterval(timer);
 
 			var url = 'index.php?route=common/filemanager|upload&user_token={{ user_token }}';

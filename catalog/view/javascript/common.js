@@ -38,7 +38,7 @@ $(document).on('click', 'button', tooltip);
 
 // Alert Fade
 var alert = function () {
-    window.setTimeout(function () {
+    window.setTimeout(function() {
         $('.alert-dismissible').fadeTo(1000, 0, function () {
             $(this).remove();
         });
@@ -237,7 +237,7 @@ $(document).on('submit', 'form[data-oc-toggle=\'ajax\']', function (e) {
             console.log(json);
 
             if (json['redirect']) {
-                location = json['redirect'];
+                location = json['redirect'].replaceAll('&amp;', '&');
             }
 
             if (typeof json['error'] == 'string') {
@@ -390,12 +390,12 @@ var chain = new Chain();
             $.extend(this, option);
 
             // Focus
-            $this.on('focus', function() {
+            $this.on('focus', function () {
                 this.request();
             });
 
             // Keydown
-            $this.on('input', function(e) {
+            $this.on('input', function (e) {
                 this.request();
 
                 var value = $this.val();

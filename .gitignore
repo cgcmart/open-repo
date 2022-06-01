@@ -38,6 +38,4 @@
 # If you want to ignore install file use following lines [on development mode]
 # /install/*
 
-# IDE Project filescd  xampp
-
-/admin/view/javascript/jquery/jquery-ui/node_modules/*
+# IDE Project files
