@@ -957,13 +957,14 @@ class Product extends \Opencart\System\Engine\Controller {
 			];
 		}
 
-		// Rewards
+		// Points
 		if (!empty($product_info)) {
 			$data['points'] = $product_info['points'];
 		} else {
 			$data['points'] = '';
 		}
 
+		// Rewards
 		if ($product_id) {
 			$data['product_reward'] = $this->model_catalog_product->getRewards($product_id);
 		} else {
@@ -977,7 +978,7 @@ class Product extends \Opencart\System\Engine\Controller {
 			$data['product_seo_url'] = [];
 		}
 
-		// Layout
+		// Layouts
 		$this->load->model('design/layout');
 
 		$data['layouts'] = $this->model_design_layout->getLayouts();

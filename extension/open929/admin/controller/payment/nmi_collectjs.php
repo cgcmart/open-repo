@@ -15,7 +15,7 @@ class NmiCollectjs extends \Opencart\System\Engine\Controller {
 
 		$data['breadcrumbs'][] = [
 			'text' => $this->language->get('text_extension'),
-			'href' => $this->url->link('marketplace/open929/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment')
+			'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment')
 		];
 
 		$data['breadcrumbs'][] = [
