@@ -459,7 +459,7 @@ class FileManager extends \Opencart\System\Engine\Controller {
 					$next = array_shift($directory);
 
 					if (is_dir($next)) {
-						foreach (glob($next . '/*') as $file) {
+						foreach (glob(trim($next, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE) as $file) {
 							// If directory add to path array
 							$directory[] = $file;
 						}
@@ -487,7 +487,7 @@ class FileManager extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_delete');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }
