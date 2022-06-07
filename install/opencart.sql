@@ -916,6 +916,7 @@ INSERT INTO `oc_extension` (`extension_id`, `extension`, `type`, `code`) VALUES
 (41, 'opencart', 'report', 'customer_reward'),
 (42, 'opencart', 'currency', 'ecb'),
 (43, 'opencart', 'report', 'marketing');
+
 -----------------------------------------------------------
 
 --
@@ -1299,6 +1300,7 @@ INSERT INTO `oc_extension_path` (`extension_install_id`, `path`) VALUES
 (1, 'opencart/catalog/view/template/total/shipping.twig'),
 (1, 'opencart/catalog/view/template/total/voucher.twig'),
 (1, 'opencart/install.json');
+
 -----------------------------------------------------------
 
 --
@@ -2165,14 +2167,10 @@ INSERT INTO `oc_seo_url` (`store_id`, `language_id`, `key`, `value`, `keyword`, 
 (0, 1, 'manufacturer_id', '10', 'sony', 0),
 (0, 1, 'manufacturer_id', '9', 'canon', 0),
 (0, 1, 'manufacturer_id', '8', 'apple', 0),
-(0, 1, 'path', '27', 'mac', 0),
-(0, 1, 'path', '46', 'macs', 0),
-(0, 1, 'path', '45', 'windows', 0),
 (0, 1, 'path', '30', 'printer', 0),
 (0, 1, 'path', '20_27', 'desktops/mac', 0),
 (0, 1, 'path', '20_26', 'desktops/pc', 0),
 (0, 1, 'path', '25', 'component', 0),
-(0, 1, 'path', '25_64', 'component/a123', 0),
 (0, 1, 'path', '25_29', 'component/mouse', 0),
 (0, 1, 'path', '25_33', 'component/cameras', 0),
 (0, 1, 'path', '25_28', 'component/monitor', 0),

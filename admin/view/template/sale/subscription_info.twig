@@ -38,7 +38,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col">
               <div class="input-group mb-3">
                 <div class="form-control border rounded-start">
@@ -57,7 +56,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col">
               <div class="form-control p-0 border rounded mb-3">
                 <div class="lead p-2"><strong>{{ text_remaining }}</strong>
@@ -70,7 +68,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col">
               <div class="form-control p-0 border rounded mb-3">
                 <div class="lead p-2"><strong>{{ text_date_next }}</strong>
@@ -79,7 +76,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col">
               <div class="form-control p-0 border rounded mb-3">
                 <div class="lead p-2"><strong>{{ text_order_status }}</strong>
@@ -88,7 +84,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col">
               <div class="form-floating mb-3">
                 <select name="subscription_plan_id" id="input-subscription-plan" class="form-select">
@@ -99,7 +94,6 @@
                 </select> <label for="input-subscription-plan">{{ entry_subscription_plan }}</label>
               </div>
             </div>
-
             <div class="col">
               <div class="form-floating mb-3">
                 <select name="customer_payment_id" id="input-payment-method" class="form-select">
@@ -136,11 +130,8 @@
 
           <input type="hidden" name="subscription_id" value="{{ subscription_id }}" id="input-subscription-id"/>
         </form>
-
       </div>
     </div>
-
-
     <div class="card">
       <div class="card-header"><i class="fas fa-list"></i> {{ text_history }}</div>
       <div class="card-body">
@@ -152,7 +143,6 @@
           {% endfor %}
         </ul>
         <div class="tab-content">
-
           <div id="tab-history" class="tab-pane active">
             <fieldset>
               <legend>{{ text_history }}</legend>
@@ -201,7 +191,6 @@
 
             </form>
           </div>
-
           <div id="tab-transaction" class="tab-pane">
             <fieldset>
               <legend>{{ text_transaction }}</legend>
@@ -230,11 +219,9 @@
             </form>
           </div>
 
-
           {% for tab in tabs %}
             <div id="tab-{{ tab.code }}" class="tab-pane">{{ tab.content }}</div>
           {% endfor %}
-
 
         </div>
       </div>

@@ -195,7 +195,6 @@ class Register extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-
 		if (!$json) {
 			// If not guest checkout disabled, login require price or cart has downloads
 			if (!$this->request->post['account'] && (!$this->config->get('config_checkout_guest') || $this->config->get('config_customer_price') || $this->cart->hasDownload() || $this->cart->hasSubscription())) {
@@ -589,7 +588,7 @@ class Register extends \Opencart\System\Engine\Controller {
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }
