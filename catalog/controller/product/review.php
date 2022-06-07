@@ -44,7 +44,6 @@ class Review extends \Opencart\System\Engine\Controller {
 
 		$json = [];
 
-
 		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 25)) {
 			$json['error']['name'] = $this->language->get('error_name');
 		}
@@ -78,7 +77,7 @@ class Review extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }
