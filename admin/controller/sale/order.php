@@ -1221,11 +1221,11 @@ class Order extends \Opencart\System\Engine\Controller {
 
 		// Hard coding css so they can be replaced via the events system.
 		$data['bootstrap_css'] = 'view/stylesheet/bootstrap.css';
-		$data['icons'] = 'view/stylesheet/icon/fontawesome/css/all.css';
+		$data['icons'] = 'view/stylesheet/fonts/fontawesome/css/all.min.css';
 		$data['stylesheet'] = 'view/stylesheet/stylesheet.css';
 
 		// Hard coding scripts so they can be replaced via the events system.
-		$data['jquery'] = 'view/javascript/jquery/jquery-3.5.1.min.js';
+		$data['jquery'] = 'view/javascript/jquery/jquery-3.6.0.min.js';
 		$data['bootstrap_js'] = 'view/javascript/bootstrap/js/bootstrap.bundle.min.js';
 
 		$this->load->model('sale/order');
@@ -1433,11 +1433,11 @@ class Order extends \Opencart\System\Engine\Controller {
 
 		// Hard coding css so they can be replaced via the events system.
 		$data['bootstrap_css'] = 'view/stylesheet/bootstrap.css';
-		$data['icons'] = 'view/stylesheet/icon/fontawesome/css/all.css';
+		$data['icons'] = 'view/stylesheet/fonts/fontawesome/css/all.min.css';
 		$data['stylesheet'] = 'view/stylesheet/stylesheet.css';
 
 		// Hard coding scripts so they can be replaced via the events system.
-		$data['jquery'] = 'view/javascript/jquery/jquery-3.5.1.min.js';
+		$data['jquery'] = 'view/javascript/jquery/jquery-3.6.0.min.js';
 		$data['bootstrap_js'] = 'view/javascript/bootstrap/js/bootstrap.bundle.min.js';
 
 		$this->load->model('sale/order');
