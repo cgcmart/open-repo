@@ -126,6 +126,7 @@ var datetimepicker = function () {
 
 $(document).ready(datetimepicker);
 $(document).on('click', 'button', datetimepicker);
+$(document).on('click', 'button', datetimepicker);
 
 // Alert Fade
 var alert = function () {
@@ -136,7 +137,7 @@ var alert = function () {
     }, 7000);
 }
 
-$(document).ready(alert);
+$(document).on('click', 'button', alert);
 
 // Forms
 $(document).on('submit', 'form[data-oc-toggle=\'ajax\']', function (e) {
