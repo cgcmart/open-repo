@@ -6,6 +6,30 @@ class Review extends \Opencart\System\Engine\Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		if (isset($this->request->get['filter_product'])) {
+			$filter_product = $this->request->get['filter_product'];
+		} else {
+			$filter_product = '';
+		}
+
+		if (isset($this->request->get['filter_author'])) {
+			$filter_author = $this->request->get['filter_author'];
+		} else {
+			$filter_author = '';
+		}
+
+		if (isset($this->request->get['filter_status'])) {
+			$filter_status = $this->request->get['filter_status'];
+		} else {
+			$filter_status = '';
+		}
+
+		if (isset($this->request->get['filter_date_added'])) {
+			$filter_date_added = $this->request->get['filter_date_added'];
+		} else {
+			$filter_date_added = '';
+		}
+
 		$url = '';
 
 		if (isset($this->request->get['filter_product'])) {
@@ -441,7 +465,7 @@ class Review extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }
