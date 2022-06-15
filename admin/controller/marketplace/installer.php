@@ -18,10 +18,8 @@ class Installer extends \Opencart\System\Engine\Controller {
 			'href' => $this->url->link('marketplace/installer', 'user_token=' . $this->session->data['user_token'])
 		];
 
-		// Use the ini_get('upload_max_filesize') for the max file size
-		[$code, $format_size, $size] = format_size();
-
-		$data['error_upload_size'] = sprintf($this->language->get('error_format_' . $code), $format_size);
+		// Use the  for the max file size
+		$data['error_upload_size'] = sprintf($this->language->get('error_file_size'), ini_get('upload_max_filesize'));
 
 		$data['config_file_max_size'] = ((int)preg_filter('/[^0-9]/', '', ini_get('upload_max_filesize')) * 1024 * 1024);
 
@@ -235,6 +233,7 @@ class Installer extends \Opencart\System\Engine\Controller {
                                     'extension_id'          => 0,
                                     'extension_download_id' => 0,
                                     'name'                  => isset($install_info['name']) ? $install_info['name'] : $this->language->get('text_unknown'),
+                                    'package_name'          => basename($filename, '.ocmod.zip'),
                                     'code'              	=> $code,
                                     'version'               => isset($install_info['version']) ? $install_info['version'] : $this->language->get('text_unknown'),
                                     'author'                => isset($install_info['author']) ? $install_info['author'] : $this->language->get('text_unknown'),
@@ -259,7 +258,7 @@ class Installer extends \Opencart\System\Engine\Controller {
 			}
 		}		
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -437,16 +436,92 @@ class Installer extends \Opencart\System\Engine\Controller {
 			if (($page * 200) <= $total) {
 				$json['next'] = $this->url->link('marketplace/installer|install', 'user_token=' . $this->session->data['user_token'] . $url . '&page=' . ($page + 1), true);
 			} else {
-				$json['next'] = $this->url->link('marketplace/installer|vendor', 'user_token=' . $this->session->data['user_token'] . $url, true);
+				$json['next'] = $this->url->link('marketplace/installer|autoload', 'user_token=' . $this->session->data['user_token'] . $url, true);
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function uninstall(): void {
+		$this->load->language('marketplace/installer');
+
+		$json = [];
+
+		if (isset($this->request->get['extension_install_id'])) {
+			$extension_install_id = (int)$this->request->get['extension_install_id'];
+		} else {
+			$extension_install_id = 0;
+		}
+
+		if (!$this->user->hasPermission('modify', 'marketplace/installer')) {
+			$json['error'] = $this->language->get('error_permission');
+		}
+
+		$this->load->model('setting/extension');
+
+		$extension_install_info = $this->model_setting_extension->getInstall($extension_install_id);
+
+		if (!$extension_install_info) {
+			$json['error'] = $this->language->get('error_install');
+		}
+
+		if (!$json) {
+			$results = $this->model_setting_extension->getPathsByExtensionInstallId($extension_install_id);
+
+			rsort($results);
+
+			foreach ($results as $result) {
+				$path = '';
+
+				// Remove extension directory and files
+				if (substr($result['path'], 0, strlen($extension_install_info['code'])) == $extension_install_info['code']) {
+					$path = DIR_EXTENSION . $result['path'];
+				}
+
+				// Remove images
+				if (substr($result['path'], 0, 6) == 'image/') {
+					$path = DIR_IMAGE . substr($result['path'], 6);
+				}
+
+				// Remove vendor files
+				if (substr($result['path'], 0, 7) == 'vendor/') {
+					$path = DIR_STORAGE . $result['path'];
+				}
+
+				// Check if the location exists or not
+				$path_total = $this->model_setting_extension->getTotalPaths($result['path']);
+
+				if ($path_total < 2) {
+					if (is_file($path)) {
+						unlink($path);
+					} elseif (is_dir($path)) {
+						rmdir($path);
+					}
+				}
+
+				$this->model_setting_extension->deletePath($result['extension_path_id']);
+			}
+
+			// Remove extension directory
+			$this->model_setting_extension->editStatus($extension_install_id, 0);
+
+			$url = '';
+
+			if (isset($this->request->get['extension_install_id'])) {
+				$url .= '&extension_install_id=' . $this->request->get['extension_install_id'];
+			}
+
+			$json['next'] = $this->url->link('marketplace/installer|autoload', 'user_token=' . $this->session->data['user_token'] . $url, true);
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	/* Generate new autoloader file */
-	public function vendor(): void {
+	public function autoload(): void {
 		$this->load->language('marketplace/installer');
 
 		$json = [];
@@ -545,80 +620,10 @@ class Installer extends \Opencart\System\Engine\Controller {
 
 			file_put_contents(DIR_SYSTEM . 'vendor.php', trim($code));
 
-			$json['success'] = $this->language->get('text_install');
+			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
-		$this->response->setOutput(json_encode($json));
-	}
-
-	public function uninstall(): void {
-		$this->load->language('marketplace/installer');
-
-		$json = [];
-
-		if (isset($this->request->get['extension_install_id'])) {
-			$extension_install_id = (int)$this->request->get['extension_install_id'];
-		} else {
-			$extension_install_id = 0;
-		}
-
-		if (!$this->user->hasPermission('modify', 'marketplace/installer')) {
-			$json['error'] = $this->language->get('error_permission');
-		}
-
-		$this->load->model('setting/extension');
-
-		$extension_install_info = $this->model_setting_extension->getInstall($extension_install_id);
-
-		if (!$extension_install_info) {
-			$json['error'] = $this->language->get('error_install');
-		}
-
-		if (!$json) {
-			$results = $this->model_setting_extension->getPathsByExtensionInstallId($extension_install_id);
-
-			rsort($results);
-
-			foreach ($results as $result) {
-				$path = '';
-
-				// Remove extension directory and files
-				if (substr($result['path'], 0, strlen($extension_install_info['code'])) == $extension_install_info['code']) {
-					$path = DIR_EXTENSION . $result['path'];
-				}
-
-				// Remove images
-				if (substr($result['path'], 0, 6) == 'image/') {
-					$path = DIR_IMAGE . substr($result['path'], 6);
-				}
-
-				// Remove vendor files
-				if (substr($result['path'], 0, 7) == 'vendor/') {
-					$path = DIR_STORAGE . $result['path'];
-				}
-
-				// Check if the location exists or not
-				$path_total = $this->model_setting_extension->getTotalPaths($result['path']);
-
-				if ($path_total < 2) {
-					if (is_file($path)) {
-						unlink($path);
-					} elseif (is_dir($path)) {
-						rmdir($path);
-					}
-				}
-
-				$this->model_setting_extension->deletePath($result['extension_path_id']);
-			}
-
-			// Remove extension directory
-			$this->model_setting_extension->editStatus($extension_install_id, 0);
-
-			$json['success'] = $this->language->get('text_uninstall');
-		}
-
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -646,7 +651,7 @@ class Installer extends \Opencart\System\Engine\Controller {
 		}
 
 		if (!$json) {
-			$file = DIR_STORAGE . 'marketplace/' . $extension_install_info['code'] . '.ocmod.zip';
+			$file = DIR_STORAGE . 'marketplace/' . $extension_install_info['package_name'] . '.ocmod.zip';
 			
 			// Unzip the files
 			$zip = new \ZipArchive();
@@ -676,7 +681,7 @@ class Installer extends \Opencart\System\Engine\Controller {
 
 			$this->model_setting_extension->deleteInstall($extension_install_id);
 
-			$json['success'] = $this->language->get('text_delete');
+			$json['success'] = $this->language->get('text_success');
 		}
 
 		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
