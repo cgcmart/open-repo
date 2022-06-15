@@ -94,11 +94,11 @@ var datetimepicker = function () {
     $(this).daterangepicker({
         singleDatePicker: true,
         autoApply: true,
-		autoUpdateInput: false,
+        autoUpdateInput: false,
         locale: {
             format: 'YYYY-MM-DD'
         }
-	}, function (start, end) {
+    }, function (start, end) {
         $(this.element).val(start.format('YYYY-MM-DD'));
     });
 }
@@ -111,13 +111,13 @@ var datetimepicker = function () {
         singleDatePicker: true,
         datePicker: false,
         autoApply: true,
-		autoUpdateInput: false,
+        autoUpdateInput: false,
         timePicker: true,
         timePicker24Hour: true,
         locale: {
             format: 'HH:mm'
         }
-	}, function (start, end) {
+    }, function (start, end) {
         $(this.element).val(start.format('HH:mm'));
     }).on('show.daterangepicker', function (ev, picker) {
         picker.container.find('.calendar-table').hide();
@@ -131,14 +131,14 @@ var datetimepicker = function () {
     $('.datetime').daterangepicker({
         singleDatePicker: true,
         autoApply: true,
-		autoUpdateInput: false,
+        autoUpdateInput: false,
         timePicker: true,
         timePicker24Hour: true,
         locale: {
             format: 'YYYY-MM-DD HH:mm'
         }
-	}, function (start, end) {
-        $(this.element).val(start.format('YYYY-MM-DD'));
+    }, function (start, end) {
+        $(this.element).val(start.format('YYYY-MM-DD HH:mm'));
     });
 }
 
@@ -189,7 +189,7 @@ $(document).on('submit', 'form[data-oc-toggle=\'ajax\']', function (e) {
         enctype = 'application/x-www-form-urlencoded';
     }
 
-	console.log(e);
+    console.log(e);
     console.log('element ' + element);
     console.log('action ' + action);
     console.log('button ' + button);
@@ -424,7 +424,35 @@ var chain = new Chain();
             var $this = $(this);
             var $dropdown = $('#' + $this.attr('list'));
 
+            this.timer = null;
             this.items = [];
+
+            $.extend(this, option);
+
+            // Focus
+            $this.on('focus', function () {
+                this.request();
+            });
+
+            // Keydown
+            $this.on('input', function (e) {
+                this.request();
+
+                var value = $this.val();
+
+                if (value && this.items[value]) {
+                    this.select(this.items[value]);
+                }
+            });
+
+            // Request
+            this.request = function () {
+                clearTimeout(this.timer);
+
+                this.timer = setTimeout(function (object) {
+                    object.source($(object).val(), $.proxy(object.response, object));
+                }, 50, this);
+            }
 
             // Response
             this.response = function (json) {
@@ -462,29 +490,6 @@ var chain = new Chain();
 
                 $dropdown.html(html);
             }
-
-			// Request
-            this.request = function () {
-                this.source($this.val(), $.proxy(this.response, this));
-            }
-
-			$.extend(this, option);
-
-            // Museover
-            $this.one('mouseover', function () {
-                this.request();
-            });
-
-            // Keydown
-            $this.on('input', function (e) {
-                this.request();
-
-                var value = $this.val();
-
-                if (value && this.items[value]) {
-                    this.select(this.items[value]);
-                }
-            });
         });
     }
 }(jQuery);
