@@ -50,6 +50,8 @@ class Module extends \Opencart\System\Engine\Controller {
 
 				$module_data = [];
 
+				$status = '';
+
 				$modules = $this->model_setting_module->getModulesByCode($extension . '.' . $code);
 
 				foreach ($modules as $module) {
