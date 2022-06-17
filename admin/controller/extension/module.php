@@ -63,16 +63,10 @@ class Module extends \Opencart\System\Engine\Controller {
 
 					$module_data[] = [
 						'name'   => $module['name'],
-						'status' => $status,
+						'status' => $this->config->get('module_' . $code . '_status') ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 						'edit'   => $this->url->link('extension/' . $extension . '/module/' . $code, 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $module['module_id']),
 						'delete' => $this->url->link('extension/module|delete', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $module['module_id'])
 					];
-				}
-
-				if ($module_data) {
-					$status = '';
-				} else {
-					$status = $this->config->get('module_' . $code . '_status') ? $this->language->get('text_enabled') : $this->language->get('text_disabled');
 				}
 
 				$data['extensions'][] = [
