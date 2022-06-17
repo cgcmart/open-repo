@@ -59,7 +59,7 @@ class Related extends \Opencart\System\Engine\Controller {
 		if (isset($module_info['limit'])) {
 			$data['limit'] = $module_info['limit'];
 		} else {
-			$data['limit'] = 5;
+			$data['limit'] = 12;
 		}
 
 		if (isset($module_info['width'])) {
@@ -122,7 +122,7 @@ class Related extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

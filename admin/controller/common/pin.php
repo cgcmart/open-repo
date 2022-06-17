@@ -84,11 +84,11 @@ class Pin extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function setup() {
+	public function setup(): void {
 		$this->load->language('common/pin');
 
 		// Make sure no one can override the PIN.
@@ -158,11 +158,11 @@ class Pin extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function reset() {
+	public function reset(): void {
 		$this->load->language('common/pin');
 
 		$json = array();
@@ -175,11 +175,11 @@ class Pin extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_link');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function confirm() {
+	public function confirm(): void {
 		if (isset($this->request->get['email'])) {
 			$email = (string)$this->request->get['email'];
 		} else {

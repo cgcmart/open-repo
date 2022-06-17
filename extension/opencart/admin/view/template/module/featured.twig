@@ -55,6 +55,11 @@
             </div>
           </div>
           <div class="row mb-3">
+            <label for="input-limit" class="col-sm-2 col-form-label">{{ entry_limit }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="limit" value="{{ limit }}" placeholder="{{ entry_limit }}" id="input-limit" class="form-control"/>
+            </div>
+          <div class="row mb-3">
             <label for="input-width" class="col-sm-2 col-form-label">{{ entry_width }}</label>
             <div class="col-sm-10">
               <input type="text" name="width" value="{{ width }}" placeholder="{{ entry_width }}" id="input-width" class="form-control"/>
