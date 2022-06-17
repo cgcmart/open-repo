@@ -7,6 +7,8 @@ $_['text_success']     = 'Success: You have modified modules!';
 $_['text_layout']      = 'After you have installed and configured a module you can add it to a layout <a href="%s" class="alert-link">here</a>!';
 $_['text_add']         = 'Add Module';
 $_['text_list']        = 'Module List';
+$_['text_enabled']     = 'Enabled';
+$_['text_disabled']    = 'Disabled';
 
 // Column
 $_['column_name']      = 'Module Name';

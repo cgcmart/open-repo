@@ -6095,12 +6095,6 @@ $tables[] = [
 				'default' => ''
 			],
 			[
-				'name' => 'pin',
-				'type' => 'varchar(40)',
-				'not_null' => true,
-				'default' => ''
-			],
-			[
 				'name' => 'code',
 				'type' => 'varchar(40)',
 				'not_null' => true,

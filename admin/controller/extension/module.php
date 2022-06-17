@@ -50,6 +50,8 @@ class Module extends \Opencart\System\Engine\Controller {
 
 				$module_data = [];
 
+				$status = '';
+
 				$modules = $this->model_setting_module->getModulesByCode($extension . '.' . $code);
 
 				foreach ($modules as $module) {
@@ -61,7 +63,7 @@ class Module extends \Opencart\System\Engine\Controller {
 
 					$module_data[] = [
 						'name'   => $module['name'],
-						'status' => $setting_info['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+						'status' => $status,
 						'edit'   => $this->url->link('extension/' . $extension . '/module/' . $code, 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $module['module_id']),
 						'delete' => $this->url->link('extension/module|delete', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $module['module_id'])
 					];
