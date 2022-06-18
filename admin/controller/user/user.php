@@ -245,6 +245,12 @@ class User extends \Opencart\System\Engine\Controller {
 			$data['status'] = 0;
 		}
 
+		if (isset($this->request->get['user_id'])) {
+			$data['user_logins'] = $this->model_user_user->getLogins((int)$this->request->get['user_id']);
+		} else {
+			$data['user_logins'] = [];
+		}
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
@@ -358,7 +364,7 @@ class User extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

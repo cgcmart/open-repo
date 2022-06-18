@@ -6145,6 +6145,11 @@ $tables[] = [
 				'not_null' => true
 			],
 			[
+				'name' => 'status',
+				'type' => 'tinyint(96)',
+				'not_null' => true
+			],
+			[
 				'name' => 'ip',
 				'type' => 'varchar(40)',
 				'not_null' => true
