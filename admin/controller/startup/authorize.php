@@ -14,16 +14,23 @@ class Authorize extends \Opencart\System\Engine\Controller {
 			$token = '';
 		}
 
-		// $this->config->get('config_security') &&
-		if ($route != 'common/login') {
+		$ignore = [
+			'common/login',
+			'common/authorize',
+			'common/authorize|unlock'
+		];
+
+		if ($this->config->get('config_security') && !in_array($route, $ignore)) {
+			$this->load->model('user/user');
+
 			$token_info = $this->model_user_user->getLoginByToken($this->user->getId(), $token);
 
 			if (!$token_info) {
 				return new \Opencart\System\Engine\Action('common/authorize');
 			}
 
-			if ($token_info && $token_info['total'] >= 3) {
-				//return new \Opencart\System\Engine\Action('error/authorize|permission');
+			if ($token_info && $token_info['total'] > 3) {
+				return new \Opencart\System\Engine\Action('common/authorize|unlock');
 			}
 		}
 

@@ -38,15 +38,17 @@ class Login extends \Opencart\System\Engine\Controller {
 		$data['forgotten'] = $this->url->link('common/forgotten');
 
 		if (isset($this->request->get['route']) && $this->request->get['route'] != 'common/login') {
-			$route = $this->request->get['route'];
+			$args = $this->request->get;
 
-			unset($this->request->get['route']);
-			unset($this->request->get['user_token']);
+			$route = $args['route'];
+
+			unset($args['route']);
+			unset($args['user_token']);
 
 			$url = '';
 
 			if ($this->request->get) {
-				$url .= http_build_query($this->request->get);
+				$url .= http_build_query($args);
 			}
 
 			$data['redirect'] = $this->url->link($route, $url);
@@ -95,7 +97,7 @@ class Login extends \Opencart\System\Engine\Controller {
 		if (!$json) {
 			$this->session->data['user_token'] = token(32);
 
-			// Remove login token so it can't be used again.
+			// Remove login token so it cannot be used again.
 			unset($this->session->data['login_token']);
 
 			if ($this->request->post['redirect'] && (strpos($this->request->post['redirect'], HTTP_SERVER) === 0)) {
