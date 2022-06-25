@@ -5369,6 +5369,11 @@ $tables[] = [
 				'not_null' => true
 			],
 			[
+				'name' => 'reference',
+				'type' => 'varchar(255)',
+				'not_null' => true
+			],
+			[
 				'name' => 'trial_price',
 				'type' => 'decimal(10,4)',
 				'not_null' => true
@@ -5431,6 +5436,11 @@ $tables[] = [
 			[
 				'name' => 'subscription_status_id',
 				'type' => 'int(11)',
+				'not_null' => true
+			],
+			[
+				'name' => 'status',
+				'type' => 'tinyint(1)',
 				'not_null' => true
 			],
 			[
@@ -5672,6 +5682,11 @@ $tables[] = [
 			[
 				'name' => 'amount',
 				'type' => 'decimal(10,4)',
+				'not_null' => true
+			],
+			[
+				'name' => 'type',
+				'type' => 'tinyint(2)',
 				'not_null' => true
 			],
 			[
@@ -6145,18 +6160,23 @@ $tables[] = [
 				'not_null' => true
 			],
 			[
+				'name' => 'total',
+				'type' => 'int(1)',
+				'not_null' => true
+			],
+			[
 				'name' => 'ip',
 				'type' => 'varchar(40)',
 				'not_null' => true
 			],
 			[
-				'name' => 'device',
-				'type' => 'varchar(64)',
+				'name' => 'user_agent',
+				'type' => 'varchar(255)',
 				'not_null' => true
 			],
 			[
 				'name' => 'status',
-				'type' => 'tinyint(96)',
+				'type' => 'tinyint(1)',
 				'not_null' => true
 			],
 			[

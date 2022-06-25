@@ -210,8 +210,8 @@ class Marketplace extends \Opencart\System\Engine\Controller {
 		if (isset($response_info['promotions']) && $page == 1) {
 			foreach ($response_info['promotions'] as $result) {
 				$data['promotions'][] = [
-					'name'         => utf8_decode($result['name']),
-					'description'  => utf8_decode($result['description']),
+					'name'         => $result['name'],
+					'description'  => $result['description'],
 					'image'        => $result['image'],
 					'license'      => $result['license'],
 					'price'        => $result['price'],
@@ -227,8 +227,8 @@ class Marketplace extends \Opencart\System\Engine\Controller {
 		if (isset($response_info['extensions'])) {
 			foreach ($response_info['extensions'] as $result) {
 				$data['extensions'][] = [
-					'name'         => utf8_decode($result['name']),
-					'description'  => utf8_decode($result['description']),
+					'name'         => $result['name'],
+					'description'  => $result['description'],
 					'image'        => $result['image'],
 					'license'      => $result['license'],
 					'price'        => $result['price'],
@@ -818,7 +818,7 @@ class Marketplace extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -913,7 +913,7 @@ class Marketplace extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -989,7 +989,7 @@ class Marketplace extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
