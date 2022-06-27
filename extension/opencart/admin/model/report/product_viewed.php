@@ -6,7 +6,7 @@ class ProductViewed extends \Opencart\System\Engine\Model {
 		  `product_id` INT(11) NOT NULL,
 		  `viewed` INT(11) NOT NULL,
 		  PRIMARY KEY (`product_id`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci");
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci");
 	}
 
 	public function uninstall(): void {
@@ -38,12 +38,12 @@ class ProductViewed extends \Opencart\System\Engine\Model {
 	}
 
 	public function getTotal(): int {
-		$query = $this->db->query("SELECT SUM(viewed) AS `total` FROM `" . DB_PREFIX . "product_viewed`");
+		$query = $this->db->query("SELECT SUM(`viewed`) AS `total` FROM `" . DB_PREFIX . "product_viewed`");
 
 		return (int)$query->row['total'];
 	}
 
 	public function clear(): void {
-		$this->db->query("TRUNCATE `" . DB_PREFIX . "product_viewed`");
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "product_viewed`");
 	}
 }

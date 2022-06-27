@@ -21,6 +21,7 @@ $_['entry_progress']         = 'Progress';
 // Error
 $_['error_permission']       = 'Warning: You do not have permission to modify extensions!';
 $_['error_install']          = 'Warning: Could not find install.json!';
+$_['error_default']			 = 'Default extension could not be uninstalled or deleted!';
 $_['error_extension']        = 'Installed extension could not be found!';
 $_['error_installed']        = 'Extension already installed!';
 $_['error_name']             = 'Name must be between 3 and 128 characters!';
