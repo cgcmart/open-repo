@@ -37,7 +37,7 @@ class Cookie extends \Opencart\System\Engine\Controller {
 			$option = [
 				'expires'  => time() + 60 * 60 * 24 * 365,
 				'path' => !empty($this->request->server['PHP_SELF']) ? rtrim(dirname($this->request->server['PHP_SELF']), '/') . '/' : '/',
-				'SameSite' => $this->config->get('session_samesite')
+				'SameSite' => $this->config->get('config_session_samesite')
 			];
 
 			setcookie('policy', $agree, $option);
@@ -45,7 +45,7 @@ class Cookie extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }
