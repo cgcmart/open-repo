@@ -40,7 +40,7 @@
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label">{{ entry_domestic }}</label>
             <div class="col-sm-10">
-              <div class="form-control" style="height: 150px; overflow: auto;">
+              <div id="domestic" class="form-control" style="height: 150px; overflow: auto;">
                 <label class="form-check"><input type="checkbox" class="form-check-input" onchange="$(this).parent().parent().find(':checkbox').not(this).prop('checked', $(this).prop('checked'));"/> {{ text_all }}</label> <label class="form-check">
                   {% if shipping_usps_domestic_00 %}
                     <input type="checkbox" name="shipping_usps_domestic_00" value="1" checked="checked" class="form-check-input"/>
@@ -224,7 +224,7 @@
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label">{{ entry_international }}</label>
             <div class="col-sm-10">
-              <div class="form-control" style="height: 150px; overflow: auto;">
+              <div id="international" class="form-control" style="height: 150px; overflow: auto;">
                 <label class="form-check"><input type="checkbox" class="form-check-input" onchange="$(this).parent().parent().find(':checkbox').not(this).prop('checked', $(this).prop('checked'));"/> {{ text_all }}</label> <label class="form-check">
                   {% if shipping_usps_international_1 %}
                     <input type="checkbox" name="shipping_usps_international_1" value="1" checked="checked" class="form-check-input"/>
@@ -529,11 +529,4 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-$('label').on('click', function() {
-    var checked = $(this).parent().parent().find(':checkbox:first').prop('checked');
-    $(this).parent().parent().find(':checkbox').prop('checked', !checked);
-    $(this).parent().parent().find(':checkbox').prop('checked', !checked);
-});
-</script>
 {{ footer }}

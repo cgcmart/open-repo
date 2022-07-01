@@ -364,15 +364,15 @@ class Usps extends \Opencart\System\Engine\Controller {
 
 		$data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
 
+		$this->load->model('localisation/geo_zone');
+
+		$data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
+
 		if (isset($this->request->post['shipping_usps_geo_zone_id'])) {
 			$data['shipping_usps_geo_zone_id'] = $this->request->post['shipping_usps_geo_zone_id'];
 		} else {
 			$data['shipping_usps_geo_zone_id'] = $this->config->get('shipping_usps_geo_zone_id');
 		}
-
-		$this->load->model('localisation/geo_zone');
-
-		$data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
 
 		if (isset($this->request->post['shipping_usps_debug'])) {
 			$data['shipping_usps_debug'] = $this->request->post['shipping_usps_debug'];
@@ -436,7 +436,7 @@ class Usps extends \Opencart\System\Engine\Controller {
 			$json['dimension'] = $this->language->get('error_length');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

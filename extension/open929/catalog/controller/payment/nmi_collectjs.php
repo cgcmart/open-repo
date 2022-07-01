@@ -4,6 +4,22 @@ class NmiCollectjs extends \Opencart\System\Engine\Controller {
 	public function index(): string {
 		$this->load->language('extension/open929/payment/nmi_collectjs');
 
+		$data['logged'] = $this->customer->isLogged();
+
+		$data['months'] = [];
+
+		foreach (range(1, 12) as $month) {
+			$data['months'][] = date('m', mktime(0, 0, 0, $month));
+		}
+
+		$data['years'] = [];
+
+		foreach (range(date('Y'), date('Y', strtotime('+10 year'))) as $year) {
+			$data['years'][] = $year;
+		}
+
+		$data['language'] = $this->config->get('config_language');
+
 		$data["payment_nmi_collectjs_tokenization_key"] = $this->config->get('payment_nmi_collectjs_tokenization_key');
 
 		return $this->load->view('extension/open929/payment/nmi_collectjs', $data);
@@ -121,7 +137,7 @@ class NmiCollectjs extends \Opencart\System\Engine\Controller {
 				if (isset($response_data['cvvresponse'])) $message .= 'CVV Response: ' . $response_data['cvvresponse'];
 
 				$this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('payment_nmi_collectjs_order_status_id'), $message, false);
-				$json['redirect'] = $this->url->link('checkout/success', 'language=' . $this->config->get('config_language'));
+				$json['redirect'] = $this->url->link('checkout/success', 'language=' . $this->config->get('config_language'), true);
 			}
 			elseif ($response_data['response'] == '2') { //decline
 				$json['error'] = 'Transaction declined by bank: ' . $response_data['response_code'] . ' ' . $response_data['responsetext'];
@@ -138,7 +154,11 @@ class NmiCollectjs extends \Opencart\System\Engine\Controller {
 
 		curl_close($curl);
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	public function callback(): void {
+
 	}
 }

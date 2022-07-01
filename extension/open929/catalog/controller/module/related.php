@@ -1,7 +1,7 @@
 <?php
-namespace Opencart\Application\Controller\Extension\Open929\Module;
+namespace Opencart\Catalog\Controller\Extension\Open929\Module;
 class Related extends \Opencart\System\Engine\Controller {
-	public function index($setting) {
+	public function index(array $setting): string {
 		$this->load->language('extension/open929/module/related');
 
 		$this->load->model('catalog/product');
@@ -60,17 +60,9 @@ class Related extends \Opencart\System\Engine\Controller {
 				$data['products'][] = $this->load->controller('product/thumb', $product_data);
 			}
 
-			$data['module'] = $module++;
-
-	    	$data['effect'] = $setting['effect'];
-		    $data['controls'] = $setting['controls'];
-    		$data['indicators'] = $setting['indicators'];
-	    	$data['items'] = $setting['items'];
-	    	$data['interval'] = $setting['interval'];
-	    	$data['width'] = $setting['width'];
-	    	$data['height'] = $setting['height'];
-
 			return $this->load->view('extension/open929/module/related', $data);
+		} else {
+			return '';
 		}
 	}
 }

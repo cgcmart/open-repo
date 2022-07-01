@@ -1,10 +1,12 @@
 <?php
 namespace Opencart\Catalog\Model\Extension\Open929\Shipping;
 class Usps extends \Opencart\System\Engine\Model {
-	public function getQuote($address) {
+	public function getQuote(array $address): array {
 		$this->load->language('extension/open929/shipping/usps');
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('shipping_usps_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
+		$quote_data = [];
+
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone_to_geo_zone` WHERE `geo_zone_id` = '" . (int)$this->config->get['shipping_usps_geo_zone_id'] . "' AND `country_id` = '" . (int)$address['country_id'] . "' AND (`zone_id` = '" . (int)$address['zone_id'] . "' OR `zone_id` = '0')");
 
 		if (!$this->config->get('shipping_usps_geo_zone_id')) {
 			$status = true;
