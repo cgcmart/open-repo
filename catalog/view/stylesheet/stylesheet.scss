@@ -698,14 +698,12 @@ footer {
   padding-bottom: 10px;
 
   .fa-stack {
-    font-size: 8px;
+    font-size: 20px;
   }
 
-  .far {
-    &.fa-star {
-      color: #999;
-      font-size: 15px;
-    }
+&.fa-star {
+	color: #999;
+	font-size: 15px;
   }
 
   .fa-star {
