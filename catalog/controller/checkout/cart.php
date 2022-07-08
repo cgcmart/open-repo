@@ -51,9 +51,9 @@ class Cart extends \Opencart\System\Engine\Controller {
 
 			$data['list'] = $this->load->controller('checkout/cart|getList');
 
-			$this->load->model('setting/extension');
-
 			$data['modules'] = [];
+
+			$this->load->model('setting/extension');
 
 			$extensions = $this->model_setting_extension->getExtensionsByType('total');
 
@@ -99,7 +99,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 	}
 
 	public function getList(): string {
-		$data['list'] = $this->url->link('checkout/cart|list', 'language=' . $this->config->get('config_language'));
+		$data['list'] = $this->url->link(' ', 'language=' . $this->config->get('config_language'));
 		$data['product_edit'] = $this->url->link('checkout/cart|edit', 'language=' . $this->config->get('config_language'));
 		$data['product_remove'] = $this->url->link('checkout/cart|remove', 'language=' . $this->config->get('config_language'));
 		$data['voucher_remove'] = $this->url->link('checkout/voucher|remove', 'language=' . $this->config->get('config_language'));
@@ -243,9 +243,18 @@ class Cart extends \Opencart\System\Engine\Controller {
 				$product_id = $product_info['master_id'];
 			}
 
+			// Only use values in the override
+			if (isset($product_info['override']['variant'])) {
+				$override = $product_info['override']['variant'];
+			} else {
+				$override = [];
+			}
+
 			// Merge variant code with options
 			foreach ($product_info['variant'] as $key => $value) {
-				$option[$key] = $value;
+				if (in_array($key, $override)) {
+					$option[$key] = $value;
+				}
 			}
 
 			// Validate options
@@ -287,7 +296,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 			$json['redirect'] = $this->url->link('product/product', 'language=' . $this->config->get('config_language') . '&product_id=' . $this->request->post['product_id'], true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -321,7 +330,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 		unset($this->session->data['payment_methods']);
 		unset($this->session->data['reward']);
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -349,7 +358,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 		unset($this->session->data['payment_methods']);
 		unset($this->session->data['reward']);
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

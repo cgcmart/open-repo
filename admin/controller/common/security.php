@@ -79,7 +79,7 @@ class Security extends \Opencart\System\Engine\Controller {
 				$next = array_shift($directory);
 
 				if (is_dir($next)) {
-					foreach (glob(trim($next, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE) as $file) {
+					foreach (glob(rtrim($next, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE) as $file) {
 						// If directory add to path array
 						if (is_dir($file)) {
 							$directory[] = $file;
@@ -158,7 +158,7 @@ class Security extends \Opencart\System\Engine\Controller {
 			while (count($directory) != 0) {
 				$next = array_shift($directory);
 
-				foreach (glob(trim($next, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE) as $file) {
+				foreach (glob(rtrim($next, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE) as $file) {
 					// If directory add to path array
 					if (is_dir($file)) {
 						$directory[] = $file;
@@ -273,7 +273,7 @@ class Security extends \Opencart\System\Engine\Controller {
 			while (count($directory) != 0) {
 				$next = array_shift($directory);
 
-				foreach (glob(trim($next, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE) as $file) {
+				foreach (glob(rtrim($next, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE) as $file) {
 					// If directory add to path array
 					if (is_dir($file)) {
 						$directory[] = $file;
@@ -334,7 +334,9 @@ class Security extends \Opencart\System\Engine\Controller {
 			fclose($file);
 
 			// 6. redirect to the new admin
-			$json['redirect'] = str_replace('&amp;', '&', substr(HTTP_SERVER, 0, strrpos(HTTP_SERVER, 'admin/') . '/' . $name . '/index.php?route=common/security|delete&user_token=' . $this->session->data['user_token']));
+			$urlWithoutAdminFolder = substr(HTTP_SERVER, 0, strrpos(HTTP_SERVER, 'admin/'));
+			$urlWithNewAdminFolder = $urlWithoutAdminFolder . $name . '/index.php?route=common/security|delete&user_token=' . $this->session->data['user_token'];
+			$json['redirect'] = str_replace('&amp;', '&', $urlWithNewAdminFolder);
 		}
 
 		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
@@ -369,7 +371,7 @@ class Security extends \Opencart\System\Engine\Controller {
 			while (count($directory) != 0) {
 				$next = array_shift($directory);
 
-				foreach (glob(trim($next, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE) as $file) {
+				foreach (glob(rtrim($next, '/') . '/{*,.[!.]*,..?*}', GLOB_BRACE) as $file) {
 					// If directory add to path array
 					if (is_dir($file)) {
 						$directory[] = $file;
