@@ -27,7 +27,7 @@ class PaymentAddress extends \Opencart\System\Engine\Controller {
 		if (isset($this->session->data['payment_address']['address_id'])) {
 			$data['address_id'] = (int)$this->session->data['payment_address']['address_id'];
 		} else {
-			$data['address_id'] = 0;
+			$data['address_id'] = $this->config->get('config_country_id');
 		}
 
 		$data['addresses'] = $this->model_account_address->getAddresses();
@@ -277,7 +277,7 @@ class PaymentAddress extends \Opencart\System\Engine\Controller {
 			unset($this->session->data['payment_methods']);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

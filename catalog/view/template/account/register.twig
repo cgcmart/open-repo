@@ -6,7 +6,7 @@
     {% endfor %}
   </ul>
   <div class="row">
-    {{ column_left }}
+	{{ column_left }}
     <div id="content" class="col">{{ content_top }}
       <h1>{{ heading_title }}</h1>
       <p>{{ text_account_already }}</p>
@@ -28,14 +28,16 @@
           <div class="row mb-3 required">
             <label for="input-firstname" class="col-sm-2 col-form-label">{{ entry_firstname }}</label>
             <div class="col-sm-10">
-              <input type="text" name="firstname" value="" placeholder="{{ entry_firstname }}" id="input-firstname" class="form-control"/>
+              <input name="nickname" type="text" id="nickname" role="presentation" autocomplete="nickname" class="add-form">
+			  <div id="error-nickname" class="invalid-feedback"></div>
+			  <input type="text" name="firstname" value="" placeholder="{{ entry_firstname }}" id="input-firstname" class="form-control"/>
               <div id="error-firstname" class="invalid-feedback"></div>
             </div>
           </div>
           <div class="row mb-3 required">
             <label for="input-lastname" class="col-sm-2 col-form-label">{{ entry_lastname }}</label>
             <div class="col-sm-10">
-              <input type="text" name="lastname" value="" placeholder="{{ entry_lastname }}" id="input-lastname" class="form-control"/>
+			  <input type="text" name="lastname" value="" placeholder="{{ entry_lastname }}" id="input-lastname" class="form-control"/>
               <div id="error-lastname" class="invalid-feedback"></div>
             </div>
           </div>
@@ -186,7 +188,7 @@
           <div class="row mb-3 required">
             <label for="input-password" class="col-sm-2 col-form-label">{{ entry_password }}</label>
             <div class="col-sm-10">
-              <input type="password" name="password" value="" placeholder="{{ entry_password }}" id="input-password" class="form-control"/>
+              <input type="password" name="password" role="presentation" autocomplete="new password" value="" placeholder="{{ entry_password }}" id="input-password" class="form-control"/>
               <div id="error-password" class="invalid-feedback"></div>
             </div>
           </div>
@@ -251,38 +253,5 @@ $('#input-customer-group').on('change', function () {
 });
 
 $('#input-customer-group').trigger('change');
-
-$(document).ready(function () {
-    $('.date').daterangepicker({
-        singleDatePicker: true,
-        autoApply: true,
-        locale: {
-            format: 'YYYY-MM-DD'
-        }
-    });
-
-    $('.time').daterangepicker({
-        singleDatePicker: true,
-        datePicker: false,
-        autoApply: true,
-        timePicker: true,
-        timePicker24Hour: true,
-        locale: {
-            format: 'HH:mm'
-        }
-    }).on('show.daterangepicker', function (ev, picker) {
-        picker.container.find('.calendar-table').hide();
-    });
-
-    $('.datetime').daterangepicker({
-        singleDatePicker: true,
-        autoApply: true,
-        timePicker: true,
-        timePicker24Hour: true,
-        locale: {
-            format: 'YYYY-MM-DD HH:mm'
-        }
-    });
-});
 </script>
 {{ footer }}

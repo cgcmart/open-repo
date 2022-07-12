@@ -338,7 +338,7 @@ $('#input-filter').autocomplete({
 
         html = '<tr id="category-filter-' + item['value'] + '">';
         html += '  <td>' + item['label'] + '<input type="hidden" name="category_filter[]" value="' + item['value'] + '"/></td>';
-        html += '  <td class="end"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-minus-circle"></i></button></td>';
+        html += '  <td class="text-end"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-minus-circle"></i></button></td>';
         html += '</tr>';
 
         $('#category-filter tbody').append(html);

@@ -27,6 +27,9 @@ class CreditCard extends \Opencart\System\Engine\Controller {
 		$data['back'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment');
 
 		$data['payment_credit_card_response'] = $this->config->get('payment_credit_card_response');
+
+		$data['payment_credit_card_approved_status_id'] = $this->config->get('payment_credit_card_approved_status_id');
+		$data['payment_credit_card_failed_status_id'] = $this->config->get('payment_credit_card_failed_status_id');
 		$data['payment_credit_card_order_status_id'] = $this->config->get('payment_credit_card_order_status_id');
 
 		$this->load->model('localisation/order_status');
@@ -66,7 +69,7 @@ class CreditCard extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }
