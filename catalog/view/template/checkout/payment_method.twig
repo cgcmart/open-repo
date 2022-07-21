@@ -15,7 +15,6 @@
 				{% endfor %}
 			</optgroup>
 		{% endif %}
-
       </select>
       <button type="button" id="button-payment-method" class="btn btn-light"><i class="fa-solid fa-rotate"></i></button>
     </div>
@@ -98,6 +97,8 @@ $('#input-payment-method').on('change', function () {
                 $(element).prop('disabled', false);
             },
             success: function (json) {
+				console.log(json);
+
                 if (json['redirect']) {
                     location = json['redirect'];
                 }

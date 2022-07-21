@@ -16,7 +16,7 @@ class Image {
 	private int $width;
 	private int $height;
 	private string $file;
-	private object $image;	
+	private object $image;
 	private string $bits;
 	private string $mime;
 
@@ -69,7 +69,7 @@ class Image {
 	 *
 	 * @return    array
 	 */
-	public function getImage(): string {
+	public function getImage(): object {
 		return $this->image;
 	}
 

@@ -3,6 +3,7 @@ namespace Opencart\System\Library\Template;
 class Template {
 	protected string $directory = '';
 	protected array $path = [];
+	private string   $code;
 
 	/**
 	 * addPath
@@ -43,7 +44,7 @@ class Template {
 				}
 
 				if (isset($this->path[$namespace])) {
-					$file = $this->path[$namespace] . substr($filename, strlen($namespace)) . '.tpl';
+					$file = $this->path[$namespace] . substr($filename, strlen($namespace) + 1) . '.tpl';
 				}
 			}
 
@@ -55,11 +56,13 @@ class Template {
 		}
 
 		if ($code) {
+			$this->code = $code;
+
 			ob_start();
 
 			extract($data);
 
-			include($this->compile($filename, $code));
+			include($this->compile($filename, $this->code));
 
 			return ob_get_clean();
 		} else {
