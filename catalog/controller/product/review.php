@@ -1,10 +1,17 @@
 <?php
 namespace Opencart\Catalog\Controller\Product;
+use \Opencart\System\Helper AS Helper;
 class Review extends \Opencart\System\Engine\Controller {
 	public function index(): string {
 		$this->load->language('product/review');
 
 		$data['list'] = $this->getList();
+
+		if (isset($this->request->get['product_id'])) {
+			$data['product_id'] = $this->request->get['product_id'];
+		} else {
+			$data['product_id'] = 0;
+		}
 
 		if ($this->customer->isLogged() || $this->config->get('config_review_guest')) {
 			$data['review_guest'] = true;
@@ -19,9 +26,9 @@ class Review extends \Opencart\System\Engine\Controller {
 		}
 
 		// Create a login token to prevent brute force attacks
-		$this->session->data['review_token'] = token(32);
+		$this->session->data['review_token'] = Helper\General\token(32);
 
-		$data['action'] = $this->url->link('product/review|write', 'language=' . $this->config->get('config_language') . '&product_id=' . $this->request->get['product_id'] . '&review_token=' . $this->session->data['review_token'], true);
+		$data['review_token'] = $this->session->data['review_token'];
 
 		// Captcha
 		$this->load->model('setting/extension');
@@ -33,6 +40,8 @@ class Review extends \Opencart\System\Engine\Controller {
 		} else {
 			$data['captcha'] = '';
 		}
+
+		$data['language'] = $this->config->get('config_language');
 
 		return $this->load->view('product/review', $data);
 	}
@@ -64,11 +73,11 @@ class Review extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 25)) {
+		if ((Helper\Utf8\strlen($this->request->post['name']) < 3) || (Helper\Utf8\strlen($this->request->post['name']) > 25)) {
 			$json['error']['name'] = $this->language->get('error_name');
 		}
 
-		if ((utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 1000)) {
+		if ((Helper\Utf8\strlen($this->request->post['text']) < 25) || (Helper\Utf8\strlen($this->request->post['text']) > 1000)) {
 			$json['error']['text'] = $this->language->get('error_text');
 		}
 
@@ -87,7 +96,7 @@ class Review extends \Opencart\System\Engine\Controller {
 				$json['error']['purchased']  = $this->language->get('error_purchased');
 			}
 		}
-		
+
 		// Captcha
 		$this->load->model('setting/extension');
 
@@ -109,7 +118,7 @@ class Review extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

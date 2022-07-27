@@ -1,6 +1,6 @@
 <?php
-
 namespace Opencart\Catalog\Controller\Information;
+use \Opencart\System\Helper AS Helper;
 class Contact extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('information/contact');
@@ -105,7 +105,7 @@ class Contact extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 32)) {
+		if ((Helper\Utf8\strlen($this->request->post['name']) < 3) || (Helper\Utf8\strlen($this->request->post['name']) > 32)) {
 			$json['error']['name'] = $this->language->get('error_name');
 		}
 
@@ -113,7 +113,7 @@ class Contact extends \Opencart\System\Engine\Controller {
 			$json['error']['email'] = $this->language->get('error_email');
 		}
 
-		if ((utf8_strlen($this->request->post['enquiry']) < 10) || (utf8_strlen($this->request->post['enquiry']) > 3000)) {
+		if ((Helper\Utf8\strlen($this->request->post['enquiry']) < 10) || (Helper\Utf8\strlen($this->request->post['enquiry']) > 3000)) {
 			$json['error']['enquiry'] = $this->language->get('error_enquiry');
 		}
 
@@ -140,9 +140,8 @@ class Contact extends \Opencart\System\Engine\Controller {
 			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
 
 			$mail->setTo($this->config->get('config_email'));
-        	// Less spam and fix bug when using SMTP like sendgrid.
+			// Less spam and fix bug when using SMTP like sendgrid.
 			$mail->setFrom($this->config->get('config_email'));
-			$mail->setFrom($this->request->post['email']);
 			$mail->setReplyTo($this->request->post['email']);
 			$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('email_subject'), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
@@ -152,7 +151,7 @@ class Contact extends \Opencart\System\Engine\Controller {
 			$json['redirect'] = $this->url->link('information/contact|success', 'language=' . $this->config->get('config_language'), true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

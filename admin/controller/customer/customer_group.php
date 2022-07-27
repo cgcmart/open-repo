@@ -1,5 +1,6 @@
 <?php
 namespace Opencart\Admin\Controller\Customer;
+use \Opencart\System\Helper AS Helper;
 class CustomerGroup extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('customer/customer_group');
@@ -238,7 +239,7 @@ class CustomerGroup extends \Opencart\System\Engine\Controller {
 		}
 
 		foreach ($this->request->post['customer_group_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['name']) < 3) || (utf8_strlen($value['name']) > 32)) {
+			if ((Helper\Utf8\strlen($value['name']) < 3) || (Helper\Utf8\strlen($value['name']) > 32)) {
 				$json['error']['name_' . $language_id] = $this->language->get('error_name');
 			}
 		}
@@ -255,7 +256,7 @@ class CustomerGroup extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -305,7 +306,7 @@ class CustomerGroup extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

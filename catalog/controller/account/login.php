@@ -1,5 +1,6 @@
 <?php
 namespace Opencart\Catalog\Controller\Account;
+use \Opencart\System\Helper AS Helper;
 class Login extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		if ($this->customer->isLogged()) {
@@ -152,7 +153,7 @@ class Login extends \Opencart\System\Engine\Controller {
 			$this->model_account_customer->addLogin($this->customer->getId(), $this->request->server['REMOTE_ADDR']);
 
 			// Create customer token
-			$this->session->data['customer_token'] = token(26);
+			$this->session->data['customer_token'] = Helper\General\token(26);
 
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
 
@@ -206,7 +207,7 @@ class Login extends \Opencart\System\Engine\Controller {
 		$customer_info = $this->model_account_customer->getCustomerByEmail($email);
 
 		if ($customer_info && $customer_info['token'] && $customer_info['token'] == $token && $this->customer->login($customer_info['email'], '', true)) {
-        	// Add customer details into session
+			// Add customer details into session
 			$this->session->data['customer'] = [
 				'customer_id'       => $customer_info['customer_id'],
 				'customer_group_id' => $customer_info['customer_group_id'],
@@ -216,13 +217,13 @@ class Login extends \Opencart\System\Engine\Controller {
 				'telephone'         => $customer_info['telephone'],
 				'custom_field'      => $customer_info['custom_field']
 			];
-
+			
 			// Default Addresses
 			$this->load->model('account/address');
-
+			
 			$address_info = $this->model_account_address->getAddress($this->customer->getAddressId());
-
-			if($address_info){
+			
+			if ($address_info) {
 				$this->session->data['shipping_address'] = $address_info;
 			}
 
@@ -233,7 +234,7 @@ class Login extends \Opencart\System\Engine\Controller {
 			$this->model_account_customer->editToken($email, '');
 
 			// Create customer token
-			$this->session->data['customer_token'] = token(26);
+			$this->session->data['customer_token'] = Helper\General\token(26);
 
 			$this->response->redirect($this->url->link('account/account', 'language=' . $this->config->get('config_language') . '&customer_token=' . $this->session->data['customer_token']));
 		} else {
