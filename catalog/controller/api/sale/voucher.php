@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Catalog\Controller\Api\Sale;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class Voucher extends \Opencart\System\Engine\Controller {
 	// Apply voucher
 	public function index(): void {
@@ -36,7 +36,7 @@ class Voucher extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -104,7 +104,7 @@ class Voucher extends \Opencart\System\Engine\Controller {
 			unset($this->session->data['payment_methods']);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -134,7 +134,7 @@ class Voucher extends \Opencart\System\Engine\Controller {
 			unset($this->session->data['reward']);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Catalog\Controller\Information;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class Gdpr extends \Opencart\System\Engine\Controller {
 	public function index(): object|null {
 		$this->load->model('catalog/information');
@@ -129,7 +129,7 @@ class Gdpr extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 

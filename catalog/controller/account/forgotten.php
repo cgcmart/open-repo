@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Catalog\Controller\Account;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class Forgotten extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('account/forgotten');
@@ -77,7 +77,7 @@ class Forgotten extends \Opencart\System\Engine\Controller {
 			$json['redirect'] = $this->url->link('account/login', 'language=' . $this->config->get('config_language'), true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -217,7 +217,7 @@ class Forgotten extends \Opencart\System\Engine\Controller {
 			$json['redirect'] = $this->url->link('account/login', 'language=' . $this->config->get('config_language'), true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

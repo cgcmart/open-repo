@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Admin\Controller\Setting;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class Setting extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('setting/setting');
@@ -797,7 +797,7 @@ class Setting extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 

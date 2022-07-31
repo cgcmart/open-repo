@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Admin\Controller\Tool;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class Backup extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('tool/backup');
@@ -214,7 +214,7 @@ class Backup extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -307,7 +307,7 @@ class Backup extends \Opencart\System\Engine\Controller {
 			fclose($handle);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -345,7 +345,7 @@ class Backup extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -419,7 +419,7 @@ class Backup extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

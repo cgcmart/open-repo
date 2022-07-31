@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Catalog\Controller\Checkout;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class Register extends \Opencart\System\Engine\Controller {
 	public function index(): string {
 		$this->load->language('checkout/register');
@@ -591,7 +591,7 @@ class Register extends \Opencart\System\Engine\Controller {
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

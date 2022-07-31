@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Catalog\Controller\Account;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class Address extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('account/address');
@@ -352,7 +352,7 @@ class Address extends \Opencart\System\Engine\Controller {
 			$json['redirect'] = $this->url->link('account/address', 'language=' . $this->config->get('config_language') . '&customer_token=' . $this->session->data['customer_token'], true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -407,7 +407,7 @@ class Address extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_delete');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

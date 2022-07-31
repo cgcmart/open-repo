@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Admin\Controller\Localisation;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class AddressFormat extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('localisation/address_format');
@@ -178,7 +178,7 @@ class AddressFormat extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -221,7 +221,7 @@ class AddressFormat extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

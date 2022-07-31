@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Catalog\Controller\Api\Sale;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class PaymentAddress extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('api/sale/payment_address');
@@ -126,7 +126,7 @@ class PaymentAddress extends \Opencart\System\Engine\Controller {
 			unset($this->session->data['payment_methods']);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

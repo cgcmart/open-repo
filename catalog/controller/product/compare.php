@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Catalog\Controller\Product;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class Compare extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('product/compare');
@@ -183,7 +183,7 @@ class Compare extends \Opencart\System\Engine\Controller {
 			$json['total'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }
