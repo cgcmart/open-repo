@@ -26,6 +26,12 @@ class Log extends \Opencart\System\Engine\Controller {
 			$data['error_warning'] = '';
 		}
 
+		$file = DIR_LOGS . $this->config->get('config_error_filename');
+
+		if (!is_file($file)) {
+			file_put_contents($file, '', FILE_APPEND);
+		}
+
 		$data['log'] = [];
 
 		$files = glob(DIR_LOGS . '*.log');
@@ -144,7 +150,7 @@ class Log extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

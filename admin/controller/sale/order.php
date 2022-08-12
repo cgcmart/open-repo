@@ -736,9 +736,9 @@ class Order extends \Opencart\System\Engine\Controller {
 		}
 
 		// Coupon, Voucher, Reward
-		$data['coupon'] = '';
-		$data['voucher'] = '';
-		$data['reward'] = 0;
+		$data['total_coupon'] = '';
+		$data['total_voucher'] = '';
+		$data['total_reward'] = 0;
 
 		if ($order_id) {
 			$order_totals = $this->model_sale_order->getTotals($order_id);
@@ -749,7 +749,7 @@ class Order extends \Opencart\System\Engine\Controller {
 				$end = strrpos($order_total['title'], ')');
 
 				if ($start && $end) {
-					$data[$order_total['code']] = substr($order_total['title'], $start, $end - $start);
+					$data['total_' . $order_total['code']] = substr($order_total['title'], $start, $end - $start);
 				}
 			}
 		}
@@ -1021,7 +1021,7 @@ class Order extends \Opencart\System\Engine\Controller {
 			$extension_info = $this->model_setting_extension->getExtensionByCode('payment', $order_info['payment_code']);
 
 			if ($extension_info && $this->user->hasPermission('access', 'extension/' . $extension_info['extension'] . '/payment/' . $extension_info['code'])) {
-				$output = $this->load->controller('extension/payment/' . $order_info['payment_code'] . '|order');
+				$output = $this->load->controller('extension/' . $extension_info['extension'] . '/payment/' . $extension_info['code'] . '|order');
 
 				if (!$output instanceof \Exception) {
 					$this->load->language('extension/' . $extension_info['extension'] . '/payment/' . $extension_info['code'], 'extension');
@@ -1203,6 +1203,9 @@ class Order extends \Opencart\System\Engine\Controller {
 			$language_code = $this->config->get('config_language');
 		}
 
+		// Catalog uses language key in URLs
+		$request->get['language'] = $language_code;
+
 		$this->load->model('localisation/language');
 
 		$language_info = $this->model_localisation_language->getLanguageByCode($language_code);
@@ -1216,10 +1219,17 @@ class Order extends \Opencart\System\Engine\Controller {
 		}
 
 		$language = new \Opencart\System\Library\Language($language_code);
-		$language->addPath(DIR_CATALOG . 'language/');
+
+		if (!$language_info['extension']) {
+			$language->addPath(DIR_CATALOG . 'language/');
+		} else {
+			$language->addPath(DIR_EXTENSION . $language_info['extension'] . '/catalog/language/');
+		}
+
 		$language->load($language_code);
 		$registry->set('language', $language);
 
+		// Currency
 		if (!isset($session->data['currency'])) {
 			$session->data['currency'] = $this->config->get('config_currency');
 		}
