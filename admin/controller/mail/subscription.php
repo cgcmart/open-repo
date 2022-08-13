@@ -52,6 +52,5 @@ class Subscription extends \Opencart\System\Engine\Controller {
 
 	public function cancel(string &$route, array &$args, mixed &$output): void {
 
-
 	}
 }
