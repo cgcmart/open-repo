@@ -4791,7 +4791,7 @@ function db_schema() {
 		'collate' => 'utf8mb4_general_ci'
 	];
 
-$tables[] = [
+	$tables[] = [
 		'name' => 'product_viewed',
 		'field' => [
 			[
@@ -6140,7 +6140,7 @@ $tables[] = [
 		'collate' => 'utf8mb4_general_ci'
 	];
 
-$tables[] = [
+	$tables[] = [
 		'name' => 'user_login',
 		'field' => [
 			[

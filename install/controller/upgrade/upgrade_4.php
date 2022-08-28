@@ -75,6 +75,15 @@ class Upgrade4 extends \Opencart\System\Engine\Controller {
 				'serialized' => 0
 			];
 
+			if (isset($settings['config_admin_language'])) {
+				$missing[] = [
+					'key'        => 'config_pagination_admin',
+					'value'      => $settings['config_admin_language'],
+					'code'       => 'config',
+					'serialized' => 0
+				];
+			}
+
 			if (isset($settings['config_limit_admin'])) {
 				$missing[] = [
 					'key'        => 'config_pagination_admin',
@@ -86,7 +95,7 @@ class Upgrade4 extends \Opencart\System\Engine\Controller {
 
 			$missing[] = [
 				'key'        => 'config_encryption',
-				'value'		 => hash('sha512', Helper\General\token(32)),
+				'value'      => hash('sha512', Helper\General\token(32)),
 				'code'       => 'config',
 				'serialized' => 0
 			];
@@ -322,7 +331,7 @@ class Upgrade4 extends \Opencart\System\Engine\Controller {
 			$json['next'] = $this->url->link('upgrade/upgrade_5', $url, true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Admin\Model\Customer;
-use \Opencart\System\Helper as Helper;
+use \Opencart\System\Helper AS Helper;
 class Customer extends \Opencart\System\Engine\Model {
 	public function addCustomer(array $data): int {
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "customer` SET `store_id` = '" . (int)$data['store_id'] . "', `customer_group_id` = '" . (int)$data['customer_group_id'] . "', `firstname` = '" . $this->db->escape((string)$data['firstname']) . "', `lastname` = '" . $this->db->escape((string)$data['lastname']) . "', `email` = '" . $this->db->escape((string)$data['email']) . "', `telephone` = '" . $this->db->escape((string)$data['telephone']) . "', `custom_field` = '" . $this->db->escape(isset($data['custom_field']) ? json_encode($data['custom_field']) : json_encode([])) . "', `newsletter` = '" . (isset($data['newsletter']) ? (bool)$data['newsletter'] : 0) . "', `password` = '" . $this->db->escape(password_hash(html_entity_decode($data['password'], ENT_QUOTES, 'UTF-8'), PASSWORD_DEFAULT)) . "', `status` = '" . (isset($data['status']) ? (bool)$data['status'] : 0) . "', `safe` = '" . (isset($data['safe']) ? (bool)$data['safe'] : 0) . "', `date_added` = NOW()");
@@ -377,7 +377,7 @@ class Customer extends \Opencart\System\Engine\Model {
 	}
 
 	public function deleteReward(int $order_id): void {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_reward` WHERE `order_id` = '" . (int)$order_id . "' AND `points` > 0");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_reward` WHERE `order_id` = '" . (int)$order_id . "' AND `points` > '0'");
 	}
 
 	public function getRewards(int $customer_id, int $start = 0, int $limit = 10): array {
@@ -407,7 +407,7 @@ class Customer extends \Opencart\System\Engine\Model {
 	}
 
 	public function getTotalRewardsByOrderId(int $order_id): int {
-		$query = $this->db->query("SELECT COUNT(*) AS `total` FROM `" . DB_PREFIX . "customer_reward` WHERE `order_id` = '" . (int)$order_id . "' AND `points` > 0");
+		$query = $this->db->query("SELECT COUNT(*) AS `total` FROM `" . DB_PREFIX . "customer_reward` WHERE `order_id` = '" . (int)$order_id . "' AND `points` > '0'");
 
 		return (int)$query->row['total'];
 	}

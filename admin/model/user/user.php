@@ -167,4 +167,5 @@ class User extends \Opencart\System\Engine\Model {
 			return 0;
 		}
 	}
+
 }

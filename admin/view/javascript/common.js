@@ -76,84 +76,86 @@ $(document).ready(function () {
     $('#menu a[href=\'' + sessionStorage.getItem('menu') + '\']').parents('li').addClass('active');
 });
 
-// Tooltip
-var oc_tooltip = function () {
-    // Apply to all on current page
-    tooltip = bootstrap.Tooltip.getOrCreateInstance(this);
-    tooltip.show();
-}
+$(document).ready(function () {
+    // Tooltip
+    var oc_tooltip = function () {
+        // Apply to all on current page
+        tooltip = bootstrap.Tooltip.getOrCreateInstance(this);
+        tooltip.show();
+    }
 
-$(document).on('mouseenter', '[data-bs-toggle=\'tooltip\']', oc_tooltip);
+    $(document).on('mouseenter', '[data-bs-toggle=\'tooltip\']', oc_tooltip);
 
-$(document).on('click', 'button', function () {
-    $('.tooltip').remove();
-});
-
-// Date
-var oc_datetimepicker = function () {
-    $(this).daterangepicker({
-        singleDatePicker: true,
-        autoApply: true,
-        autoUpdateInput: false,
-        locale: {
-            format: 'YYYY-MM-DD'
-        }
-    }, function (start, end) {
-        $(this.element).val(start.format('YYYY-MM-DD'));
+    $(document).on('click', 'button', function () {
+        $('.tooltip').remove();
     });
-}
 
-$(document).on('focus', '.date', oc_datetimepicker);
-
-// Time
-var oc_datetimepicker = function () {
-    $(this).daterangepicker({
-        singleDatePicker: true,
-        datePicker: false,
-        autoApply: true,
-        autoUpdateInput: false,
-        timePicker: true,
-        timePicker24Hour: true,
-        locale: {
-            format: 'HH:mm'
-        }
-    }, function (start, end) {
-        $(this.element).val(start.format('HH:mm'));
-    }).on('show.daterangepicker', function (ev, picker) {
-        picker.container.find('.calendar-table').hide();
-    });
-}
-
-$(document).on('focus', '.time', oc_datetimepicker);
-
-// Date Time
-var oc_datetimepicker = function () {
-    $('.datetime').daterangepicker({
-        singleDatePicker: true,
-        autoApply: true,
-        autoUpdateInput: false,
-        timePicker: true,
-        timePicker24Hour: true,
-        locale: {
-            format: 'YYYY-MM-DD HH:mm'
-        }
-    }, function (start, end) {
-        $(this.element).val(start.format('YYYY-MM-DD HH:mm'));
-    });
-}
-
-$(document).on('focus', '.datetime', oc_datetimepicker);
-
-// Alert Fade
-var oc_alert = function () {
-    window.setTimeout(function () {
-        $('.alert-dismissible').fadeTo(1000, 0, function () {
-            $(this).remove();
+    // Date
+    var oc_datetimepicker = function () {
+        $(this).daterangepicker({
+            singleDatePicker: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        }, function (start, end) {
+            $(this.element).val(start.format('YYYY-MM-DD'));
         });
-    }, 7000);
-}
+    }
 
-$(document).on('click', 'button', oc_alert);
+    $(document).on('focus', '.date', oc_datetimepicker);
+
+    // Time
+    var oc_datetimepicker = function () {
+        $(this).daterangepicker({
+            singleDatePicker: true,
+            datePicker: false,
+            autoApply: true,
+            autoUpdateInput: false,
+            timePicker: true,
+            timePicker24Hour: true,
+            locale: {
+                format: 'HH:mm'
+            }
+        }, function (start, end) {
+            $(this.element).val(start.format('HH:mm'));
+        }).on('show.daterangepicker', function (ev, picker) {
+            picker.container.find('.calendar-table').hide();
+        });
+    }
+
+    $(document).on('focus', '.time', oc_datetimepicker);
+
+    // Date Time
+    var oc_datetimepicker = function () {
+        $('.datetime').daterangepicker({
+            singleDatePicker: true,
+            autoApply: true,
+            autoUpdateInput: false,
+            timePicker: true,
+            timePicker24Hour: true,
+            locale: {
+                format: 'YYYY-MM-DD HH:mm'
+            }
+        }, function (start, end) {
+            $(this.element).val(start.format('YYYY-MM-DD HH:mm'));
+        });
+    }
+
+    $(document).on('focus', '.datetime', oc_datetimepicker);
+
+    // Alert Fade
+    var oc_alert = function () {
+        window.setTimeout(function () {
+            $('.alert-dismissible').fadeTo(1000, 0, function () {
+                $(this).remove();
+            });
+        }, 7000);
+    }
+
+    $(document).on('click', 'button', oc_alert);
+});
 
 // Forms
 $(document).on('submit', 'form[data-oc-toggle=\'ajax\']', function (e) {
@@ -233,8 +235,8 @@ $(document).on('submit', 'form[data-oc-toggle=\'ajax\']', function (e) {
 
             if (typeof json['error'] == 'object') {
                 if (json['error']['warning']) {
-					$('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fa-solid fa-circle-exclamation"></i> ' + json['error']['warning'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
-				}
+                    $('#alert').prepend('<div class="alert alert-danger alert-dismissible"><i class="fa-solid fa-circle-exclamation"></i> ' + json['error']['warning'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+                }
 
                 for (key in json['error']) {
                     $('#input-' + key.replaceAll('_', '-')).addClass('is-invalid').find('.form-control, .form-select, .form-check-input, .form-check-label').addClass('is-invalid');
@@ -243,7 +245,7 @@ $(document).on('submit', 'form[data-oc-toggle=\'ajax\']', function (e) {
             }
 
             if (json['success']) {
-				$('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fa-solid fa-circle-check"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
+                $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fa-solid fa-circle-check"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
                 // Refresh
                 var url = $(form).attr('data-oc-load');

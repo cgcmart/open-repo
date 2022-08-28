@@ -30,7 +30,7 @@ class FreeCheckout extends \Opencart\System\Engine\Controller {
 			$json['redirect'] = $this->url->link('checkout/success', 'language=' . $this->config->get('config_language'), true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

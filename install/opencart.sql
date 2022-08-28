@@ -856,6 +856,7 @@ INSERT INTO `oc_event` (`code`, `trigger`, `action`, `status`) VALUES
 ('statistics_return_add', 'catalog/model/account/returns/addReturn/after', 'event/statistics|addReturn', 1),
 ('statistics_return_delete', 'admin/model/sale/returns/deleteReturn/after', 'event/statistics|deleteReturn', 1),
 ('statistics_order_history', 'catalog/model/checkout/order/addHistory/before', 'event/statistics|addHistory', 1),
+('subscription', 'catalog/model/checkout/subscription/addSubscription/after', 'event/subscription|addSubscription', 1),
 ('admin_currency_add', 'admin/model/localisation/currency/addCurrency/after', 'event/currency', 1),
 ('admin_currency_edit', 'admin/model/localisation/currency/editCurrency/after', 'event/currency', 1),
 ('admin_currency_setting', 'admin/model/setting/setting/editSetting/after', 'event/currency', 1),
@@ -1294,7 +1295,6 @@ INSERT INTO `oc_extension_path` (`extension_install_id`, `path`) VALUES
 (1, 'opencart/catalog/view/template/total/shipping.twig'),
 (1, 'opencart/catalog/view/template/total/voucher.twig'),
 (1, 'opencart/install.json');
-
 -----------------------------------------------------------
 
 --
@@ -1926,7 +1926,7 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'config', 'config_shared', '0', 0),
 (0, 'config', 'config_fraud_detection', '0', 0),
 (0, 'config', 'config_meta_title', 'Your Store', 0),
-(0, 'config', 'config_session_expire', '3600', 0),
+(0, 'config', 'config_session_expire', '86400', 0),
 (0, 'config', 'config_session_samesite', 'Strict', 0),
 (0, 'config', 'config_meta_description', 'My Store', 0),
 (0, 'config', 'config_meta_keyword', '', 0),
@@ -2026,13 +2026,12 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\nwebp\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nmp4\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
 (0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/webp\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\napplication/x-zip\r\napplication/x-zip-compressed\r\napplication/rar\r\napplication/x-rar\r\napplication/x-rar-compressed\r\napplication/octet-stream\r\naudio/mpeg\r\nvideo/mp4\r\nvideo/quicktime\r\napplication/pdf', 0),
 (0, 'config', 'config_maintenance', '0', 0),
-(0, 'config', 'config_password', '1', 0),
 (0, 'config', 'config_encryption', '', 0),
 (0, 'config', 'config_compression', '0', 0),
 (0, 'config', 'config_error_display', '1', 0),
 (0, 'config', 'config_error_log', '1', 0),
 (0, 'config', 'config_error_filename', 'error.log', 0),
-(0, 'config', 'config_mail_engine', 'mail', 0),
+(0, 'config', 'config_mail_engine', '', 0),
 (0, 'config', 'config_mail_parameter', '', 0),
 (0, 'config', 'config_mail_smtp_hostname', '', 0),
 (0, 'config', 'config_mail_smtp_username', '', 0),
@@ -2271,7 +2270,8 @@ INSERT INTO `oc_tax_class` (`tax_class_id`, `title`, `description`, `date_added`
 --
 
 INSERT INTO `oc_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `date_added`, `date_modified`) VALUES
-(86, 3, 'VAT (20%)', '20.0000', 'P', '2011-03-09 21:17:10', '2011-09-22 22:24:29');
+(86, 3, 'VAT (20%)', '20.0000', 'P', '2011-03-09 21:17:10', '2011-09-22 22:24:29'),
+(87, 3, 'Eco Tax (-2.00)', '2.0000', 'F', '2011-09-21 21:49:23', '2011-09-23 00:40:19');
 
 -----------------------------------------------------------
 
@@ -4868,22 +4868,22 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (2628, 168, 'Zamboanga del Norte', 'ZNO', 1),
 (2629, 168, 'Zamboanga del Sur', 'ZSU', 1),
 (2630, 168, 'Zamboanga Sibugay', 'ZSI', 1),
-(2631, 170, 'Dolnoslaskie', '02', 1),
-(2632, 170, 'Kujawsko-Pomorskie', '94', 1),
-(2633, 170, 'Lodzkie', '10', 1),
-(2634, 170, 'Lubelskie', '06', 1),
-(2635, 170, 'Lubuskie', '08', 1),
-(2636, 170, 'Malopolskie', '12', 1),
-(2637, 170, 'Mazowieckie', '14', 1),
-(2638, 170, 'Opolskie', '16', 1),
-(2639, 170, 'Podkarpackie', '18', 1),
-(2640, 170, 'Podlaskie', '20', 1),
-(2641, 170, 'Pomorskie', '22', 1),
-(2642, 170, 'Slaskie', '24', 1),
-(2643, 170, 'Swietokrzyskie', '26', 1),
-(2644, 170, 'Warminsko-Mazurskie', '28', 1),
-(2645, 170, 'Wielkopolskie', '30', 1),
-(2646, 170, 'Zachodniopomorskie', '32', 1),
+(2631, 170, 'Dolnoslaskie', 'DO', 1),
+(2632, 170, 'Kujawsko-Pomorskie', 'KP', 1),
+(2633, 170, 'Lodzkie', 'LO', 1),
+(2634, 170, 'Lubelskie', 'LL', 1),
+(2635, 170, 'Lubuskie', 'LU', 1),
+(2636, 170, 'Malopolskie', 'ML', 1),
+(2637, 170, 'Mazowieckie', 'MZ', 1),
+(2638, 170, 'Opolskie', 'OP', 1),
+(2639, 170, 'Podkarpackie', 'PP', 1),
+(2640, 170, 'Podlaskie', 'PL', 1),
+(2641, 170, 'Pomorskie', 'PM', 1),
+(2642, 170, 'Slaskie', 'SL', 1),
+(2643, 170, 'Swietokrzyskie', 'SW', 1),
+(2644, 170, 'Warminsko-Mazurskie', 'WM', 1),
+(2645, 170, 'Wielkopolskie', 'WP', 1),
+(2646, 170, 'Zachodniopomorskie', 'ZA', 1),
 (2647, 198, 'Saint Pierre', 'P', 1),
 (2648, 198, 'Miquelon', 'M', 1),
 (2649, 171, 'A&ccedil;ores', '20', 1),
@@ -5654,7 +5654,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3504, 220, 'Zaporizka', '08', 1),
 (3505, 220, 'Zhytomyrskа', '06', 1),
 (3506, 221, 'Abu Dhabi', 'ADH', 1),
-(3507, 221, 'Ajman', 'AJ', 1),
+(3507, 221, '''Ajman', 'AJ', 1),
 (3508, 221, 'Al Fujayrah', 'FU', 1),
 (3509, 221, 'Ash Shāriqah', 'SH', 1),
 (3510, 221, 'Dubai', 'DU', 1),

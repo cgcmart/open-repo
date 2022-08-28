@@ -24,6 +24,6 @@
   "require": {
     "php": ">=8.0.0",
     "scssphp/scssphp": "^1.10.0",
-    "twig/twig": "^3.4.1"
+    "twig/twig": "^3.4.2"
   }
 }

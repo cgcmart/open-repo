@@ -6,7 +6,7 @@
     {% endfor %}
   </ul>
   {% if success %}
-    <div class="alert alert-success alert-dismissible"><i class="fas fa-check-circle"></i> {{ success }}
+    <div class="alert alert-success alert-dismissible"><i class="fa-solid fa-circle-check"></i> {{ success }}
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
   {% endif %}
@@ -14,7 +14,7 @@
     <div id="content" class="col">{{ content_top }}
       <h1>{{ heading_title }}</h1>
       {% if products %}
-        <table class="table table-bordered">
+        <table class="table table-responsive table-bordered">
           <thead>
             <tr>
               <td colspan="{{ products|length + 1 }}"><strong>{{ text_product }}</strong></td>
@@ -68,9 +68,9 @@
                   <td class="rating">
                     {% for i in 1..5 %}
                       {% if product.rating < i %}
-                        <span class="fas fa-stack"><i class="fas fa-star-o fa-stack-2x"></i></span>
+                        <span class="fa-stack"><i class="fa-regular fa-star fa-stack-1x"></i></span>
                       {% else %}
-                        <span class="fas fa-stack"><i class="fas fa-star fa-stack-2x"></i><i class="fas fa-star-o fa-stack-2x"></i></span>
+                        <span class="fa-stack"><i class="fa-solid fa-star fa-stack-1x"></i><i class="fa-regular fa-star fa-stack-1x"></i></span>
                       {% endif %}
                     {% endfor %}
                     <br/>

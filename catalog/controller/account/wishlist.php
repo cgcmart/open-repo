@@ -164,7 +164,7 @@ class WishList extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -181,21 +181,15 @@ class WishList extends \Opencart\System\Engine\Controller {
 
 		if (!$json) {
 			if ($this->customer->isLogged()) {
-
 				$this->load->model('account/wishlist');
 
 				$this->model_account_wishlist->deleteWishlist($product_id);
 
 				$json['success'] = $this->language->get('text_remove');
-
-
 			}
-
-
-
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

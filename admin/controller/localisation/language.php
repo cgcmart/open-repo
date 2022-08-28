@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Admin\Controller\Localisation;
-use \Opencart\System\Helper as Helper;
+use \Opencart\System\Helper AS Helper;
 class Language extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('localisation/language');

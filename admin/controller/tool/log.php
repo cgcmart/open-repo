@@ -32,6 +32,7 @@ class Log extends \Opencart\System\Engine\Controller {
 			file_put_contents($file, '', FILE_APPEND);
 		}
 
+
 		$data['log'] = [];
 
 		$files = glob(DIR_LOGS . '*.log');

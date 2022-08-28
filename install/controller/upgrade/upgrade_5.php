@@ -244,6 +244,9 @@ class Upgrade5 extends \Opencart\System\Engine\Controller {
 
 			// Update current keys
 			$this->db->query("UPDATE `" . DB_PREFIX . "event` SET `trigger` = 'admin/model/sale/returns/addHistory/after' WHERE `code` = 'admin_mail_return'");
+
+			// Event - Remove admin promotion from OC 3.x, since it is no longer required to have in OC v4.x releases.
+			$this->db->query("DELETE FROM `" . DB_PREFIX . "event` WHERE `action` = 'extension/extension/promotion/getList'");
 		} catch (\ErrorException $exception) {
 			$json['error'] = sprintf($this->language->get('error_exception'), $exception->getCode(), $exception->getMessage(), $exception->getFile(), $exception->getLine());
 		}
@@ -264,7 +267,7 @@ class Upgrade5 extends \Opencart\System\Engine\Controller {
 			$json['next'] = $this->url->link('upgrade/upgrade_6', $url, true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

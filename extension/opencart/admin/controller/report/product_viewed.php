@@ -53,20 +53,24 @@ class ProductViewed extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function install(): void {
-		$this->load->model('extension/opencart/report/product_viewed');
+		if ($this->user->hasPermission('modify', 'extension/report')) {
+			$this->load->model('extension/opencart/report/product_viewed');
 
-		$this->model_extension_opencart_report_product_viewed->install();
+			$this->model_extension_opencart_report_product_viewed->install();
+		}
 	}
 
 	public function uninstall(): void {
-		$this->load->model('extension/opencart/report/product_viewed');
+		if ($this->user->hasPermission('modify', 'extension/report')) {
+			$this->load->model('extension/opencart/report/product_viewed');
 
-		$this->model_extension_opencart_report_product_viewed->uninstall();
+			$this->model_extension_opencart_report_product_viewed->uninstall();
+		}
 	}
 
 	public function report(): void {
@@ -186,7 +190,7 @@ class ProductViewed extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

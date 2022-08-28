@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Admin\Controller\Marketing;
-use \Opencart\System\Helper AS Helper;
+use \Opencart\System\Helper as Helper;
 class Marketing extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('marketing/marketing');
@@ -157,10 +157,6 @@ class Marketing extends \Opencart\System\Engine\Controller {
 
 		if (isset($this->request->get['filter_date_to'])) {
 			$url .= '&filter_date_to=' . $this->request->get['filter_date_to'];
-		}
-
-		if (isset($this->request->get['sort'])) {
-			$url .= '&sort=' . $this->request->get['sort'];
 		}
 
 		if (isset($this->request->get['sort'])) {
@@ -410,7 +406,7 @@ class Marketing extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -439,7 +435,7 @@ class Marketing extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 

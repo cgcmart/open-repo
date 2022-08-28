@@ -1,7 +1,6 @@
 <?php
 namespace Opencart\System\Library\Session;
-class Redis
-{
+class Redis {
 	public function __construct(\Opencart\System\Engine\Registry $registry)	{
 		$this->config = $registry->get('config');
 

@@ -60,20 +60,24 @@ class Ip extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function install(): void {
-		$this->load->model('extension/opencart/fraud/ip');
+		if ($this->user->hasPermission('modify', 'extension/fraud')) {
+			$this->load->model('extension/opencart/fraud/ip');
 
-		$this->model_extension_opencart_fraud_ip->install();
+			$this->model_extension_opencart_fraud_ip->install();
+		}
 	}
 
 	public function uninstall(): void {
-		$this->load->model('extension/opencart/fraud/ip');
+		if ($this->user->hasPermission('modify', 'extension/fraud')) {
+			$this->load->model('extension/opencart/fraud/ip');
 
-		$this->model_extension_opencart_fraud_ip->uninstall();
+			$this->model_extension_opencart_fraud_ip->uninstall();
+		}
 	}
 
 	public function ip(): void {
@@ -140,7 +144,7 @@ class Ip extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -161,7 +165,7 @@ class Ip extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json');
+		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 		$this->response->setOutput(json_encode($json));
 	}
 }

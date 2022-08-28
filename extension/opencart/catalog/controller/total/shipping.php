@@ -6,7 +6,7 @@ class Shipping extends \Opencart\System\Engine\Controller {
 		if ($this->config->get('total_shipping_status') && $this->config->get('total_shipping_estimator') && $this->cart->hasShipping()) {
 			$this->load->language('extension/opencart/total/shipping');
 
-			$data['language'] = $this->config->get('config_language');
+            $data['language'] = $this->config->get('config_language');
 
 			if (isset($this->session->data['shipping_address'])) {
 				$shipping_address = $this->session->data['shipping_address'];
@@ -141,7 +141,7 @@ class Shipping extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

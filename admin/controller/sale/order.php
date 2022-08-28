@@ -1108,7 +1108,7 @@ class Order extends \Opencart\System\Engine\Controller {
 			// Call the required api controller
 			$store->load->controller($store->request->get['route']);
 
-			$this->response->addHeader('Content-Type: application/json');
+			$this->response->addHeader('Content-Type: application/json; charset=utf-8');
 			$this->response->setOutput($store->response->getOutput());
 		}
 	}
@@ -1669,19 +1669,19 @@ class Order extends \Opencart\System\Engine\Controller {
 						}
 
 						$product_data[] = [
-							'name'     		=> $product_info['name'],
-							'model'    		=> $product_info['model'],
-							'option'   		=> $option_data,
-							'subscription'	=> $subscription_data,
-							'quantity' 		=> $product['quantity'],
-							'location' 		=> $product_info['location'],
-							'sku'      		=> $product_info['sku'],
-							'upc'      		=> $product_info['upc'],
-							'ean'      		=> $product_info['ean'],
-							'jan'      		=> $product_info['jan'],
-							'isbn'     		=> $product_info['isbn'],
-							'mpn'      		=> $product_info['mpn'],
-							'weight'   		=> $this->weight->format(($product_info['weight'] + (float)$option_weight) * $product['quantity'], $product_info['weight_class_id'], $this->language->get('decimal_point'), $this->language->get('thousand_point'))
+							'name'     	   => $product_info['name'],
+							'model'    	   => $product_info['model'],
+							'option'   	   => $option_data,
+							'subscription' => $subscription_data,
+							'quantity'     => $product['quantity'],
+							'location'     => $product_info['location'],
+							'sku'          => $product_info['sku'],
+							'upc'          => $product_info['upc'],
+							'ean'          => $product_info['ean'],
+							'jan'          => $product_info['jan'],
+							'isbn'         => $product_info['isbn'],
+							'mpn'          => $product_info['mpn'],
+							'weight'       => $this->weight->format(($product_info['weight'] + (float)$option_weight) * $product['quantity'], $product_info['weight_class_id'], $this->language->get('decimal_point'), $this->language->get('thousand_point'))
 						];
 					}
 				}

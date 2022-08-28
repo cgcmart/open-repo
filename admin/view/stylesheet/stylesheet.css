@@ -47,9 +47,14 @@ a {
     padding: 0 20px;
 }
 
+#alert {
+	z-index: 9999;
+	pointer-events: all;
+}
+
 #header {
     border-bottom: 1px solid #d8d8d8;
-    box-shadow: 0px 0px 3px #cccccc;
+    box-shadow: 0px 0px 3px #CCCCCC;
     z-index: 1000;
     margin: 0;
     padding: 0;

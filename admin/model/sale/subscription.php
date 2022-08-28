@@ -39,7 +39,7 @@ class Subscription extends \Opencart\System\Engine\Model {
 		if (!empty($data['filter_order_id'])) {
 			$implode[] = "`s`.`order_id` = '" . (int)$data['filter_order_id'] . "'";
 		}
-
+		
 		if (!empty($data['filter_order_product_id'])) {
 			$implode[] = "`s`.`order_product_id` = '" . (int)$data['filter_order_product_id'] . "'";
 		}

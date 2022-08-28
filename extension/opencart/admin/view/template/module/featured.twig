@@ -3,8 +3,8 @@
   <div class="page-header">
     <div class="container-fluid">
       <div class="float-end">
-        <button type="submit" form="form-module" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
-        <a href="{{ back }}" data-bs-toggle="tooltip" title="{{ button_back }}" class="btn btn-light"><i class="fas fa-reply"></i></a></div>
+        <button type="submit" form="form-module" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa-solid fa-save"></i></button>
+        <a href="{{ back }}" data-bs-toggle="tooltip" title="{{ button_back }}" class="btn btn-light"><i class="fa-solid fa-reply"></i></a></div>
       <h1>{{ heading_title }}</h1>
       <ol class="breadcrumb">
         {% for breadcrumb in breadcrumbs %}
@@ -15,7 +15,7 @@
   </div>
   <div class="container-fluid">
     <div class="card">
-      <div class="card-header"><i class="fas fa-pencil-alt"></i> {{ text_edit }}</div>
+      <div class="card-header"><i class="fa-solid fa-pencil"></i> {{ text_edit }}</div>
       <div class="card-body">
         <form id="form-module" action="{{ save }}" method="post" data-oc-toggle="ajax">
           <div class="row mb-3">
@@ -36,7 +36,7 @@
                     {% for product in products %}
                       <tr id="featured-product-{{ product.product_id }}">
                         <td>{{ product.name }}<input type="hidden" name="product[]" value="{{ product.product_id }}"/></td>
-                        <td class="text-end"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-minus-circle"></i></button></td>
+                        <td class="text-end"><button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus"></i></button></td>
                       </tr>
                     {% endfor %}
                   </tbody>
@@ -55,10 +55,11 @@
             </div>
           </div>
           <div class="row mb-3">
-            <label for="input-limit" class="col-sm-2 col-form-label">{{ entry_limit }}</label>
-            <div class="col-sm-10">
-              <input type="text" name="limit" value="{{ limit }}" placeholder="{{ entry_limit }}" id="input-limit" class="form-control"/>
+			<label for="input-limit" class="col-sm-2 col-form-label">{{ entry_limit }}</label>
+			<div class="col-sm-10">
+				<input type="text" name="limit" value="{{ limit }}" placeholder="{{ entry_limit }}" id="input-limit" class="form-control"/>
             </div>
+		  </div>
           <div class="row mb-3">
             <label for="input-width" class="col-sm-2 col-form-label">{{ entry_width }}</label>
             <div class="col-sm-10">
@@ -77,7 +78,7 @@
             <label for="input-status" class="col-sm-2 col-form-label">{{ entry_status }}</label>
             <div class="col-sm-10">
               <div class="form-check form-switch form-switch-lg">
-				<input type="hidden" name="status" value="0"/>
+                <input type="hidden" name="status" value="0"/>
                 <input type="checkbox" name="status" value="1" id="input-status" class="form-check-input"{% if status %} checked{% endif %}/>
               </div>
             </div>
@@ -110,7 +111,7 @@ $('#input-product').autocomplete({
 
         html  = '<tr id="featured-product-' + item['value'] + '">';
         html += '  <td>' + item['label'] + '<input type="hidden" name="product[]" value="' + item['value'] + '"/></td>';
-        html += '  <td class="text-end"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-minus-circle"></i></button></td>';
+        html += '  <td class="text-end"><button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus"></i></button></td>';
         html += '</tr>';
 
         $('#featured-product tbody').append(html);
