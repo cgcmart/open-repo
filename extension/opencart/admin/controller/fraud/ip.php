@@ -23,7 +23,7 @@ class Ip extends \Opencart\System\Engine\Controller {
 			'href' => $this->url->link('extension/opencart/fraud/ip', 'user_token=' . $this->session->data['user_token'])
 		];
 
-		$data['save'] = $this->url->link('extension/opencart/fraud/ip|save', 'user_token=' . $this->session->data['user_token']);
+		$data['save'] = $this->url->link('extension/opencart/fraud/ip.save', 'user_token=' . $this->session->data['user_token']);
 		$data['back'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=fraud');
 
 		$data['fraud_ip_order_status_id'] = $this->config->get('fraud_ip_order_status_id');
@@ -60,7 +60,7 @@ class Ip extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -111,7 +111,7 @@ class Ip extends \Opencart\System\Engine\Controller {
 			'total' => $ip_total,
 			'page'  => $page,
 			'limit' => 10,
-			'url'   => $this->url->link('extension/opencart/fraud/ip|ip', 'user_token=' . $this->session->data['user_token'] . '&page={page}')
+			'url'   => $this->url->link('extension/opencart/fraud/ip.ip', 'user_token=' . $this->session->data['user_token'] . '&page={page}')
 		]);
 
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($ip_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($ip_total - 10)) ? $ip_total : ((($page - 1) * 10) + 10), $ip_total, ceil($ip_total / 10));
@@ -144,7 +144,7 @@ class Ip extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -165,7 +165,7 @@ class Ip extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

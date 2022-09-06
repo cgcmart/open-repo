@@ -23,7 +23,7 @@ class Basic extends \Opencart\System\Engine\Controller {
 			'href' => $this->url->link('extension/opencart/captcha/basic', 'user_token=' . $this->session->data['user_token'])
 		];
 
-		$data['save'] = $this->url->link('extension/opencart/captcha/basic|save', 'user_token=' . $this->session->data['user_token']);
+		$data['save'] = $this->url->link('extension/opencart/captcha/basic.save', 'user_token=' . $this->session->data['user_token']);
 		$data['back'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=captcha');
 
 		$data['captcha_basic_status'] = $this->config->get('captcha_basic_status');
@@ -52,7 +52,7 @@ class Basic extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

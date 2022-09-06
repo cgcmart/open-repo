@@ -30,7 +30,7 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#sale-coupon').on('click', '.pagination a', function (e) {
     e.preventDefault();
 
@@ -52,6 +52,6 @@ $('#button-filter').on('click', function () {
         url += '&filter_date_end=' + encodeURIComponent(filter_date_end);
     }
 
-    $('#sale-coupon').load('index.php?route=extension/opencart/report/sale_coupon|list&user_token={{ user_token }}' + url);
+    $('#sale-coupon').load('index.php?route=extension/opencart/report/sale_coupon.list&user_token={{ user_token }}' + url);
 });
-</script>
+//--></script>

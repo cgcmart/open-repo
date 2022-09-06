@@ -120,10 +120,10 @@ class Upgrade extends \Opencart\System\Engine\Controller {
 		if (!$json) {
 			$json['text'] = $this->language->get('text_install');
 
-			$json['next'] = $this->url->link('tool/upgrade|install', 'user_token=' . $this->session->data['user_token'] . '&version=' . $version, true);
+			$json['next'] = $this->url->link('tool/upgrade.install', 'user_token=' . $this->session->data['user_token'] . '&version=' . $version, true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -168,7 +168,7 @@ class Upgrade extends \Opencart\System\Engine\Controller {
 							$path = '';
 
 							// Must not have a path before files and directories can be moved
-							$directories = explode('/', dirname($destination, '/'));
+							$directories = explode('/', dirname($destination));
 
 							foreach ($directories as $directory) {
 								if (!$path) {
@@ -206,7 +206,7 @@ class Upgrade extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

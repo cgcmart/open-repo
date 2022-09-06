@@ -39,7 +39,7 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#marketing').on('click', '.pagination a', function (e) {
     e.preventDefault();
 
@@ -67,6 +67,6 @@ $('#button-filter').on('click', function() {
         url += '&filter_date_end=' + encodeURIComponent(filter_date_end);
     }
 
-    $('#marketing').load('index.php?route=extension/opencart/report/marketing|list&user_token={{ user_token }}' + url);
+    $('#marketing').load('index.php?route=extension/opencart/report/marketing.list&user_token={{ user_token }}' + url);
 });
-</script>
+//--></script>

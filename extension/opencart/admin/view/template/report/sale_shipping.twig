@@ -46,7 +46,7 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#sale-shipping').on('click', '.pagination a', function (e) {
     e.preventDefault();
 
@@ -80,6 +80,6 @@ $('#button-filter').on('click', function() {
         url += '&filter_date_end=' + encodeURIComponent(filter_date_end);
     }
 
-    $('#sale-shipping').load('index.php?route=extension/opencart/report/sale_shipping|list&user_token={{ user_token }}' + url);
+    $('#sale-shipping').load('index.php?route=extension/opencart/report/sale_shipping.list&user_token={{ user_token }}' + url);
 });
-</script>
+//--></script>

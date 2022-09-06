@@ -128,7 +128,7 @@
                 <label for="input-top" class="col-sm-2 col-form-label">{{ entry_top }}</label>
                 <div class="col-sm-10">
                   <div class="form-check form-switch form-switch-lg">
-					<input type="hidden" name="top" value="0"/>
+                    <input type="hidden" name="top" value="0"/>
                     <input type="checkbox" name="top" value="1" id="input-top" class="form-check-input"{% if top %} checked{% endif %}/>
                   </div>
                   <div class="form-text">{{ help_top }}</div>
@@ -151,14 +151,14 @@
                 <label for="input-status" class="col-sm-2 col-form-label">{{ entry_status }}</label>
                 <div class="col-sm-10">
                   <div class="form-check form-switch form-switch-lg">
-					<input type="hidden" name="status" value="0"/>
+                    <input type="hidden" name="status" value="0"/>
                     <input type="checkbox" name="status" value="1" id="input-status" class="form-check-input"{% if status %} checked{% endif %}/>
                   </div>
                 </div>
               </div>
             </div>
             <div id="tab-seo" class="tab-pane">
-              <div class="alert alert-info"><i class="fas-solid fa-info-circle"></i> {{ text_keyword }}</div>
+              <div class="alert alert-info"><i class="fa-solid fa-info-circle"></i> {{ text_keyword }}</div>
               <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                   <thead>
@@ -296,7 +296,7 @@ ClassicEditor
 $('#input-parent').autocomplete({
     'source': function (request, response) {
         $.ajax({
-            url: 'index.php?route=catalog/category|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            url: 'index.php?route=catalog/category.autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
             dataType: 'json',
             success: function (json) {
                 json.unshift({
@@ -321,7 +321,7 @@ $('#input-parent').autocomplete({
 $('#input-filter').autocomplete({
     'source': function (request, response) {
         $.ajax({
-            url: 'index.php?route=catalog/filter|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            url: 'index.php?route=catalog/filter.autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
             dataType: 'json',
             success: function (json) {
                 response($.map(json, function (item) {

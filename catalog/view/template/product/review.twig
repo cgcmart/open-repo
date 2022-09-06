@@ -40,7 +40,7 @@
     {{ text_login }}
   {% endif %}
 </form>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#review').on('click', '.pagination a', function (e) {
     e.preventDefault();
 
@@ -54,7 +54,7 @@ $('#form-review').on('submit', function (e) {
     var element = this;
 
     $.ajax({
-        url: 'index.php?route=product/review|write&language={{ language }}&review_token={{ review_token }}&product_id={{ product_id }}',
+        url: 'index.php?route=product/review.write&language={{ language }}&review_token={{ review_token }}&product_id={{ product_id }}',
         type: 'post',
         data: $('#form-review').serialize(),
         dataType: 'json',
@@ -95,4 +95,4 @@ $('#form-review').on('submit', function (e) {
         }
     });
 });
-</script>
+//--></script>

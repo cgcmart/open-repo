@@ -34,7 +34,7 @@ class Login extends \Opencart\System\Engine\Controller {
 		// Create a login token to prevent brute force attacks
 		$this->session->data['login_token'] = Helper\General\token(32);
 
-		$data['login'] = $this->url->link('common/login|login', 'login_token=' . $this->session->data['login_token'], true);
+		$data['login'] = $this->url->link('common/login.login', 'login_token=' . $this->session->data['login_token'], true);
 
 		$data['forgotten'] = $this->url->link('common/forgotten');
 
@@ -102,13 +102,13 @@ class Login extends \Opencart\System\Engine\Controller {
 			unset($this->session->data['login_token']);
 
 			if ($this->request->post['redirect'] && (strpos($this->request->post['redirect'], HTTP_SERVER) === 0)) {
-				$json['redirect'] = str_replace('&amp;', '&', $this->request->post['redirect'] . '&user_token=' . $this->session->data['user_token']);
+				$json['redirect'] = str_replace('&amp;', '&',  $this->request->post['redirect'] . '&user_token=' . $this->session->data['user_token']);
 			} else {
 				$json['redirect'] = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true);
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

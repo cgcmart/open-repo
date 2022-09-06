@@ -349,7 +349,7 @@
                     <div class="input-group">
 
                       <div id="input-subtract" class="form-check form-switch form-switch-lg">
-						<input type="hidden" name="subtract" value="0"/>
+                        <input type="hidden" name="subtract" value="0"/>
                         <input type="checkbox" name="subtract" value="1" class="form-check-input"{% if subtract %} checked{% endif %}/>
                       </div>
 
@@ -411,7 +411,7 @@
                     <div class="input-group">
 
                       <div id="input-shipping" class="form-check form-switch form-switch-lg">
-						<input type="hidden" name="shipping" value="0"/>
+                        <input type="hidden" name="shipping" value="0"/>
                         <input type="checkbox" name="shipping" value="1" class="form-check-input"{% if shipping %} checked{% endif %}/>
                       </div>
 
@@ -514,8 +514,8 @@
                   <div class="col-sm-10">
                     <div class="input-group">
                       <div class="form-check form-switch form-switch-lg">
-						<input type="hidden" name="status" value="0"/>
-						<input type="checkbox" name="status" value="1" id="input-status" class="form-check-input"{% if status %} checked{% endif %}/>
+                        <input type="hidden" name="status" value="0"/>
+                        <input type="checkbox" name="status" value="1" id="input-status" class="form-check-input"{% if status %} checked{% endif %}/>
                       </div>
                       {% if master_id %}
                         <div class="input-group-text">
@@ -1305,7 +1305,7 @@
                               <img src="{{ product_image.thumb }}" alt="" title="" id="product-image-{{ image_row }}" data-oc-placeholder="{{ placeholder }}" class="card-img-top"/> <input type="hidden" name="product_image[{{ image_row }}][image]" value="{{ product_image.image }}" id="input-product-image-{{ image_row }}"/>
                               <div class="card-body">
                                 <button type="button" data-oc-toggle="image" data-oc-target="#input-product-image-{{ image_row }}" data-oc-thumb="#product-image-{{ image_row }}" class="btn btn-primary btn-sm btn-block"><i class="fa-solid fa-pencil"></i> {{ button_edit }}</button>
-                                <button type="button" data-oc-toggle="clear" data-oc-target="#input-product-image-{{ image_row }}" data-oc-thumb="#product-image-{{ image_row }}" class="btn btn-warning btn-sm btn-block"><i class="fa-regluar fa-trash-can"></i> {{ button_clear }}</button>
+                                <button type="button" data-oc-toggle="clear" data-oc-target="#input-product-image-{{ image_row }}" data-oc-thumb="#product-image-{{ image_row }}" class="btn btn-warning btn-sm btn-block"><i class="fa-regular fa-trash-can"></i> {{ button_clear }}</button>
                               </div>
                             </div>
                           </td>
@@ -1528,7 +1528,7 @@ ClassicEditor
 $('#input-manufacturer').autocomplete({
     'source': function (request, response) {
         $.ajax({
-            url: 'index.php?route=catalog/manufacturer|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            url: 'index.php?route=catalog/manufacturer.autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
             dataType: 'json',
             success: function (json) {
                 json.unshift({
@@ -1555,7 +1555,7 @@ $('#input-manufacturer').autocomplete({
 $('#input-category').autocomplete({
     'source': function (request, response) {
         $.ajax({
-            url: 'index.php?route=catalog/category|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            url: 'index.php?route=catalog/category.autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
             dataType: 'json',
             success: function (json) {
                 response($.map(json, function (item) {
@@ -1589,7 +1589,7 @@ $('#product-category').on('click', '.btn', function () {
 $('#input-filter').autocomplete({
     'source': function (request, response) {
         $.ajax({
-            url: 'index.php?route=catalog/filter|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            url: 'index.php?route=catalog/filter.autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
             dataType: 'json',
             success: function (json) {
                 response($.map(json, function (item) {
@@ -1623,7 +1623,7 @@ $('#product-filter').on('click', '.btn', function () {
 $('#input-download').autocomplete({
     'source': function (request, response) {
         $.ajax({
-            url: 'index.php?route=catalog/download|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            url: 'index.php?route=catalog/download.autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
             dataType: 'json',
             success: function (json) {
                 response($.map(json, function (item) {
@@ -1657,7 +1657,7 @@ $('#product-download').on('click', '.btn', function () {
 $('#input-related').autocomplete({
     'source': function (request, response) {
         $.ajax({
-            url: 'index.php?route=catalog/product|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            url: 'index.php?route=catalog/product.autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
             dataType: 'json',
             success: function (json) {
                 response($.map(json, function (item) {
@@ -1691,7 +1691,7 @@ var attributeautocomplete = function (attribute_row) {
     $('input[name=\'product_attribute[' + attribute_row + '][name]\']').autocomplete({
         'source': function (request, response) {
             $.ajax({
-                url: 'index.php?route=catalog/attribute|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+                url: 'index.php?route=catalog/attribute.autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
                 dataType: 'json',
                 success: function (json) {
                     response($.map(json, function (item) {
@@ -1726,7 +1726,7 @@ $('#button-attribute').on('click', function () {
     html += '  <td class="text-start">';
   {% for language in languages %}
     html += '<div class="input-group">';
-    html += ' <div class="input-group-text"><img src="{{ language.image }}" title="{{ language.name }}" /></div>';
+    html += '  <div class="input-group-text"><img src="{{ language.image }}" title="{{ language.name }}" /></div>';
     html += '  <textarea name="product_attribute[' + attribute_row + '][product_attribute_description][{{ language.language_id }}][text]" rows="5" placeholder="{{ entry_text }}" id="input-text-' + attribute_row + '-{{ language.language_id }}" class="form-control"></textarea>';
     html += '</div>';
   {% endfor %}
@@ -1747,7 +1747,7 @@ var option_row = {{ option_row }};
 $('#input-option').autocomplete({
     'source': function (request, response) {
         $.ajax({
-            url: 'index.php?route=catalog/option|autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
+            url: 'index.php?route=catalog/option.autocomplete&user_token={{ user_token }}&filter_name=' + encodeURIComponent(request),
             dataType: 'json',
             success: function (json) {
                 response($.map(json, function (item) {

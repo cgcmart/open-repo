@@ -576,10 +576,10 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#input-theme').on('change', function () {
     $.ajax({
-        url: 'index.php?route=setting/setting|theme&user_token={{ user_token }}&theme=' + this.value,
+        url: 'index.php?route=setting/setting.theme&user_token={{ user_token }}&theme=' + this.value,
         dataType: 'html',
         beforeSend: function () {
             $('#input-theme').prop('disabled', true);
@@ -597,12 +597,13 @@ $('#input-theme').on('change', function () {
 });
 
 $('#input-theme').trigger('change');
-
+//--></script>
+<script type="text/javascript"><!--
 $('#input-country').on('change', function () {
     var element = this;
 
     $.ajax({
-        url: 'index.php?route=localisation/country|country&user_token={{ user_token }}&country_id=' + this.value,
+        url: 'index.php?route=localisation/country.country&user_token={{ user_token }}&country_id=' + this.value,
         dataType: 'json',
         beforeSend: function () {
             $(element).prop('disabled', true);
@@ -636,5 +637,5 @@ $('#input-country').on('change', function () {
 });
 
 $('#input-country').trigger('change');
-</script>
-{{ footer }}
+//--></script>
+{{ footer }} 

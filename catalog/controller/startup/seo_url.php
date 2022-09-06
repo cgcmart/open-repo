@@ -57,15 +57,24 @@ class SeoUrl extends \Opencart\System\Engine\Controller {
 		// Parse the query into its separate parts
 		$parts = explode('&', $url_info['query']);
 
+		$listUniqueKeys = $this->model_design_seo_url->listUniqueKeys();
+		
 		foreach ($parts as $part) {
-			[$key, $value] = explode('=', $part);
+			$seo_queries = explode('=', $part);
 
-			$result = $this->model_design_seo_url->getSeoUrlByKeyValue((string)$key, (string)$value);
+			if (count($seo_queries) == 2) {
+				$key = $seo_queries[0];
+				$value = $seo_queries[1];
+			}
 
-			if ($result) {
-				$paths[] = $result;
+			if (!empty($key) && in_array($key, $listUniqueKeys)) {
+				$result = $this->model_design_seo_url->getSeoUrlByKeyValue($key, $value);
 
-				unset($query[$key]);
+				if ($result) {
+					$paths[] = $result;
+
+					unset($query[$key]);
+				}
 			}
 		}
 

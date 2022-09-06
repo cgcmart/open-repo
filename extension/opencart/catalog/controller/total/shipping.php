@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Catalog\Controller\Extension\Opencart\Total;
-use \Opencart\System\Helper as Helper;
+use \Opencart\System\Helper AS Helper;
 class Shipping extends \Opencart\System\Engine\Controller {
 	public function index(): string {
 		if ($this->config->get('total_shipping_status') && $this->config->get('total_shipping_estimator') && $this->cart->hasShipping()) {
@@ -166,7 +166,7 @@ class Shipping extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

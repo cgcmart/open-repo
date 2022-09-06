@@ -471,7 +471,7 @@
     </div>
   </div>
 </form>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 // Account
 $('input[name=\'account\']').on('click', function () {
     if ($(this).val() == 1) {
@@ -543,7 +543,7 @@ $('#form-register').on('submit', function (e) {
 
     chain.attach(function () {
         return $.ajax({
-            url: 'index.php?route=checkout/register|save&language={{ language }}',
+            url: 'index.php?route=checkout/register.save&language={{ language }}',
             type: 'post',
             dataType: 'json',
             data: $('#form-register').serialize(),
@@ -647,4 +647,4 @@ $('select[name$=\'_country_id\']').on('change', function () {
 });
 
 $('select[name$=\'_country_id\']').trigger('change');
-</script>
+//--></script>

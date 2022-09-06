@@ -43,8 +43,8 @@ class Feed extends \Opencart\System\Engine\Controller {
 				$data['extensions'][] = [
 					'name'      => $this->language->get($code . '_heading_title'),
 					'status'    => $this->config->get('feed_' . $code . '_status') ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-					'install'   => $this->url->link('extension/feed|install', 'user_token=' . $this->session->data['user_token'] . '&extension=' . $extension . '&code=' . $code),
-					'uninstall' => $this->url->link('extension/feed|uninstall', 'user_token=' . $this->session->data['user_token'] . '&extension=' . $extension . '&code=' . $code),
+					'install'   => $this->url->link('extension/feed.install', 'user_token=' . $this->session->data['user_token'] . '&extension=' . $extension . '&code=' . $code),
+					'uninstall' => $this->url->link('extension/feed.uninstall', 'user_token=' . $this->session->data['user_token'] . '&extension=' . $extension . '&code=' . $code),
 					'installed' => in_array($code, $installed),
 					'edit'      => $this->url->link('extension/' . $extension . '/feed/' . $code, 'user_token=' . $this->session->data['user_token'])
 				];
@@ -116,12 +116,12 @@ class Feed extends \Opencart\System\Engine\Controller {
 			$this->config->addPath('extension/' . $extension, DIR_EXTENSION . $extension . '/system/config/');
 
 			// Call install method if it exists
-			$this->load->controller('extension/' . $extension . '/feed/' . $code . '|install');
+			$this->load->controller('extension/' . $extension . '/feed/' . $code . '.install');
 
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -140,12 +140,12 @@ class Feed extends \Opencart\System\Engine\Controller {
 			$this->model_setting_extension->uninstall('feed', $this->request->get['code']);
 
 			// Call uninstall method if it exists
-			$this->load->controller('extension/' . $this->request->get['extension'] . '/feed/' . $this->request->get['code'] . '|uninstall');
+			$this->load->controller('extension/' . $this->request->get['extension'] . '/feed/' . $this->request->get['code'] . '.uninstall');
 
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

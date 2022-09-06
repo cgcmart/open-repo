@@ -9,14 +9,14 @@
   {% endfor %}
 </ul>
 <input type="hidden" name="redirect" value="{{ redirect }}" id="input-redirect"/>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#nav-language .dropdown-item').on('click', function (e) {
     e.preventDefault();
 
     var element = this;
 
     $.ajax({
-        url: 'index.php?route=common/language|save&user_token={{ user_token }}',
+        url: 'index.php?route=common/language.save&user_token={{ user_token }}',
         type: 'post',
         data: 'code=' + $(element).attr('href') + '&redirect=' + encodeURIComponent($('#input-redirect').val()),
         dataType: 'json',
@@ -37,4 +37,4 @@ $('#nav-language .dropdown-item').on('click', function (e) {
         }
     });
 });
-</script>
+//--></script>

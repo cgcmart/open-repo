@@ -1,6 +1,6 @@
 <?php
 namespace Opencart\Admin\Controller\Extension\Opencart\Module;
-use \Opencart\System\Helper as Helper;
+use \Opencart\System\Helper AS Helper;
 class HTML extends \Opencart\System\Engine\Controller {
 	public function index(): void {
 		$this->load->language('extension/opencart/module/html');
@@ -34,9 +34,9 @@ class HTML extends \Opencart\System\Engine\Controller {
 		}
 
 		if (!isset($this->request->get['module_id'])) {
-			$data['save'] = $this->url->link('extension/opencart/module/html|save', 'user_token=' . $this->session->data['user_token']);
+			$data['save'] = $this->url->link('extension/opencart/module/html.save', 'user_token=' . $this->session->data['user_token']);
 		} else {
-			$data['save'] = $this->url->link('extension/opencart/module/html|save', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id']);
+			$data['save'] = $this->url->link('extension/opencart/module/html.save', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id']);
 		}
 
 		$data['back'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module');
@@ -101,7 +101,7 @@ class HTML extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=UTF-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

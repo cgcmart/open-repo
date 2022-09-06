@@ -22,7 +22,7 @@ class CustomField extends \Opencart\System\Engine\Controller {
 			];
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

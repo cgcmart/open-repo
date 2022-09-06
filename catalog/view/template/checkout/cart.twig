@@ -35,7 +35,7 @@
       {{ content_bottom }}</div>
     {{ column_right }}</div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#shopping-cart').on('submit', 'form', function (e) {
     e.preventDefault();
 
@@ -73,8 +73,8 @@ $('#shopping-cart').on('submit', 'form', function (e) {
                 $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fa-solid fa-circle-exclamation"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
             }
 
-            $('#shopping-cart').load('index.php?route=checkout/cart|list&language={{ language }}', {}, function () {
-                $('#header-cart').load('index.php?route=common/cart|info&language={{ language }}');
+            $('#shopping-cart').load('index.php?route=checkout/cart.list&language={{ language }}', {}, function () {
+                $('#header-cart').load('index.php?route=common/cart.info&language={{ language }}');
             });
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -82,5 +82,5 @@ $('#shopping-cart').on('submit', 'form', function (e) {
         }
     });
 });
-</script>
+//--></script>
 {{ footer }}

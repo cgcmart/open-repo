@@ -9,12 +9,12 @@
     <button type="button" id="button-confirm" class="btn btn-primary">{{ button_confirm }}</button>
   </div>
 </fieldset>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#button-confirm').on('click', function () {
     var element = this;
 
     $.ajax({
-        url: 'index.php?route=extension/opencart/payment/bank_transfer|confirm&language={{ language }}',
+        url: 'index.php?route=extension/opencart/payment/bank_transfer.confirm&language={{ language }}',
         dataType: 'json',
         beforeSend: function () {
             $(element).prop('disabled', true).addClass('loading');
@@ -36,4 +36,4 @@ $('#button-confirm').on('click', function () {
         }
     });
 });
-</script>
+//--></script>

@@ -29,7 +29,7 @@ class Newsletter extends \Opencart\System\Engine\Controller {
 			'href' => $this->url->link('account/newsletter', 'language=' . $this->config->get('config_language') . '&customer_token=' . $this->session->data['customer_token'])
 		];
 
-		$data['save'] = $this->url->link('account/newsletter|save', 'language=' . $this->config->get('config_language') . '&customer_token=' . $this->session->data['customer_token']);
+		$data['save'] = $this->url->link('account/newsletter.save', 'language=' . $this->config->get('config_language') . '&customer_token=' . $this->session->data['customer_token']);
 
 		$data['newsletter'] = $this->customer->getNewsletter();
 
@@ -66,7 +66,7 @@ class Newsletter extends \Opencart\System\Engine\Controller {
 			$json['redirect'] = $this->url->link('account/account', 'language=' . $this->config->get('config_language') . '&customer_token=' . $this->session->data['customer_token'], true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

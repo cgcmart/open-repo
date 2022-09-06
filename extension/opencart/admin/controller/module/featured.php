@@ -32,9 +32,9 @@ class Featured extends \Opencart\System\Engine\Controller {
 		}
 
 		if (!isset($this->request->get['module_id'])) {
-			$data['save'] = $this->url->link('extension/opencart/module/featured|save', 'user_token=' . $this->session->data['user_token']);
+			$data['save'] = $this->url->link('extension/opencart/module/featured.save', 'user_token=' . $this->session->data['user_token']);
 		} else {
-			$data['save'] = $this->url->link('extension/opencart/module/featured|save', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id']);
+			$data['save'] = $this->url->link('extension/opencart/module/featured.save', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id']);
 		}
 
 		$data['back'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module');
@@ -144,7 +144,7 @@ class Featured extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

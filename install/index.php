@@ -39,4 +39,4 @@ define('DIR_UPLOAD', DIR_SYSTEM . 'storage/upload/');
 require_once(DIR_SYSTEM . 'startup.php');
 
 // Framework
-require_once(DIR_SYSTEM . 'framework.php'); 
+require_once(DIR_SYSTEM . 'framework.php');

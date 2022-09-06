@@ -37,11 +37,11 @@
       {{ content_bottom }}</div>
     {{ column_right }}</div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#input-generator').autocomplete({
     'source': function (request, response) {
         $.ajax({
-            url: 'index.php?route=account/tracking|autocomplete&customer_token={{ customer_token }}&filter_name=' + encodeURIComponent(request) + '&tracking=' + encodeURIComponent($('#input-code').val()) + '&language={{ language }}',
+            url: 'index.php?route=account/tracking.autocomplete&customer_token={{ customer_token }}&filter_name=' + encodeURIComponent(request) + '&tracking=' + encodeURIComponent($('#input-code').val()) + '&language={{ language }}',
             dataType: 'json',
             success: function (json) {
                 response($.map(json, function (item) {
@@ -57,5 +57,5 @@ $('#input-generator').autocomplete({
         $('#input-link').val(item['value']);
     }
 });
-</script>
+//--></script>
 {{ footer }}

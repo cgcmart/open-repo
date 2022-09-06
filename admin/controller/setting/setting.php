@@ -24,7 +24,7 @@ class Setting extends \Opencart\System\Engine\Controller {
 			'href' => $this->url->link('setting/setting', 'user_token=' . $this->session->data['user_token'])
 		];
 
-		$data['save'] = $this->url->link('setting/setting|save', 'user_token=' . $this->session->data['user_token']);
+		$data['save'] = $this->url->link('setting/setting.save', 'user_token=' . $this->session->data['user_token']);
 		$data['back'] = $this->url->link('setting/store', 'user_token=' . $this->session->data['user_token']);
 
 		// General
@@ -801,7 +801,7 @@ class Setting extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

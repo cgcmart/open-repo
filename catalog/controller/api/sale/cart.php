@@ -87,7 +87,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 
 		$json['shipping_required'] = $this->cart->hasShipping();
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -171,7 +171,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 			unset($this->session->data['payment_methods']);
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -200,7 +200,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 		unset($this->session->data['payment_methods']);
 		unset($this->session->data['reward']);
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -224,7 +224,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 		unset($this->session->data['payment_methods']);
 		unset($this->session->data['reward']);
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

@@ -23,7 +23,7 @@ class ECB extends \Opencart\System\Engine\Controller {
 			'href' => $this->url->link('extension/opencart/currency/ecb', 'user_token=' . $this->session->data['user_token'])
 		];
 
-		$data['save'] = $this->url->link('extension/opencart/currency/ecb|save', 'user_token=' . $this->session->data['user_token']);
+		$data['save'] = $this->url->link('extension/opencart/currency/ecb.save', 'user_token=' . $this->session->data['user_token']);
 		$data['back'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=currency');
 
 		$data['currency_ecb_status'] = $this->config->get('currency_ecb_status');
@@ -52,7 +52,7 @@ class ECB extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -69,9 +69,11 @@ class ECB extends \Opencart\System\Engine\Controller {
 
 			$response = curl_exec($curl);
 
+			$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
 			curl_close($curl);
 
-			if ($response) {
+			if ($status == 200) {
 				$dom = new \DOMDocument('1.0', 'UTF-8');
 				$dom->loadXml($response);
 

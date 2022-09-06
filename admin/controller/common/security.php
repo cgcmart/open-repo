@@ -336,11 +336,11 @@ class Security extends \Opencart\System\Engine\Controller {
 
 			// 6. redirect to the new admin
 			$url_without_admin_folder = substr(HTTP_SERVER, 0, strrpos(HTTP_SERVER, 'admin/'));
-			$url_with_new_admin_folder = $url_without_admin_folder . $name . '/index.php?route=common/security|delete&user_token=' . $this->session->data['user_token'];
+			$url_with_new_admin_folder = $url_without_admin_folder . $name . '/index.php?route=common/security.delete&user_token=' . $this->session->data['user_token'];
 			$json['redirect'] = str_replace('&amp;', '&', $url_with_new_admin_folder);
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

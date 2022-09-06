@@ -49,7 +49,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 				$data['weight'] = '';
 			}
 
-			$data['list'] = $this->load->controller('checkout/cart|getList');
+			$data['list'] = $this->load->controller('checkout/cart.getList');
 
 			$data['modules'] = [];
 
@@ -100,9 +100,9 @@ class Cart extends \Opencart\System\Engine\Controller {
 
 	public function getList(): string {
 		$data['list'] = $this->url->link(' ', 'language=' . $this->config->get('config_language'));
-		$data['product_edit'] = $this->url->link('checkout/cart|edit', 'language=' . $this->config->get('config_language'));
-		$data['product_remove'] = $this->url->link('checkout/cart|remove', 'language=' . $this->config->get('config_language'));
-		$data['voucher_remove'] = $this->url->link('checkout/voucher|remove', 'language=' . $this->config->get('config_language'));
+		$data['product_edit'] = $this->url->link('checkout/cart.edit', 'language=' . $this->config->get('config_language'));
+		$data['product_remove'] = $this->url->link('checkout/cart.remove', 'language=' . $this->config->get('config_language'));
+		$data['voucher_remove'] = $this->url->link('checkout/voucher.remove', 'language=' . $this->config->get('config_language'));
 
 		$this->load->model('tool/image');
 		$this->load->model('tool/upload');
@@ -296,7 +296,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 			$json['redirect'] = $this->url->link('product/product', 'language=' . $this->config->get('config_language') . '&product_id=' . $this->request->post['product_id'], true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -330,7 +330,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 		unset($this->session->data['payment_methods']);
 		unset($this->session->data['reward']);
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -358,7 +358,7 @@ class Cart extends \Opencart\System\Engine\Controller {
 		unset($this->session->data['payment_methods']);
 		unset($this->session->data['reward']);
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

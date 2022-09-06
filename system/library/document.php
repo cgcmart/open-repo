@@ -2,7 +2,7 @@
 /**
  * @package		OpenCart
  * @author		Daniel Kerr
- * @copyright	Copyright (c) 2005 - 2022, OpenCart, Ltd. (https://www.opencart.com/)
+ * @copyright	Copyright (c) 2005 - 2017, OpenCart, Ltd. (https://www.opencart.com/)
  * @license		https://opensource.org/licenses/GPL-3.0
  * @link		https://www.opencart.com
 */
@@ -82,7 +82,7 @@ class Document {
 	 * @param	string	$rel
      */
 	public function addLink(string $href, string $rel): void {
-		$this->links[$rel][$href] = [
+		$this->links[$href] = [
 			'href' => $href,
 			'rel'  => $rel
 		];
@@ -105,7 +105,11 @@ class Document {
 	 * @param	string	$media
      */
 	public function addStyle(string $href, $rel = 'stylesheet', $media = 'screen'): void {
-		$this->styles[$rel][$href][$media] = ['href' => $href];
+		$this->styles[$href] = [
+			'href'  => $href,
+			'rel'   => $rel,
+			'media' => $media
+		];
 	}
 
 	/**

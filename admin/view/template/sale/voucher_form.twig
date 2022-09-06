@@ -114,12 +114,12 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#button-send').on('click', function () {
     var element = this;
 
     $.ajax({
-        url: 'index.php?route=sale/voucher|send&user_token={{ user_token }}',
+        url: 'index.php?route=sale/voucher.send&user_token={{ user_token }}',
         type: 'post',
         dataType: 'json',
         data: 'voucher_id=' + $('#input-voucher-id').val(),
@@ -151,5 +151,5 @@ $('#history').on('click', '.pagination a', function (e) {
 
     $('#history').load(this.href);
 });
-</script>
+//--></script>
 {{ footer }}

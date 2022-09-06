@@ -61,11 +61,11 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $('#button-upgrade').on('click', function () {
     $('#progress').html('{{ text_download }}');
 
-    var next = 'index.php?route=tool/upgrade|download&user_token={{ user_token }}&version={{ latest_version }}';
+    var next = 'index.php?route=tool/upgrade.download&user_token={{ user_token }}&version={{ latest_version }}';
 
     var upgrade = function () {
         return $.ajax({
@@ -108,5 +108,5 @@ $('#button-upgrade').on('click', function () {
 
     chain.attach(upgrade);
 });
-</script>
+//--></script>
 {{ footer }}

@@ -20,12 +20,12 @@
             'dev_requirement' => false,
         ),
         'scssphp/scssphp' => array(
-            'pretty_version' => 'v1.10.5',
-            'version' => '1.10.5.0',
+            'pretty_version' => 'v1.11.0',
+            'version' => '1.11.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../scssphp/scssphp',
             'aliases' => array(),
-            'reference' => '6d44282ccf283e133ab70b6282f8e068ff2f9bf9',
+            'reference' => '33749d12c2569bb24071f94e9af828662dabb068',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(

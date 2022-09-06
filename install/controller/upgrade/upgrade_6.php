@@ -74,7 +74,7 @@ class Upgrade6 extends \Opencart\System\Engine\Controller {
 		}
 
 		if (!$json) {
-			$json['text'] = sprintf($this->language->get('text_progress'), 6, 6, 8);
+			$json['text'] = sprintf($this->language->get('text_progress'), 6, 6, 9);
 
 			$url = '';
 
@@ -89,7 +89,7 @@ class Upgrade6 extends \Opencart\System\Engine\Controller {
 			$json['next'] = $this->url->link('upgrade/upgrade_7', $url, true);
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

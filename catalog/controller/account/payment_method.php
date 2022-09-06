@@ -79,7 +79,7 @@ class PaymentMethod extends \Opencart\System\Engine\Controller {
 				'image'               => $result['image'],
 				'type'                => $result['type'],
 				'date_expire'         => date('m-Y', strtotime($result['date_expire'])),
-				'delete'              => $this->url->link('account/payment_method|delete', 'language=' . $this->config->get('config_language') . '&customer_token=' . $this->session->data['customer_token'] . '&customer_payment_id=' . $result['customer_payment_id'])
+				'delete'              => $this->url->link('account/payment_method.delete', 'language=' . $this->config->get('config_language') . '&customer_token=' . $this->session->data['customer_token'] . '&customer_payment_id=' . $result['customer_payment_id'])
 			];
 		}
 
@@ -127,7 +127,7 @@ class PaymentMethod extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

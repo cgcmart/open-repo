@@ -23,7 +23,7 @@ class CustomerActivity extends \Opencart\System\Engine\Controller {
 			'href' => $this->url->link('extension/opencart/report/customer_activity', 'user_token=' . $this->session->data['user_token'])
 		];
 
-		$data['save'] = $this->url->link('extension/opencart/report/customer_activity|save', 'user_token=' . $this->session->data['user_token']);
+		$data['save'] = $this->url->link('extension/opencart/report/customer_activity.save', 'user_token=' . $this->session->data['user_token']);
 		$data['back'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=report');
 
 		$data['report_customer_activity_status'] = $this->config->get('report_customer_activity_status');
@@ -53,7 +53,7 @@ class CustomerActivity extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -130,8 +130,8 @@ class CustomerActivity extends \Opencart\System\Engine\Controller {
 			];
 
 			$replace = [
-				$this->url->link('customer/customer|form', 'user_token=' . $this->session->data['user_token'] . '&customer_id='),
-				$this->url->link('sale/order|info', 'user_token=' . $this->session->data['user_token'] . '&order_id=')
+				$this->url->link('customer/customer.form', 'user_token=' . $this->session->data['user_token'] . '&customer_id='),
+				$this->url->link('sale/order.info', 'user_token=' . $this->session->data['user_token'] . '&order_id=')
 			];
 
 			$data['activities'][] = [
@@ -163,7 +163,7 @@ class CustomerActivity extends \Opencart\System\Engine\Controller {
 			'total' => $activity_total,
 			'page'  => $page,
 			'limit' => $this->config->get('config_pagination'),
-			'url'   => $this->url->link('extension/opencart/report/customer_activity|report', 'user_token=' . $this->session->data['user_token'] . '&code=customer_activity' . $url . '&page={page}')
+			'url'   => $this->url->link('extension/opencart/report/customer_activity.report', 'user_token=' . $this->session->data['user_token'] . '&code=customer_activity' . $url . '&page={page}')
 		]);
 
 		$data['results'] = sprintf($this->language->get('text_pagination'), ($activity_total) ? (($page - 1) * $this->config->get('config_pagination')) + 1 : 0, ((($page - 1) * $this->config->get('config_pagination')) > ($activity_total - $this->config->get('config_pagination'))) ? $activity_total : ((($page - 1) * $this->config->get('config_pagination')) + $this->config->get('config_pagination')), $activity_total, ceil($activity_total / $this->config->get('config_pagination')));

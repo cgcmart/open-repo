@@ -19,7 +19,7 @@ class Profile extends \Opencart\System\Engine\Controller {
 			'href' => $this->url->link('user/profile', 'user_token=' . $this->session->data['user_token'])
 		];
 
-		$data['save'] = $this->url->link('user/profile|save', 'user_token=' . $this->session->data['user_token']);
+		$data['save'] = $this->url->link('user/profile.save', 'user_token=' . $this->session->data['user_token']);
 		$data['back'] = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token']);
 
 		$this->load->model('user/user');
@@ -133,7 +133,7 @@ class Profile extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

@@ -3,6 +3,7 @@ namespace Opencart\Catalog\Controller\Mail;
 use \Opencart\System\Helper as Helper;
 class Subscription extends \Opencart\System\Engine\Controller {
 	public function index(string &$route, array &$args, &$output): void {
+
 		if (isset($args[0])) {
 			$subscription_id = $args[0];
 		} else {
@@ -38,6 +39,11 @@ class Subscription extends \Opencart\System\Engine\Controller {
 		$order_info = $this->model_checkout_order->getOrder($order_id);
 
 		if ($order_info) {
+
+
+
+
+
 			// If order status is 0 then becomes greater than 0 send main html email
 			if (!$order_info['order_status_id'] && $order_status_id) {
 				$this->add($order_info, $order_status_id, $comment, $notify);
@@ -47,6 +53,8 @@ class Subscription extends \Opencart\System\Engine\Controller {
 			if ($order_info['order_status_id'] && $order_status_id && $notify) {
 				$this->edit($order_info, $order_status_id, $comment, $notify);
 			}
+
+
 
 			// Check for any downloadable products
 			$download_status = false;
@@ -117,7 +125,7 @@ class Subscription extends \Opencart\System\Engine\Controller {
 			$data['store_url'] = $order_info['store_url'];
 
 			$data['customer_id'] = $order_info['customer_id'];
-			$data['link'] = $order_info['store_url'] . 'index.php?route=account/order|info&order_id=' . $order_info['order_id'];
+			$data['link'] = $order_info['store_url'] . 'index.php?route=account/order.info&order_id=' . $order_info['order_id'];
 
 			if ($download_status) {
 				$data['download'] = $order_info['store_url'] . 'index.php?route=account/download';
@@ -303,5 +311,6 @@ class Subscription extends \Opencart\System\Engine\Controller {
 				$mail->send();
 			}
 		}
+
 	}
 }

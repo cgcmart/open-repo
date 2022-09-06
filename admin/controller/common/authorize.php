@@ -51,7 +51,7 @@ class Authorize extends \Opencart\System\Engine\Controller {
 			setcookie('authorize', $token, time() + 60 * 60 * 24 * 365 * 10);
 		}
 
-		$data['action'] = $this->url->link('common/authorize|validate', 'user_token=' . $this->session->data['user_token']);
+		$data['action'] = $this->url->link('common/authorize.validate', 'user_token=' . $this->session->data['user_token']);
 
 		// Set the code to be emailed
 		$this->session->data['code'] = Helper\General\token(4);
@@ -90,7 +90,7 @@ class Authorize extends \Opencart\System\Engine\Controller {
 
 		$json['success'] = $this->language->get('text_resend');
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -117,7 +117,7 @@ class Authorize extends \Opencart\System\Engine\Controller {
 			}
 
 			if ($login_info['attempts'] >= 2) {
-				$json['redirect'] = $this->url->link('common/authorize|unlock', 'user_token=' . $this->session->data['user_token'], true);
+				$json['redirect'] = $this->url->link('common/authorize.unlock', 'user_token=' . $this->session->data['user_token'], true);
 			}
 		} else {
 			$json['error'] = $this->language->get('error_code');
@@ -135,7 +135,7 @@ class Authorize extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -177,7 +177,7 @@ class Authorize extends \Opencart\System\Engine\Controller {
 
 		$this->model_user_user->editCode($this->user->getEmail(), Helper\General\token(32));
 
-		$this->response->addHeader('Content-Type: application/json; charset=utf-8');
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

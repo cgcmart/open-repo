@@ -84,4 +84,4 @@ class Transaction extends \Opencart\System\Engine\Controller {
 			}
 		}
 	}		
-}
+}	
