@@ -3,7 +3,6 @@ namespace Opencart\Catalog\Controller\Mail;
 use \Opencart\System\Helper as Helper;
 class Subscription extends \Opencart\System\Engine\Controller {
 	public function index(string &$route, array &$args, &$output): void {
-
 		if (isset($args[0])) {
 			$subscription_id = $args[0];
 		} else {
@@ -15,7 +14,7 @@ class Subscription extends \Opencart\System\Engine\Controller {
 		} else {
 			$subscription = [];
 		}
-
+		/*
 		$subscription['order_product_id']
 		$subscription['customer_id']
 		$subscription['order_id']
@@ -34,16 +33,11 @@ class Subscription extends \Opencart\System\Engine\Controller {
 		$subscription['remaining' ]
 		$subscription['date_next']
 		$subscription['status'	]
-
+		*/
 		// We need to grab the old order status ID
 		$order_info = $this->model_checkout_order->getOrder($order_id);
 
 		if ($order_info) {
-
-
-
-
-
 			// If order status is 0 then becomes greater than 0 send main html email
 			if (!$order_info['order_status_id'] && $order_status_id) {
 				$this->add($order_info, $order_status_id, $comment, $notify);
@@ -53,8 +47,6 @@ class Subscription extends \Opencart\System\Engine\Controller {
 			if ($order_info['order_status_id'] && $order_status_id && $notify) {
 				$this->edit($order_info, $order_status_id, $comment, $notify);
 			}
-
-
 
 			// Check for any downloadable products
 			$download_status = false;
