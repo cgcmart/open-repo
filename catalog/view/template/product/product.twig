@@ -283,7 +283,7 @@
       {{ content_bottom }}</div>
     {{ column_right }}</div>
 </div>
-<script type="text/javascript"><!--
+<script type="text/javascript">
 $('#input-subscription').on('change', function (e) {
     var element = this;
 
@@ -323,7 +323,7 @@ $('#form-product').on('submit', function (e) {
             if (json['success']) {
                 $('#alert').prepend('<div class="alert alert-success alert-dismissible"><i class="fa-solid fa-circle-check"></i> ' + json['success'] + ' <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 
-                $('#header-cart').load('index.php?route=common/cart|info');
+                $('#header-cart').load('index.php?route=common/cart.info');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -341,5 +341,5 @@ $(document).ready(function () {
         }
     });
 });
-//--></script>
+</script>
 {{ footer }}
