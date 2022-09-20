@@ -80,7 +80,7 @@ class PaymentAddress extends \Opencart\System\Engine\Controller {
 		}
 
 		// Validate if payment address is set if required in settings
-		if (!$this->config->get('config_checkout_address')) {
+		if (!$this->config->get('config_checkout_payment_address')) {
 			$json['redirect'] = $this->url->link('checkout/cart', 'language=' . $this->config->get('config_language'), true);
 		}
 
@@ -212,6 +212,7 @@ class PaymentAddress extends \Opencart\System\Engine\Controller {
 
 			$json['success'] = $this->language->get('text_success');
 
+			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_methods']);
 		}
 
@@ -256,7 +257,7 @@ class PaymentAddress extends \Opencart\System\Engine\Controller {
 		}
 
 		// Validate if payment address is set if required in settings
-		if (!$this->config->get('config_checkout_address')) {
+		if (!$this->config->get('config_checkout_payment_address')) {
 			$json['redirect'] = $this->url->link('checkout/cart', 'language=' . $this->config->get('config_language'), true);
 		}
 
@@ -275,6 +276,7 @@ class PaymentAddress extends \Opencart\System\Engine\Controller {
 
 			$json['success'] = $this->language->get('text_success');
 
+			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_methods']);
 		}
 

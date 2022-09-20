@@ -7,7 +7,7 @@ class ShippingAddress extends \Opencart\System\Engine\Controller {
 
 		$data['error_upload_size'] = sprintf($this->language->get('error_upload_size'), $this->config->get('config_file_max_size'));
 
-		$data['config_checkout_address'] = $this->config->get('config_checkout_address');
+		$data['config_checkout_payment_address'] = $this->config->get('config_checkout_payment_address');
 		$data['config_file_max_size'] = ((int)$this->config->get('config_file_max_size') * 1024 * 1024);
 
 		$data['upload'] = $this->url->link('tool/upload', 'language=' . $this->config->get('config_language'));
@@ -213,6 +213,7 @@ class ShippingAddress extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 
 			unset($this->session->data['shipping_methods']);
+			unset($this->session->data['payment_methods']);
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
@@ -252,7 +253,7 @@ class ShippingAddress extends \Opencart\System\Engine\Controller {
 		}
 
 		// Validate if payment address is set if required in settings
-		if ($this->config->get('config_checkout_address') && !isset($this->session->data['payment_address'])) {
+		if ($this->config->get('config_checkout_payment_address') && !isset($this->session->data['payment_address'])) {
 			$json['redirect'] = $this->url->link('checkout/cart', 'language=' . $this->config->get('config_language'), true);
 		}
 
@@ -277,6 +278,7 @@ class ShippingAddress extends \Opencart\System\Engine\Controller {
 			$json['success'] = $this->language->get('text_success');
 
 			unset($this->session->data['shipping_methods']);
+			unset($this->session->data['payment_methods']);
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

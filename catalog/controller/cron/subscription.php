@@ -9,7 +9,6 @@ class Subscription extends \Opencart\System\Engine\Controller {
 		$this->load->model('account/customer');
 		$this->load->model('setting/extension');
 
-		/*
 		$filter_data = [
 			'filter_subscription_status_id' => $this->config->get('config_subscription_active_status_id'),
 			'filter_date_next'              => date('Y-m-d H:i:s')
@@ -89,6 +88,5 @@ class Subscription extends \Opencart\System\Engine\Controller {
 				}
 			}
 		}
-		*/
 	}
 }
