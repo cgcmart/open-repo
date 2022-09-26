@@ -1,7 +1,5 @@
 <?php
 namespace Opencart\Admin\Model\Setting;
-use Aws\signer\signerClient;
-
 class Module extends \Opencart\System\Engine\Model {
 	public function addModule(string $code, array $data): int {
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "module` SET `name` = '" . $this->db->escape((string)$data['name']) . "', `code` = '" . $this->db->escape($code) . "', `setting` = '" . $this->db->escape(json_encode($data)) . "'");

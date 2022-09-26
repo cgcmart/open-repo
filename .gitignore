@@ -35,7 +35,7 @@
 /system/storage/upload/*
 !/system/storage/upload/index.html
 
-# If you want to ignore install file use following lines [on development mode]
-# /install/*
+# CSS Files
+/upload/catalog/view/stylesheet/stylesheet.css
 
 # IDE Project files

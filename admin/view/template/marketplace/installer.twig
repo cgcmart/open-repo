@@ -35,7 +35,7 @@
     </div>
   </div>
 </div>
-<script type="text/javascript"><!--
+<script type="text/javascript">
 $('#extension').on('click', 'thead a, .pagination a', function (e) {
     e.preventDefault();
 
@@ -121,9 +121,6 @@ $('#extension').on('click', '.btn-success, .btn-warning', function (e) {
             beforeSend: function () {
                 $(element).prop('disabled', true).addClass('loading');
             },
-            complete: function () {
-                $(element).prop('disabled', false).removeClass('loading');
-            },
             success: function (json) {
                 $('.alert-dismissible').remove();
 
@@ -143,6 +140,8 @@ $('#extension').on('click', '.btn-success, .btn-warning', function (e) {
                     next = json['next'];
 
                     chain.attach(installer);
+				} else {
+                  $(element).prop('disabled', false).removeClass('loading');
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -189,5 +188,5 @@ $('#extension').on('click', '.btn-danger', function (e) {
         });
     }
 });
-//--></script>
+</script>
 {{ footer }}
