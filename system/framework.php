@@ -13,6 +13,7 @@ $registry->set('autoloader', $autoloader);
 
 // Config
 $config = new \Opencart\System\Engine\Config();
+$registry->set('config', $config);
 $config->addPath(DIR_CONFIG);
 
 // Load the default config
@@ -21,7 +22,6 @@ $config->load(strtolower(APPLICATION));
 
 // Set the default application
 $config->set('application', APPLICATION);
-$registry->set('config', $config);
 
 // Set the default time zone
 date_default_timezone_set($config->get('date_timezone'));
@@ -112,6 +112,7 @@ if (isset($request->get['route'])) {
 
 // Response
 $response = new \Opencart\System\Library\Response();
+$registry->set('response', $response);
 
 foreach ($config->get('response_header') as $header) {
 	$response->addHeader($header);
@@ -125,7 +126,6 @@ $response->addHeader('Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DEL
 $response->addHeader('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
 $response->addHeader('Pragma: no-cache');
 $response->setCompression($config->get('response_compression'));
-$registry->set('response', $response);
 
 // Database
 if ($config->get('db_autostart')) {
@@ -167,14 +167,14 @@ $registry->set('cache', new \Opencart\System\Library\Cache($config->get('cache_e
 
 // Template
 $template = new \Opencart\System\Library\Template($config->get('template_engine'));
-$template->addPath(DIR_TEMPLATE);
 $registry->set('template', $template);
+$template->addPath(DIR_TEMPLATE);
 
 // Language
 $language = new \Opencart\System\Library\Language($config->get('language_code'));
+$registry->set('language', $language);
 $language->addPath(DIR_LANGUAGE);
 $language->load($config->get('language_code'));
-$registry->set('language', $language);
 
 // Url
 $registry->set('url', new \Opencart\System\Library\Url($config->get('site_url')));
@@ -182,15 +182,12 @@ $registry->set('url', new \Opencart\System\Library\Url($config->get('site_url'))
 // Document
 $registry->set('document', new \Opencart\System\Library\Document());
 
-// Action error object to execute if any other actions can not be executed.
-$error = new \Opencart\System\Engine\Action($config->get('action_error'));
+// Action error object to execute if any other actions cannot be executed.
+$action = '';
+$args = [];
+$output = '';
 
-// Route
-if (!empty($request->get['route'])) {
-	$action = new \Opencart\System\Engine\Action((string)$request->get['route']);
-} else {
-	$action = new \Opencart\System\Engine\Action($config->get('action_default'));
-}
+$error = new \Opencart\System\Engine\Action($config->get('action_error'));
 
 // Pre Actions
 foreach ($config->get('action_pre_action') as $pre_action) {
@@ -204,7 +201,7 @@ foreach ($config->get('action_pre_action') as $pre_action) {
 		break;
 	}
 
-	// If action can not be executed then we return an action error object.
+	// If action cannot be executed, we return an action error object.
 	if ($result instanceof \Exception) {
 		$action = $error;
 
@@ -214,8 +211,14 @@ foreach ($config->get('action_pre_action') as $pre_action) {
 	}
 }
 
-$args = [];
-$output = '';
+// Route
+if (!$action) {
+	if (!empty($request->get['route'])) {
+		$action = new \Opencart\System\Engine\Action((string)$request->get['route']);
+	} else {
+		$action = new \Opencart\System\Engine\Action($config->get('action_default'));
+	}
+}
 
 // Dispatch
 while ($action) {
@@ -240,7 +243,7 @@ while ($action) {
 		$action = $result;
 	}
 
-	// If action can not be executed then we return the action error object.
+	// If action cannot be executed, we return the action error object.
 	if ($result instanceof \Exception) {
 		$action = $error;
 
@@ -248,7 +251,7 @@ while ($action) {
 		$error = '';
 	}
 
-	// If not an object then it's the output
+	// If not an object, then it's the output
 	if (!$action) {
 		$output = $result;
 	}

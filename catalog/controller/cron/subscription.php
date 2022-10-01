@@ -4,7 +4,7 @@ class Subscription extends \Opencart\System\Engine\Controller {
 	public function index(int $cron_id, string $code, string $cycle, string $date_added, string $date_modified): void {
 		$this->load->language('cron/subscription');
 
-		echo 'subscription' . "\n";
+		// echo 'subscription' . "\n";
 
 		$this->load->model('account/customer');
 		$this->load->model('setting/extension');
@@ -14,6 +14,7 @@ class Subscription extends \Opencart\System\Engine\Controller {
 			'filter_date_next'              => date('Y-m-d H:i:s')
 		];
 
+		/*
 		$this->load->model('sale/subscription');
 
 		$results = $this->model_sale_subscription->getSubscriptions($filter_data);
@@ -88,5 +89,6 @@ class Subscription extends \Opencart\System\Engine\Controller {
 				}
 			}
 		}
+		*/
 	}
 }
